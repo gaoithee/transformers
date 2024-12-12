@@ -1,0 +1,6 @@
+{
+  "name_or_path": "temporal_logic_tokenizer",
+  "special_tokens_map_file": "special_tokens_map.json",
+  "tokenizer_file": "tokenizer.json",
+  "do_lower_case": false
+}
