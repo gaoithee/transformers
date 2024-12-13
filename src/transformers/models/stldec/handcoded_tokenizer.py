@@ -73,6 +73,18 @@ class STLTokenizer(PreTrainedTokenizer):
         else:
             return sequence.replace(' ', f'{self.pad_token}')
 
+    def add_bos_eos(self, sequence: str) -> str:
+        """
+        Aggiunge i token BOS all'inizio e EOS alla fine della sequenza.
+
+        Args:
+            sequence (str): La sequenza di input.
+
+        Returns:
+            str: La sequenza con i token BOS ed EOS.
+        """
+        return f'{self.bos_token} {sequence} {self.eos_token}'
+
     def tokenize(self, text: str) -> List[str]:
         """
         Tokenizes the input text into a list of tokens.
@@ -86,6 +98,7 @@ class STLTokenizer(PreTrainedTokenizer):
         Returns:
             List[str]: A list of tokens representing the tokenized text.
         """
+        text = self.add_bos_eos(text)
         text = self.prepad_sequence(text)
         
         tokens = []
@@ -196,16 +209,15 @@ class STLTokenizer(PreTrainedTokenizer):
         return self.vocab
 
 
-
 # EXAMPLE OF USAGE 
 
-sequence = "( not ( x_1 <= 0.2988 ) until[11,21] x_0 <= -0.7941 )"
-tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
-token_ids = tokenizer.encode(sequence)
-decoded_sequence = tokenizer.decode(token_ids)
+# sequence = "( not ( x_1 <= 0.2988 ) until[11,21] x_0 <= -0.7941 )"
+# tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
+# token_ids = tokenizer.encode(sequence)
+# decoded_sequence = tokenizer.decode(token_ids)
 
-print("Original sequence: ", sequence)
-print("Encoded sequence: ", token_ids)
-print("Decoded sequence: ", decoded_sequence)
+# print("Original sequence: ", sequence)
+# print("Encoded sequence: ", token_ids)
+# print("Decoded sequence: ", decoded_sequence)
 
 

@@ -43,21 +43,21 @@ class STLEncoder():
 
 
 # EXAMPLE OF USAGE
-formulae_to_embed = [
-    'not ( x_1 <= 0.0956 )', 
-    'not ( x_2 >= 1.118 )', 
-    'not ( ( not ( x_0 <= -0.692 ) and ( eventually[8,19] ( x_2 <= -1.5116 ) until[6,inf] x_2 >= -0.3382 ) ) )', 
-    '( ( x_2 >= -0.4612 or x_1 <= -1.1656 ) or x_0 <= -0.8679 )']
+# formulae_to_embed = [
+#     'not ( x_1 <= 0.0956 )', 
+#     'not ( x_2 >= 1.118 )', 
+#     'not ( ( not ( x_0 <= -0.692 ) and ( eventually[8,19] ( x_2 <= -1.5116 ) until[6,inf] x_2 >= -0.3382 ) ) )', 
+#     '( ( x_2 >= -0.4612 or x_1 <= -1.1656 ) or x_0 <= -0.8679 )']
 
 # here we do not pass an anchor set so the Encoder creates a new one of dimension set to `embed_dim` 
 # encoder = STLEncoder(embed_dim=10)
 
 # another option is the following: 
-encoder = STLEncoder(embed_dim=10, anchor_filename='anchor_set_10_dim.pickle')
-formulae_embeddings = encoder.compute_embeddings(formulae_to_embed)
+# encoder = STLEncoder(embed_dim=10, anchor_filename='anchor_set_10_dim.pickle')
+# formulae_embeddings = encoder.compute_embeddings(formulae_to_embed)
 
-for i in range(len(formulae_to_embed)):
-    print(f"Formula: {formulae_to_embed[i]}")
-    embedding_str = ', '.join([f"{x:.4f}" for x in formulae_embeddings[i]])
-    print(f"Embedding: tensor([{embedding_str}])\n")
+# for i in range(len(formulae_to_embed)):
+#     print(f"Formula: {formulae_to_embed[i]}")
+#     embedding_str = ', '.join([f"{x:.4f}" for x in formulae_embeddings[i]])
+#     print(f"Embedding: tensor([{embedding_str}])\n")
 
