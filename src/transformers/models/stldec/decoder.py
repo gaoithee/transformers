@@ -6,180 +6,50 @@ import numpy as np
 import torch
 import torch.utils.checkpoint
 from torch import nn
-from torch.nn import CrossEntropyLoss
+
+from transformers.modeling_utils import PreTrainedModel
+from transformers.modeling_outputs import (
+    BaseModelOutput,
+    BaseModelOutputWithPastAndCrossAttentions,
+    CausalLMOutputWithCrossAttentions,
+    Seq2SeqLMOutput,
+    Seq2SeqModelOutput,
+)
+
+from transformers.modeling_attn_mask_utils import _prepare_4d_attention_mask, _prepare_4d_causal_attention_mask
+from utils2 import STLAttention, STLSinusoidalPositionalEmbedding
+from configuration import STLConfig
 
 
-class STLAttention(nn.Module):
-    """ Multi-Head Attention as depicted from 'Attention is all you need' """
+class STLPreTrainedModel(PreTrainedModel):
+    config_class = STLConfig 
+    base_model_prefix = "model" 
+    supports_gradient_checkpointing = True
 
-    def __init__(self, embed_dim: int, num_heads: int, dropout: float = 0.0, 
-                 is_decoder: bool = False, bias: bool = False, is_causal: bool = False,):
-        
-        super().__init__()
-        self.embed_dim = embed_dim # overall embedding dimension -> to be divided between multiple heads
-        self.num_heads = num_heads
-        self.dropout = dropout
-        self.head_dim = embed_dim // num_heads
-        assert (self.head_dim * num_heads) == self.embed_dim 
-        self.scaling = self.head_dim ** -0.5 # used to normalized values when projected using `W_` matrices
-        self.is_decoder = is_decoder # NOT USED
-        self.is_causal = is_causal # NOT USED
+    # initializes the weights of `nn.Linear`, `nn.Embedding` and `STLSinusoidalPositionalEmbedding`
+    def _init_weights(self, module: Union[nn.Linear, nn.Embedding, STLSinusoidalPositionalEmbedding]):
+        std = self.config.init_std
+        if isinstance(module, nn.Linear):
+            module.weight.data.normal_(mean=0.0, std=std)
+            if module.bias is not None:
+                module.bias.data.zero_()
+        elif isinstance(module, STLSinusoidalPositionalEmbedding):
+            pass
+        elif isinstance(module, nn.Embedding):
+            module.weight.data.normal_(mean=0.0, std=std)
+            if module.padding_idx is not None:
+                module.weight.data[module.padding_idx].zero_()
 
-        # 'roleplaying' matrices 
-        # note: `embed_dim` refers to the overall number of embedding dimensions, BEFORE splitting them between the heads
-        self.W_k = nn.Linear(embed_dim, embed_dim, bias = bias) 
-        self.W_q = nn.Linear(embed_dim, embed_dim, bias = bias)
-        self.W_v = nn.Linear(embed_dim, embed_dim, bias = bias)
-
-        # to project the heads' outputs into a single vector!
-        self.W_o = nn.Linear(embed_dim, embed_dim, bias = bias) 
-
-
-    def _shape(self, tensor: torch.Tensor, seq_len: int, batch_size: int):
-        """ 
-        Reshapes tensors to split the input (of dimension `embed_dim`) between multiple heads (of dimension `head_dim`) 
-            Input: (batch_size, seq_len, embed_dim)
-            Output: (batch_size, num_heads, seq_len, head_dim)
-        """
-        # `batch_size`` = number of sequences processed in parallel
-        # `seq_len` = length of each sequence 
-        # `num_heads`, `head_dim` = number of heads of the multi-attn mechanism and dimension of each of them
-        # `.transpose(1, 2)` swaps the 2nd and the 3rd element
-        # `.contiguous()` just asks to sotre the data in a contiguous block of memory
-        return tensor.view(batch_size, seq_len, self.num_heads, self.head_dim).transpose(1, 2).contiguous()
-    
-    
-    def forward(self, 
-                hidden_states: torch.Tensor, # previous values, passed to the multi-head attn layer
-                key_value_states: Optional[torch.Tensor] = None, # different key, value items (used in cross-attn)
-                past_key_value: Optional[Tuple[torch.Tensor]] = None, # stores the key and values of previous steps 
-                attention_mask: Optional[torch.Tensor] = None, # masks non-allowed items (padded or future ones)
-                layer_head_mask: Optional[torch.Tensor] = None, # used to de-activate specific attn heads (?)
-                output_attentions: bool = False # flag to control the output of the attn values
-                ) -> Tuple[torch.Tensor, Optional[torch.Tensor], Optional[Tuple[torch.Tensor]]]:
-        
-        
-        # if `key_value_states` is provided (i.e. is not None), then `is_cross_attention` is set to True:
-        is_cross_attention = key_value_states is not None # imagine this as a 'context definition' step
-
-
-        # `hidden_states` has dimensions `(batch_size, tgt_len, embed_dim)`, where:
-        #   `batch_size` = number of items that are processed simultaneously
-        #   `tgt_len` = number of tokens in the TARGET sequence
-        #   `embed_dim` = embedding dimension (per token!)
-        # batch_size, tgt_len = _ = hidden_states.size()
-        batch_size, tgt_len, embed_dim = hidden_states.size()
-
-        # project the current input in the `query` role:
-        query = self.W_q(hidden_states) * self.scaling
-
-        # to get `key` and `value` we have to differentiate the definition wrt the scenario: 
-
-        # if we are using cross-attn AND there exist past key values AND the lengths match, then use them!
-        if (is_cross_attention and past_key_value is not None and past_key_value[0].shape[2] == key_value_states.shape[1]):
-            # then re-use K and V:
-            key = past_key_value[0]
-            value = past_key_value[1]
-
-        # if we are using cross-attn BUT we do not have past key values, we compute them
-        elif is_cross_attention:
-            key = self._shape(self.W_k(key_value_states), -1, batch_size)
-            value = self._shape(self.W_v(key_value_states), -1, batch_size)
-        
-        # if we do have past key values BUT we are not using cross-attn, then we project the current hidden state to new key and value items
-        # and after that, concatenate them:
-        elif past_key_value is not None:
-            key = self._shape(self.W_k(hidden_states), -1, batch_size)
-            value = self._shape(self.W_v(hidden_states), -1, batch_size)
-            key = torch.cat([past_key_value[0], key], dim = 2)
-            value = torch.cat([past_key_value[1], key], dim = 2)
-
-        # if we are in a scenario in which we do not have anything pre-computed, compute them
-        else:
-            key = self._shape(self.W_k(hidden_states), -1, batch_size)
-            value = self._shape(self.W_v(hidden_states), -1, batch_size)
-
-
-        if self.is_decoder:
-            past_key_value = (key, value)
-        
-        
-        # final shape that we want the queries, keys and values to have BEFORE the attn computation
-        # we do this because we want each head to be able to operate independently of the others on its set of params
-        proj_shape = (batch_size * self.num_heads, -1, self.head_dim) # in fact, `head_dim` is the input dimension
-
-        # projection: 
-        query = self._shape(query, tgt_len, batch_size).view(*proj_shape)  # `._shape` prepares the vector for the proj
-        key = key.reshape(*proj_shape)
-        value = value.reshape(*proj_shape)
-
-        src_len = key.size(1) 
-
-        # bmm = batch(-wise) matrix multiplication between `query` and (TRANSPOSED) `key` 
-        attn_weights = torch.bmm(query, key.transpose(1, 2))
-
-        # check n°1
-        if attn_weights.size() != (batch_size * self.num_heads, tgt_len, src_len):
-            raise ValueError(f"Attention weights should be of size {(batch_size * self.num_heads, tgt_len, src_len)}, but is"
-             f" {attn_weights.size()}"
-            )
-        # check n°2
-        if attention_mask is not None:
-            if attention_mask.size() != (batch_size, 1, tgt_len, src_len):
-                raise ValueError(
-                f"Attention mask should be of size {(batch_size, 1, tgt_len, src_len)}, but is {attention_mask.size()}"
-                )
-            # reshaping and application of the mask to the the upper-right part of `attn_weights` matrix
-            attn_weights = attn_weights.view(batch_size, self.num_heads, tgt_len, src_len) + attention_mask
-            # returned packed together, not divided among `num_heads` heads
-            attn_weights = attn_weights.view(batch_size * self.num_heads, tgt_len, src_len)
-        
-        # if it passed the checks, then normalize these values on the `key` axis (i.e. `dim = -1`)
-        attn_weights = nn.functional.softmax(attn_weights, dim = -1)
-
-        # `layer_head_mask` = 1D array of dimension `self.num_heads` that flags whether or not each head is activated
-        # e.g. (0, 1, ..., 0.5) -> 1st head deactivated, 2nd activated, ..., last head partially activated (reduced contribution)
-        if layer_head_mask is not None:
-            # check 
-            if layer_head_mask.size() != (self.num_heads, ):
-                raise ValueError(f"Head mask for a single layer should be of size {(self.num_heads, )}, but is"
-                                 f"{layer_head_mask.size()}"
-                                 )
-            # reshapes the mask from `(self.num_head, )` to `(1, self.num_heads, 1, 1)` to allow the broadcasting
-            # also attn_weights is again reshaped, splitting for different heads
-            attn_weights = layer_head_mask.view(1, -1, 1, 1) * attn_weights.view(batch_size, self.num_heads, tgt_len, src_len)
-            # final reshape (aka merged again)
-            attn_weights = attn_weights.view(batch_size * self.num_heads, tgt_len, src_len)
-
-
-        # if this component is asked to output the attention values, then reshape and go back (?)
-        if output_attentions:
-            attn_weights_reshaped = attn_weights.view(batch_size, self.num_heads, tgt_len, src_len)
-            attn_weights = attn_weights_reshaped.view(batch_size * self.num_heads, tgt_len, src_len)
-        else:
-            attn_weights_reshaped = None
-
-
-        # apply the dropout to the `attn_weights`:
-        attn_probs = nn.functional.dropout(attn_weights, p = self.dropout, training = self.training)
-        # batch-wise matrix multiplication between the resulting probs and the value 
-        attn_output = torch.bmm(attn_probs, value)
-        # check
-        if attn_output.size() != (batch_size * self.num_heads, tgt_len, self.head_dim):
-            raise ValueError(
-                f"`attn_output` should be of size {(batch_size * self.num_heads, tgt_len, self.head_dim)}, but is"
-                f" {attn_output.size()}"
-            )
-        
-        
-        attn_output = attn_output.view(batch_size, self.num_heads, tgt_len, self.head_dim)
-        attn_output = attn_output.transpose(1, 2)
-
-
-        attn_output = attn_output.reshape(batch_size, tgt_len, self.embed_dim)
-        attn_output = self.W_o(attn_output) 
-
-        return attn_output, attn_weights_reshaped, past_key_value
+    @property
+    def dummy_inputs(self):
+        pad_token = self.config.pad_token_id
+        input_ids = torch.tensor([[0, 6, 10, 4, 2], [0, 8, 12, 2, pad_token]], device=self.device)
+        dummy_inputs = {
+            "attention_mask": input_ids.ne(pad_token),
+            "input_ids": input_ids,
+            "decoder_input_ids": input_ids,
+        }
+        return dummy_inputs
 
 
 class STLDecoderBlock(nn.Module):
@@ -345,5 +215,218 @@ class STLDecoderBlock(nn.Module):
             outputs += (present_key_value,)
 
         return outputs
+
+
+class STLDecoder(STLPreTrainedModel):
+    def __init__(self, config):
+        super().__init__(config)
+
+        # Recupero dei parametri dal config
+        embed_dim = config.d_model
+        num_decoder_attention_heads = config.decoder_attention_heads
+        num_decoder_ffn_dim = config.decoder_ffn_dim
+        max_position_embeddings = config.max_position_embeddings
+        decoder_vocab_size = config.decoder_vocab_size
+        pad_token_id = config.pad_token_id
+        num_decoder_layers = config.decoder_layers
+        scale_embedding = config.scale_embedding
+        dropout = config.dropout
+        attention_dropout = config.attention_dropout
+        activation_dropout = config.activation_dropout
+        decoder_layerdrop = config.decoder_layerdrop
+        
+        self.dropout = dropout
+        self.layerdrop = decoder_layerdrop
+        self.padding_idx = pad_token_id
+        self.max_target_positions = max_position_embeddings
+        self.embed_scale = math.sqrt(embed_dim) if scale_embedding else 1.0
+
+        # Inizializza l'embed_tokens se non passato esplicitamente
+        self.embed_tokens = nn.Embedding(decoder_vocab_size, embed_dim, self.padding_idx)
+        
+        # Aggiungi la posizione e le layer del decoder
+        self.embed_positions = STLSinusoidalPositionalEmbedding(
+            max_position_embeddings, embed_dim, self.padding_idx
+        )
+        
+        # Inizializzazione delle layer del decoder
+        self.layers = nn.ModuleList([STLDecoderBlock(embed_dim, num_decoder_attention_heads, 
+                                                      num_decoder_ffn_dim, dropout, 
+                                                      attention_dropout, activation_dropout) 
+                                     for _ in range(num_decoder_layers)])
+
+        self.gradient_checkpointing = False
+        self.post_init()
+
+    def get_input_embeddings(self):
+        return self.embed_tokens
+
+    def forward(
+        self,
+        input_ids: torch.LongTensor = None,
+        attention_mask: Optional[torch.Tensor] = None,
+        encoder_hidden_states: Optional[torch.FloatTensor] = None,
+        head_mask: Optional[torch.Tensor] = None,
+        cross_attn_head_mask: Optional[torch.Tensor] = None,
+        past_key_values: Optional[Tuple[Tuple[torch.FloatTensor]]] = None,
+        inputs_embeds: Optional[torch.FloatTensor] = None,
+        use_cache: Optional[bool] = None,
+        output_attentions: Optional[bool] = None,
+        output_hidden_states: Optional[bool] = None,
+        return_dict: Optional[bool] = None,
+    ) -> Union[Tuple[torch.Tensor], BaseModelOutputWithPastAndCrossAttentions]:
+        output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions
+        output_hidden_states = (
+            output_hidden_states if output_hidden_states is not None else self.config.output_hidden_states
+        )
+        use_cache = use_cache if use_cache is not None else self.config.use_cache
+        return_dict = return_dict if return_dict is not None else self.config.use_return_dict
+
+        # retrieve input_ids and inputs_embeds
+        if input_ids is not None and inputs_embeds is not None:
+            raise ValueError("You cannot specify both decoder_input_ids and decoder_inputs_embeds at the same time")
+        elif input_ids is not None:
+            input_shape = input_ids.size()
+            input_ids = input_ids.view(-1, input_shape[-1])
+        elif inputs_embeds is not None:
+            input_shape = inputs_embeds.size()[:-1]
+        else:
+            raise ValueError("You have to specify either decoder_input_ids or decoder_inputs_embeds")
+
+        # past_key_values_length
+        past_key_values_length = past_key_values[0][0].shape[2] if past_key_values is not None else 0
+
+        if inputs_embeds is None:
+            inputs_embeds = self.embed_tokens(input_ids) * self.embed_scale
+
+        attention_mask = _prepare_4d_causal_attention_mask(
+            attention_mask, input_shape, inputs_embeds, past_key_values_length
+        )
+
+        # embed positions
+        positions = self.embed_positions(input_shape, past_key_values_length)
+
+        hidden_states = inputs_embeds + positions
+
+        hidden_states = nn.functional.dropout(hidden_states, p=self.dropout, training=self.training)
+
+        if self.gradient_checkpointing and self.training:
+            if use_cache:
+                logger.warning_once(
+                    "`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`..."
+                )
+                use_cache = False
+
+        # decoder layers
+        all_hidden_states = () if output_hidden_states else None
+        all_self_attns = () if output_attentions else None
+        all_cross_attentions = () if (output_attentions and encoder_hidden_states is not None) else None
+        next_decoder_cache = () if use_cache else None
+
+        for idx, decoder_layer in enumerate(self.layers):
+            # add LayerDrop (see https://arxiv.org/abs/1909.11556 for description)
+            if output_hidden_states:
+                all_hidden_states += (hidden_states,)
+            if self.training:
+                dropout_probability = torch.rand([])
+                if dropout_probability < self.layerdrop:
+                    continue
+
+            past_key_value = past_key_values[idx] if past_key_values is not None else None
+
+            if self.gradient_checkpointing and self.training:
+                layer_outputs = self._gradient_checkpointing_func(
+                    decoder_layer.__call__,
+                    hidden_states,
+                    attention_mask,
+                    encoder_hidden_states,
+                    head_mask[idx] if head_mask is not None else None,
+                    cross_attn_head_mask[idx] if cross_attn_head_mask is not None else None,
+                    None,
+                    output_attentions,
+                    use_cache,
+                )
+            else:
+                layer_outputs = decoder_layer(
+                    hidden_states,
+                    attention_mask=attention_mask,
+                    encoder_hidden_states=encoder_hidden_states,
+                    layer_head_mask=(head_mask[idx] if head_mask is not None else None),
+                    cross_attn_layer_head_mask=(
+                        cross_attn_head_mask[idx] if cross_attn_head_mask is not None else None
+                    ),
+                    past_key_value=past_key_value,
+                    output_attentions=output_attentions,
+                    use_cache=use_cache,
+                )
+            hidden_states = layer_outputs[0]
+
+            if use_cache:
+                next_decoder_cache += (layer_outputs[3 if output_attentions else 1],)
+
+            if output_attentions:
+                all_self_attns += (layer_outputs[1],)
+
+                if encoder_hidden_states is not None:
+                    all_cross_attentions += (layer_outputs[2],)
+
+        # add hidden states from the last decoder layer
+        if output_hidden_states:
+            all_hidden_states += (hidden_states,)
+
+        next_cache = next_decoder_cache if use_cache else None
+        if not return_dict:
+            return tuple(
+                v
+                for v in [hidden_states, next_cache, all_hidden_states, all_self_attns, all_cross_attentions]
+                if v is not None
+            )
+        return BaseModelOutputWithPastAndCrossAttentions(
+            last_hidden_state=hidden_states,
+            past_key_values=next_cache,
+            hidden_states=all_hidden_states,
+            attentions=all_self_attns,
+            cross_attentions=all_cross_attentions,
+        )
+
+################################################################################################
+
+# config = STLConfig()
+# model = STLDecoder(config)
+
+# batch_size = 2
+# seq_len = 5
+
+# input_ids = torch.randint(0, config.decoder_vocab_size, (batch_size, seq_len))
+
+# import torch
+
+# def create_attention_mask(batch_size, seq_len):
+#     # 1. Maschera di attenzione: tutti i token sono validi
+#     attention_mask = torch.ones(batch_size, seq_len)  # Maschera di attenzione (tutti i token sono validi)
+
+#     # 2. Maschera causale (triangolare inferiore)
+#     causal_mask = torch.tril(torch.ones(seq_len, seq_len))  # Triangolare inferiore
+
+#     # 3. Espandere la maschera di attenzione per il batch size
+#     attention_mask = attention_mask.unsqueeze(1).unsqueeze(2)  # Aggiungi batch_size e heads
+#     attention_mask = attention_mask.expand(batch_size, 1, seq_len, seq_len)  # Espandi per batch_size
+
+#     # 4. Aggiungi le dimensioni per batch_size e heads alla maschera causale
+#     causal_mask = causal_mask.unsqueeze(0).unsqueeze(1)  # Aggiungi batch_size e heads
+#     causal_mask = causal_mask.expand(batch_size, 1, seq_len, seq_len)  # Espandi per batch_size
+
+#     # 5. Applicare la maschera causale alla maschera di attenzione
+#     attention_mask = attention_mask * causal_mask
+
+#     return attention_mask
+
+
+
+# attention_mask = create_attention_mask(batch_size, seq_len)
+# output = model(input_ids=input_ids, attention_mask=attention_mask)
+
+# print(output)
+
 
 

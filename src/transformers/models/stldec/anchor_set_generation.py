@@ -74,7 +74,7 @@ def anchorGeneration(diff_init = False, # to control whether we want formulae to
 
 
 # EXAMPLE OF USAGE
-# anchorGeneration(diff_init = True, embed_dim = 100)
+anchorGeneration(diff_init = True, embed_dim = 1000)
 
 
 
