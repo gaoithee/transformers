@@ -29,7 +29,8 @@ class STLTokenizer(PreTrainedTokenizer):
     and handle padding and special tokens.
     """
 
-    def __init__(self, vocab_path: str, unk_token: str = "unk", pad_token: str = "pad", bos_token: str = "/s", eos_token: str = "s"):
+    def __init__(self, vocab_path: str, unk_token: str = "unk", pad_token: str = "pad", 
+                 bos_token: str = "/s", eos_token: str = "s", model_max_length = 512):
         """
         Initializes the STLTokenizer with a given vocabulary and special tokens.
 
@@ -45,6 +46,7 @@ class STLTokenizer(PreTrainedTokenizer):
         self.pad_token = pad_token
         self.bos_token = bos_token
         self.eos_token = eos_token
+        self.model_max_length = model_max_length
         self.id_to_token = {v: k for k, v in self.vocab.items()}  # Reverse mapping
 
     @property

@@ -2,13 +2,13 @@ from transformers.configuration_utils import PretrainedConfig
 
 class STLConfig(PretrainedConfig):
 
-    model_type = "STLdec"
+    model_type = "stl-dec"
     keys_to_ignore_at_inference = ["past_key_values"]
     attribute_map = {"num_attention_heads": "encoder_attention_heads", "hidden_size": "d_model"}
 
     def __init__(
         self,
-        vocab_size=58101,
+        vocab_size=35,
         decoder_vocab_size=None,
         max_position_embeddings=1024,
         encoder_layers=12,
@@ -27,11 +27,11 @@ class STLConfig(PretrainedConfig):
         attention_dropout=0.0,
         activation_dropout=0.0,
         init_std=0.02,
-        decoder_start_token_id=58100,
+        decoder_start_token_id=3,
         scale_embedding=False,
-        pad_token_id=58100,
-        eos_token_id=0,
-        forced_eos_token_id=0,
+        pad_token_id=1,
+        eos_token_id=2,
+        forced_eos_token_id=2,
         share_encoder_decoder_embeddings=True,
         **kwargs,
     ):

@@ -33,7 +33,7 @@ _CONFIG_FOR_DOC = "STLConfig"
 
 from transformers.generation import GenerationMixin
 
-class STLForCausalLM(STLPreTrainedModel, GenerationMixin):
+class STLDec(STLPreTrainedModel, GenerationMixin):
     _tied_weights_keys = ["lm_head.weight"]
 
     def __init__(self, config):

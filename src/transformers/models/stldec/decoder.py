@@ -226,7 +226,7 @@ class STLDecoder(STLPreTrainedModel):
         num_decoder_attention_heads = config.decoder_attention_heads
         num_decoder_ffn_dim = config.decoder_ffn_dim
         max_position_embeddings = config.max_position_embeddings
-        decoder_vocab_size = config.decoder_vocab_size
+        vocab_size = config.vocab_size
         pad_token_id = config.pad_token_id
         num_decoder_layers = config.decoder_layers
         scale_embedding = config.scale_embedding
@@ -242,7 +242,7 @@ class STLDecoder(STLPreTrainedModel):
         self.embed_scale = math.sqrt(embed_dim) if scale_embedding else 1.0
 
         # Inizializza l'embed_tokens se non passato esplicitamente
-        self.embed_tokens = nn.Embedding(decoder_vocab_size, embed_dim, self.padding_idx)
+        self.embed_tokens = nn.Embedding(vocab_size, embed_dim, self.padding_idx)
         
         # Aggiungi la posizione e le layer del decoder
         self.embed_positions = STLSinusoidalPositionalEmbedding(
