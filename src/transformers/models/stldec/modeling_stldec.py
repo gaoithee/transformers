@@ -16,13 +16,7 @@ from transformers.utils import (
     replace_return_docstrings,
 )
 
-from transformers.modeling_outputs import (
-    BaseModelOutput,
-    BaseModelOutputWithPastAndCrossAttentions,
-    CausalLMOutputWithCrossAttentions,
-    Seq2SeqLMOutput,
-    Seq2SeqModelOutput,
-)
+from transformers.modeling_outputs import CausalLMOutputWithCrossAttentions
 
 from decoder import STLPreTrainedModel
 from utils2 import STLConfig
@@ -33,7 +27,7 @@ _CONFIG_FOR_DOC = "STLConfig"
 
 from transformers.generation import GenerationMixin
 
-class STLDec(STLPreTrainedModel, GenerationMixin):
+class STLForCausalLM(STLPreTrainedModel, GenerationMixin):
     _tied_weights_keys = ["lm_head.weight"]
 
     def __init__(self, config):
@@ -69,14 +63,15 @@ class STLDec(STLPreTrainedModel, GenerationMixin):
 
     def forward(
         self,
-        input_ids: torch.LongTensor = None,
-        attention_mask: Optional[torch.Tensor] = None,
-        encoder_hidden_states: Optional[torch.FloatTensor] = None,
+        input_ids: torch.LongTensor = None, # input sequence
+        attention_mask: Optional[torch.Tensor] = None, # masked MHSA + padding
+        encoder_hidden_states: Optional[torch.FloatTensor] = None, # embedding
+        encoder_attention_mask: Optional[torch.FloatTensor] = None, # MHSA + padding
         head_mask: Optional[torch.Tensor] = None,
         cross_attn_head_mask: Optional[torch.Tensor] = None,
         past_key_values: Optional[List[torch.FloatTensor]] = None,
         inputs_embeds: Optional[torch.FloatTensor] = None,
-        labels: Optional[torch.LongTensor] = None,
+        labels: Optional[torch.LongTensor] = None, # output sequence
         use_cache: Optional[bool] = None,
         output_attentions: Optional[bool] = None,
         output_hidden_states: Optional[bool] = None,
@@ -94,6 +89,7 @@ class STLDec(STLPreTrainedModel, GenerationMixin):
             input_ids=input_ids,
             attention_mask=attention_mask,
             encoder_hidden_states=encoder_hidden_states,
+            encoder_attention_mask=encoder_attention_mask,
             head_mask=head_mask,
             cross_attn_head_mask=cross_attn_head_mask,
             past_key_values=past_key_values,
