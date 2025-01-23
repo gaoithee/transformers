@@ -2,7 +2,7 @@ from transformers.configuration_utils import PretrainedConfig
 
 class STLConfig(PretrainedConfig):
 
-    model_type = "stl-dec"
+    model_type = "STLdec"
     keys_to_ignore_at_inference = ["past_key_values"]
     attribute_map = {"num_attention_heads": "encoder_attention_heads", "hidden_size": "d_model"}
 
@@ -30,8 +30,9 @@ class STLConfig(PretrainedConfig):
         decoder_start_token_id=3,
         scale_embedding=False,
         pad_token_id=1,
-        eos_token_id=2,
-        forced_eos_token_id=2,
+        eos_token_id=3,
+        bos_token_id=2,
+        forced_eos_token_id=3,
         share_encoder_decoder_embeddings=True,
         **kwargs,
     ):
@@ -57,6 +58,7 @@ class STLConfig(PretrainedConfig):
         self.scale_embedding = scale_embedding  # scale factor will be sqrt(d_model) if True
         self.share_encoder_decoder_embeddings = share_encoder_decoder_embeddings
         super().__init__(
+            bos_token_id=bos_token_id,
             pad_token_id=pad_token_id,
             eos_token_id=eos_token_id,
             is_encoder_decoder=is_encoder_decoder,
