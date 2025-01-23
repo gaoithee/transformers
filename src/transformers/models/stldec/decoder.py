@@ -98,6 +98,7 @@ class STLDecoderBlock(nn.Module):
         hidden_states: torch.Tensor,
         attention_mask: Optional[torch.Tensor] = None,
         encoder_hidden_states: Optional[torch.Tensor] = None,
+        encoder_attention_mask: Optional[torch.Tensor] = None,
         layer_head_mask: Optional[torch.Tensor] = None,
         cross_attn_layer_head_mask: Optional[torch.Tensor] = None,
         past_key_value: Optional[Tuple[torch.Tensor]] = None,
@@ -172,6 +173,7 @@ class STLDecoderBlock(nn.Module):
             hidden_states, cross_attn_weights, cross_attn_present_key_value = self.encoder_attn.forward(
                 hidden_states=hidden_states, # Q = generated output
                 key_value_states=encoder_hidden_states, # K, V = encoder memory (used only in the 1st step when `use_cache = True`)
+                attention_mask=encoder_attention_mask, # just pads some elements (not causal this time!)
                 layer_head_mask=cross_attn_layer_head_mask, # again to mask certain heads
                 past_key_value=cross_attn_past_key_value, # K, V = encoder CACHED memory (used from the 2nd step on when `use_cache = True`)
                 output_attentions=output_attentions,
@@ -226,7 +228,7 @@ class STLDecoder(STLPreTrainedModel):
         num_decoder_attention_heads = config.decoder_attention_heads
         num_decoder_ffn_dim = config.decoder_ffn_dim
         max_position_embeddings = config.max_position_embeddings
-        vocab_size = config.vocab_size
+        decoder_vocab_size = config.decoder_vocab_size
         pad_token_id = config.pad_token_id
         num_decoder_layers = config.decoder_layers
         scale_embedding = config.scale_embedding
@@ -242,7 +244,7 @@ class STLDecoder(STLPreTrainedModel):
         self.embed_scale = math.sqrt(embed_dim) if scale_embedding else 1.0
 
         # Inizializza l'embed_tokens se non passato esplicitamente
-        self.embed_tokens = nn.Embedding(vocab_size, embed_dim, self.padding_idx)
+        self.embed_tokens = nn.Embedding(decoder_vocab_size, embed_dim, self.padding_idx)
         
         # Aggiungi la posizione e le layer del decoder
         self.embed_positions = STLSinusoidalPositionalEmbedding(
@@ -266,6 +268,7 @@ class STLDecoder(STLPreTrainedModel):
         input_ids: torch.LongTensor = None,
         attention_mask: Optional[torch.Tensor] = None,
         encoder_hidden_states: Optional[torch.FloatTensor] = None,
+        encoder_attention_mask: Optional[torch.Tensor] = None,
         head_mask: Optional[torch.Tensor] = None,
         cross_attn_head_mask: Optional[torch.Tensor] = None,
         past_key_values: Optional[Tuple[Tuple[torch.FloatTensor]]] = None,
@@ -275,6 +278,7 @@ class STLDecoder(STLPreTrainedModel):
         output_hidden_states: Optional[bool] = None,
         return_dict: Optional[bool] = None,
     ) -> Union[Tuple[torch.Tensor], BaseModelOutputWithPastAndCrossAttentions]:
+        
         output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions
         output_hidden_states = (
             output_hidden_states if output_hidden_states is not None else self.config.output_hidden_states
@@ -302,6 +306,13 @@ class STLDecoder(STLPreTrainedModel):
         attention_mask = _prepare_4d_causal_attention_mask(
             attention_mask, input_shape, inputs_embeds, past_key_values_length
         )
+
+        # expand encoder attention mask
+        if encoder_hidden_states is not None and encoder_attention_mask is not None:
+            # [bsz, seq_len] -> [bsz, 1, tgt_seq_len, src_seq_len]
+            encoder_attention_mask = _prepare_4d_attention_mask(
+                encoder_attention_mask, inputs_embeds.dtype, tgt_len=input_shape[-1]
+            )
 
         # embed positions
         positions = self.embed_positions(input_shape, past_key_values_length)
@@ -340,6 +351,7 @@ class STLDecoder(STLPreTrainedModel):
                     hidden_states,
                     attention_mask,
                     encoder_hidden_states,
+                    encoder_attention_mask,
                     head_mask[idx] if head_mask is not None else None,
                     cross_attn_head_mask[idx] if cross_attn_head_mask is not None else None,
                     None,
@@ -427,6 +439,9 @@ class STLDecoder(STLPreTrainedModel):
 # output = model(input_ids=input_ids, attention_mask=attention_mask)
 
 # print(output)
+
+
+
 
 
 
