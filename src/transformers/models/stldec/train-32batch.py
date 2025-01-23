@@ -59,8 +59,8 @@ args = {
     'tokenizer_name': 'STLTokenizer',
     'block_size': 500,
     'batch_size': 32,
-    'gradient_accumulation_steps': 1,
-    'num_train_epochs': 3,
+    'gradient_accumulation_steps': 2,
+    'num_train_epochs': 1,
     'learning_rate': 5e-5,
     'weight_decay': 0.01,
     'num_warmup_steps': 0,
@@ -164,8 +164,6 @@ else:
     raw_datasets = load_dataset(extension, data_files=data_files, **dataset_args)
 
 
-# Create a `CustomDataset` class to format properly the input data wrt the 
-# `input_ids`, `labels` and `attention_mask` attributes
 class CustomDataset(Dataset):
     def __init__(self, df, device='cpu'):
         self.df = df
@@ -178,6 +176,10 @@ class CustomDataset(Dataset):
         # Start from `Encoded_Formula`
         encoded_formula = self.df['Encoded_Formula'][idx]
         encoded_formula = ast.literal_eval(encoded_formula.strip())
+
+        formula_embedding = self.df['Embedding'][idx]
+        formula_embedding = formula_embedding.replace("tensor(", "").rstrip(")")
+        formula_embedding = eval(formula_embedding)
         
         input_ids = encoded_formula[:-1]  # Tutti tranne l'ultimo
         labels = encoded_formula[1:]     # Tutti tranne il primo
@@ -189,10 +191,14 @@ class CustomDataset(Dataset):
         labels = torch.tensor(labels, dtype=torch.long).to(self.device)
         attention_mask = torch.tensor(attention_mask, dtype=torch.long).to(self.device)
 
+        encoder_hidden_states = torch.tensor(formula_embedding, dtype=torch.float32).to(self.device)
+        
+
         return {
             'input_ids': input_ids,
             'labels': labels,
-            'attention_mask': attention_mask
+            'attention_mask': attention_mask,
+            'encoder_hidden_states': encoder_hidden_states
         }
 
 
@@ -391,6 +397,10 @@ if args["checkpointing_steps"] == "epoch":
     if args["output_dir"] is not None:
         output_dir = os.path.join(args["output_dir"], output_dir)
         accelerator.save_state(output_dir)
+
+
+
+
 
 
 
