@@ -2,7 +2,7 @@ from handcoded_tokenizer import STLTokenizer
 from configuration import STLConfig
 from modeling_stldec import STLForCausalLM
 
-from transformers import AutoConfig, AutoModelForCausalLM
+from transformers import AutoConfig, AutoModel
 
 import argparse
 import json
@@ -43,24 +43,24 @@ logger = get_logger(__name__)
 
 # Extend `AutoClasses` to support the custom model
 AutoConfig.register("STLdec", STLConfig)
-AutoModelForCausalLM.register(STLConfig, STLForCausalLM)
+AutoModel.register(STLConfig, STLForCausalLM)
 
 # Initialize the model with random weights and the desired architecture
 config = STLConfig()
-model = AutoModelForCausalLM.from_config(config)
+model = AutoModel.from_config(config)
 tokenizer = STLTokenizer('tokenizer.json')
 
 args = {
     'dataset_name': None,  # or a custom dataset path
     'train_file': 'train_set.csv',
     'validation_file': 'validation_set.csv',
-    'output_dir': './output_test',
+    'output_dir': './output_test_16batch',
     'model_name_or_path': 'STLForCausalLM',
     'tokenizer_name': 'STLTokenizer',
     'block_size': 500,
     'batch_size': 16,
     'gradient_accumulation_steps': 1,
-    'num_train_epochs': 3,
+    'num_train_epochs': 1,
     'learning_rate': 5e-5,
     'weight_decay': 0.01,
     'num_warmup_steps': 0,
@@ -178,6 +178,10 @@ class CustomDataset(Dataset):
         # Start from `Encoded_Formula`
         encoded_formula = self.df['Encoded_Formula'][idx]
         encoded_formula = ast.literal_eval(encoded_formula.strip())
+
+        formula_embedding = self.df['Embedding'][idx]
+        formula_embedding = formula_embedding.replace("tensor(", "").rstrip(")")
+        formula_embedding = eval(formula_embedding)
         
         input_ids = encoded_formula[:-1]  # Tutti tranne l'ultimo
         labels = encoded_formula[1:]     # Tutti tranne il primo
@@ -189,10 +193,14 @@ class CustomDataset(Dataset):
         labels = torch.tensor(labels, dtype=torch.long).to(self.device)
         attention_mask = torch.tensor(attention_mask, dtype=torch.long).to(self.device)
 
+        encoder_hidden_states = torch.tensor(formula_embedding, dtype=torch.float32).to(self.device)
+        
+
         return {
             'input_ids': input_ids,
             'labels': labels,
-            'attention_mask': attention_mask
+            'attention_mask': attention_mask,
+            'encoder_hidden_states': encoder_hidden_states
         }
 
 
@@ -391,6 +399,16 @@ if args["checkpointing_steps"] == "epoch":
     if args["output_dir"] is not None:
         output_dir = os.path.join(args["output_dir"], output_dir)
         accelerator.save_state(output_dir)
+
+
+
+
+
+
+
+
+
+
 
 
 
