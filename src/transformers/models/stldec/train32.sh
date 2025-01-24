@@ -11,7 +11,7 @@
 #SBATCH --gpus=1                  # <-- TODO adjust this
 #SBATCH --mem=80G                             # <-- TODO adjust this
 #SBATCH --time=04:00:00                       # <-- TODO adjust this
-#SBATCH --output=slurm_outs/correct_training_32.out
+#SBATCH --output=slurm_outs/test.out
 
 
 # Standard preamble for debugging
@@ -23,7 +23,7 @@ echo "---------------------------------------------"
 
 
 # Needed sourcing
-source .venv/bin/activate
+# source .venv/bin/activate
 
 # Needed modules
 # module load <module_name>
@@ -31,7 +31,7 @@ source .venv/bin/activate
 # Needed exports
 # export <export_name>=<export_value>
 #variables
-FILE_NAME=/u/dssc/scandu00/transformers/src/transformers/models/stldec/train-32batch.py
+FILE_NAME=/u/dssc/scandu00/transformers/src/transformers/models/stldec/train-16batch.py
 
 CMD="python3 -u"
 
