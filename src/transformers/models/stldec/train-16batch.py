@@ -52,8 +52,8 @@ tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
 
 args = {
     'dataset_name': None,  # or a custom dataset path
-    'train_file': 'train_set.csv',
-    'validation_file': 'validation_set.csv',
+    'train_file': 'datasets/train_set.csv',
+    'validation_file': 'datasets/validation_set.csv',
     'output_dir': './output_test_16batch',
     'model_name_or_path': 'STLForCausalLM',
     'tokenizer_name': 'STLTokenizer',
@@ -399,23 +399,6 @@ if args["checkpointing_steps"] == "epoch":
     if args["output_dir"] is not None:
         output_dir = os.path.join(args["output_dir"], output_dir)
         accelerator.save_state(output_dir)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
