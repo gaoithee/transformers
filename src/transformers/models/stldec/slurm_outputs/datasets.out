@@ -1,0 +1,130 @@
+Loading python/3.11.6--gcc--8.5.0
+  Loading requirement: bzip2/1.0.8-gp5wcz5 libmd/1.0.4-wja3f5q
+    libbsd/0.11.7-cgxjopl expat/2.5.0-bptl3xw ncurses/6.4-asx3jea
+    readline/8.2-nyw6mp6 gdbm/1.23-fs6otck libiconv/1.17-d7yvx2s
+    xz/5.4.1-hubmwr5 zlib-ng/2.1.4-6htiapk libxml2/2.10.3-5eeeokp
+    pigz/2.7-bopr5vp zstd/1.5.5-gawytfl tar/1.34-amqus5s gettext/0.22.3-2g7elif
+    libffi/3.4.4-6r7brdq libxcrypt/4.4.35-ss2rzin sqlite/3.43.2
+    util-linux-uuid/2.38.1-jkdi7kv
+Running on  nodes
+---------------------------------------------
+SLURM job ID:        11820864
+SLURM job node list: lrdn3145
+DATE:                Fri Jan 24 12:23:50 CET 2025
+---------------------------------------------
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+OSError: [Errno 101] Network is unreachable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/urllib3/connection.py", line 704, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x1514e2e0f910>: Failed to establish a new connection: [Errno 101] Network is unreachable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/datasets/saracandu/stldecoding (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x1514e2e0f910>: Failed to establish a new connection: [Errno 101] Network is unreachable'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/download_datasets.py", line 4, in <module>
+    test_df = pd.read_csv("hf://datasets/saracandu/stldecoding/" + splits["test"])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/pandas/io/common.py", line 728, in get_handle
+    ioargs = _get_filepath_or_buffer(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/pandas/io/common.py", line 432, in _get_filepath_or_buffer
+    ).open()
+      ^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/fsspec/core.py", line 147, in open
+    return self.__enter__()
+           ^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/fsspec/core.py", line 105, in __enter__
+    f = self.fs.open(self.path, mode=mode)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/fsspec/spec.py", line 1303, in open
+    f = self._open(
+        ^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/huggingface_hub/hf_file_system.py", line 275, in _open
+    return HfFileSystemFile(self, path, mode=mode, revision=revision, block_size=block_size, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/huggingface_hub/hf_file_system.py", line 938, in __init__
+    self.resolved_path = fs.resolve_path(path, revision=revision)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/huggingface_hub/hf_file_system.py", line 209, in resolve_path
+    repo_and_revision_exist, err = self._repo_and_revision_exist(repo_type, repo_id, revision)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/huggingface_hub/hf_file_system.py", line 125, in _repo_and_revision_exist
+    self._api.repo_info(
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/huggingface_hub/hf_api.py", line 2748, in repo_info
+    return method(
+           ^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/huggingface_hub/hf_api.py", line 2605, in dataset_info
+    r = get_session().get(path, headers=headers, timeout=timeout, params=params)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 93, in send
+    return super().send(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/requests/adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/datasets/saracandu/stldecoding (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x1514e2e0f910>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"), '(Request ID: 1802581a-5617-43d1-b44e-c0d337c19206)')
+srun: error: lrdn3145: task 0: Exited with exit code 1
+DONE!

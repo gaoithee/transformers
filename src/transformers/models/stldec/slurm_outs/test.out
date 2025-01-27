@@ -1,20 +1,0 @@
----------------------------------------------
-SLURM job ID:        976018
-SLURM job node list: gpu001
-DATE:                Fri Jan 24 03:14:56 PM CET 2025
----------------------------------------------
-2025-01-24 15:15:01.184822: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-01-24 15:15:01.226644: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-2025-01-24 15:15:01.226691: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-2025-01-24 15:15:01.227943: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2025-01-24 15:15:01.235096: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2025-01-24 15:15:02.088725: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
-01/24/2025 15:15:20 - INFO - __main__ - ***** Running training *****
-01/24/2025 15:15:20 - INFO - __main__ -   Num examples = 78773
-01/24/2025 15:15:20 - INFO - __main__ -   Num Epochs = 1
-01/24/2025 15:15:20 - INFO - __main__ -   Instantaneous batch size per device = 16
-01/24/2025 15:15:20 - INFO - __main__ -   Total train batch size (w. parallel, distributed & accumulation) = 16
-01/24/2025 15:15:20 - INFO - __main__ -   Gradient Accumulation steps = 1
-01/24/2025 15:15:20 - INFO - __main__ -   Total optimization steps = 1000
-  0%|          | 0/1000 [00:00<?, ?it/s]  0%|          | 1/1000 [00:40<11:06:31, 40.03s/it]slurmstepd: error: *** JOB 976018 ON gpu001 CANCELLED AT 2025-01-24T15:16:17 ***

@@ -1,15 +1,15 @@
 #!/bin/bash
 #SBATCH --no-requeue
-#SBATCH --job-name="train16"
+#SBATCH --job-name="ultratest"
 #SBATCH --account IscrC_IRA-LLMs
 #SBATCH --partition=boost_usr_prod
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
 #SBATCH --exclusive
-#SBATCH --time=24:00:00
+#SBATCH --time=00:10:00
 #SBATCH --mem=481G
-#SBATCH --output=slurm_outputs/train16.out
+#SBATCH --output=slurm_outputs/datasets.out
 
 module load python/3.11.6--gcc--8.5.0
 
@@ -30,7 +30,7 @@ source /leonardo/home/userexternal/scanduss/.venv/bin/activate
 # export <export_name>=<export_value>
 #variables
 
-srun python3 train-16batch.py
+srun python3 download_datasets.py
 
 
 echo "DONE!"

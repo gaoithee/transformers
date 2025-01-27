@@ -59,7 +59,7 @@ args = {
     'tokenizer_name': 'STLTokenizer',
     'block_size': 500,
     'batch_size': 32,
-    'gradient_accumulation_steps': 2,
+    'gradient_accumulation_steps': 1,
     'num_train_epochs': 1,
     'learning_rate': 5e-5,
     'weight_decay': 0.01,

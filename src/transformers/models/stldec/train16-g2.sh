@@ -9,7 +9,7 @@
 #SBATCH --exclusive
 #SBATCH --time=24:00:00
 #SBATCH --mem=481G
-#SBATCH --output=slurm_outputs/train16.out
+#SBATCH --output=slurm_outputs/train16-grad2.out
 
 module load python/3.11.6--gcc--8.5.0
 
@@ -30,7 +30,7 @@ source /leonardo/home/userexternal/scanduss/.venv/bin/activate
 # export <export_name>=<export_value>
 #variables
 
-srun python3 train-16batch.py
+srun python3 train-16batch-grad2.py
 
 
 echo "DONE!"

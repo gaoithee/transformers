@@ -1,18 +1,19 @@
 #!/bin/bash
 #SBATCH --no-requeue
-#SBATCH --account=dssc
-#SBATCH --job-name="test32"
-#SBATCH --get-user-env
-#SBATCH --partition=GPU
+#SBATCH --job-name="train32"
+#SBATCH --account IscrC_IRA-LLMs
+#SBATCH --partition=boost_usr_prod
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1
-#SBATCH --gpus=1                  # <-- TODO adjust this
-#SBATCH --mem=80G                             # <-- TODO adjust this
-#SBATCH --time=04:00:00                       # <-- TODO adjust this
-#SBATCH --output=slurm_outs/test.out
+#SBATCH --gres=gpu:1
+#SBATCH --exclusive
+#SBATCH --time=24:00:00
+#SBATCH --mem=481G
+#SBATCH --output=slurm_outputs/train32.out
 
+module load python/3.11.6--gcc--8.5.0
+
+echo "Running on $SLURM__NNODES nodes"
 
 # Standard preamble for debugging
 echo "---------------------------------------------"
@@ -22,26 +23,14 @@ echo "DATE:                $(date)"
 echo "---------------------------------------------"
 
 
-# Needed sourcing
-# source .venv/bin/activate
+source /leonardo/home/userexternal/scanduss/.venv/bin/activate
 
-# Needed modules
-# module load <module_name>
 
 # Needed exports
 # export <export_name>=<export_value>
 #variables
-FILE_NAME=/u/dssc/scandu00/transformers/src/transformers/models/stldec/train-16batch.py
 
-CMD="python3 -u"
+srun python3 train-32batch.py
 
-if [ ! -f "$FILE_NAME" ]; then
-  echo "The file $FILE_NAME does not exist"
-  exit 1
-fi
-
-# Other checks there
-
-$CMD $FILE_NAME
 
 echo "DONE!"

@@ -8,34 +8,20 @@ Loading python/3.11.6--gcc--8.5.0
     util-linux-uuid/2.38.1-jkdi7kv
 Running on  nodes
 ---------------------------------------------
-SLURM job ID:        11818100
-SLURM job node list: lrdn3444
-DATE:                Fri Jan 24 11:40:21 CET 2025
+SLURM job ID:        11824826
+SLURM job node list: lrdn3386
+DATE:                Fri Jan 24 15:19:55 CET 2025
 ---------------------------------------------
 Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
-Traceback (most recent call last):
-  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/train-16batch.py", line 164, in <module>
-    raw_datasets = load_dataset(extension, data_files=data_files, **dataset_args)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/load.py", line 2129, in load_dataset
-    builder_instance = load_dataset_builder(
-                       ^^^^^^^^^^^^^^^^^^^^^
-  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/load.py", line 1849, in load_dataset_builder
-    dataset_module = dataset_module_factory(
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/load.py", line 1564, in dataset_module_factory
-    ).get_module()
-      ^^^^^^^^^^^^
-  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/load.py", line 944, in get_module
-    data_files = DataFilesDict.from_patterns(
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/data_files.py", line 721, in from_patterns
-    else DataFilesList.from_patterns(
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/data_files.py", line 624, in from_patterns
-    resolve_pattern(
-  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/data_files.py", line 411, in resolve_pattern
-    raise FileNotFoundError(error_msg)
-FileNotFoundError: Unable to find '/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/train_set.csv'
-srun: error: lrdn3444: task 0: Exited with exit code 1
-DONE!
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 10000 examples [00:01, 5252.59 examples/s]Generating train split: 20000 examples [00:03, 5287.88 examples/s]Generating train split: 30000 examples [00:05, 5377.53 examples/s]Generating train split: 40000 examples [00:07, 5217.94 examples/s]Generating train split: 50000 examples [00:09, 5256.97 examples/s]Generating train split: 60000 examples [00:11, 5281.68 examples/s]Generating train split: 70000 examples [00:13, 5294.54 examples/s]Generating train split: 78773 examples [00:15, 5194.02 examples/s]Generating train split: 78773 examples [00:15, 5244.46 examples/s]
+Generating validation split: 0 examples [00:00, ? examples/s]Generating validation split: 9847 examples [00:01, 5303.66 examples/s]Generating validation split: 9847 examples [00:01, 5276.72 examples/s]
+01/24/2025 15:20:46 - INFO - __main__ - ***** Running training *****
+01/24/2025 15:20:46 - INFO - __main__ -   Num examples = 78773
+01/24/2025 15:20:46 - INFO - __main__ -   Num Epochs = 1
+01/24/2025 15:20:46 - INFO - __main__ -   Instantaneous batch size per device = 16
+01/24/2025 15:20:46 - INFO - __main__ -   Total train batch size (w. parallel, distributed & accumulation) = 16
+01/24/2025 15:20:46 - INFO - __main__ -   Gradient Accumulation steps = 1
+01/24/2025 15:20:46 - INFO - __main__ -   Total optimization steps = 1000
+  0%|          | 0/1000 [00:00<?, ?it/s]  0%|          | 1/1000 [00:26<7:27:41, 26.89s/it]  0%|          | 2/1000 [00:40<5:14:46, 18.92s/it]  0%|          | 3/1000 [00:53<4:32:32, 16.40s/it]  0%|          | 4/1000 [01:07<4:12:27, 15.21s/it]  0%|          | 5/1000 [01:20<4:01:19, 14.55s/it]  1%|          | 6/1000 [01:33<3:54:28, 14.15s/it]  1%|          | 7/1000 [01:47<3:50:05, 13.90s/it]  1%|          | 8/1000 [02:00<3:47:01, 13.73s/it]  1%|          | 9/1000 [02:13<3:44:56, 13.62s/it]  1%|          | 10/1000 [02:27<3:43:27, 13.54s/it]  1%|          | 11/1000 [02:40<3:42:26, 13.49s/it]  1%|          | 12/1000 [02:54<3:41:41, 13.46s/it]  1%|▏         | 13/1000 [03:07<3:41:10, 13.45s/it]  1%|▏         | 14/1000 [03:20<3:40:43, 13.43s/it]  2%|▏         | 15/1000 [03:34<3:40:15, 13.42s/it]  2%|▏         | 16/1000 [03:47<3:39:57, 13.41s/it]  2%|▏         | 17/1000 [04:01<3:39:37, 13.41s/it]  2%|▏         | 18/1000 [04:14<3:39:20, 13.40s/it]  2%|▏         | 19/1000 [04:27<3:39:11, srun: Job step aborted: Waiting up to 92 seconds for job step to finish.
+slurmstepd: error: *** JOB 11824826 ON lrdn3386 CANCELLED AT 2025-01-24T15:28:37 ***
+13.41s/it]  2%|▏         | 20/1000 [04:41<3:38:52, 13.40s/it]  2%|▏         | 21/1000 [04:54<3:38:37, 13.40s/it]  2%|▏         | 22/1000 [05:08<3:38:23, 13.40s/it]  2%|▏         | 23/1000 [05:21<3:38:18, 13.41s/it]  2%|▏         | 24/1000 [05:34<3:37:57, 13.40s/it]  2%|▎         | 25/1000 [05:48<3:37:45, 13.40s/it]  3%|▎         | 26/1000 [06:01<3:37:28, 13.40s/it]  3%|▎         | 27/1000 [06:15<3:37:15, 13.40s/it]  3%|▎         | 28/1000 [06:28<3:37:07, 13.40s/it]  3%|▎         | 29/1000 [06:41<3:36:53, 13.40s/it]  3%|▎         | 30/1000 [06:55<3:36:39, 13.40s/it]  3%|▎         | 31/1000 [07:08<3:36:24, 13.40s/it]  3%|▎         | 32/1000 [07:22<3:36:09, 13.40s/it]  3%|▎         | 33/1000 [07:35<3:35:54, 13.40s/it]  3%|▎         | 34/1000 [07:48<3:35:39, 13.40s/it]slurmstepd: error: *** STEP 11824826.0 ON lrdn3386 CANCELLED AT 2025-01-24T15:28:37 ***
