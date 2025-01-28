@@ -1,0 +1,41 @@
+Loading python/3.11.6--gcc--8.5.0
+  Loading requirement: bzip2/1.0.8-gp5wcz5 libmd/1.0.4-wja3f5q
+    libbsd/0.11.7-cgxjopl expat/2.5.0-bptl3xw ncurses/6.4-asx3jea
+    readline/8.2-nyw6mp6 gdbm/1.23-fs6otck libiconv/1.17-d7yvx2s
+    xz/5.4.1-hubmwr5 zlib-ng/2.1.4-6htiapk libxml2/2.10.3-5eeeokp
+    pigz/2.7-bopr5vp zstd/1.5.5-gawytfl tar/1.34-amqus5s gettext/0.22.3-2g7elif
+    libffi/3.4.4-6r7brdq libxcrypt/4.4.35-ss2rzin sqlite/3.43.2
+    util-linux-uuid/2.38.1-jkdi7kv
+Running on  nodes
+---------------------------------------------
+SLURM job ID:        11905942
+SLURM job node list: lrdn2966
+DATE:                Tue Jan 28 11:24:04 CET 2025
+---------------------------------------------
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/train-32batch.py", line 164, in <module>
+    raw_datasets = load_dataset(extension, data_files=data_files, **dataset_args)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/load.py", line 1849, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/load.py", line 1564, in dataset_module_factory
+    ).get_module()
+      ^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/load.py", line 944, in get_module
+    data_files = DataFilesDict.from_patterns(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/data_files.py", line 721, in from_patterns
+    else DataFilesList.from_patterns(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/data_files.py", line 624, in from_patterns
+    resolve_pattern(
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/data_files.py", line 411, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/train_set.csv'
+srun: error: lrdn2966: task 0: Exited with exit code 1
+DONE!

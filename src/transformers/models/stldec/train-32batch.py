@@ -48,7 +48,7 @@ AutoModel.register(STLConfig, STLForCausalLM)
 # Initialize the model with random weights and the desired architecture
 config = STLConfig()
 model = AutoModel.from_config(config)
-tokenizer = STLTokenizer('tokenizer.json')
+tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
 
 args = {
     'dataset_name': None,  # or a custom dataset path
