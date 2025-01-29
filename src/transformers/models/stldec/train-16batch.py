@@ -60,7 +60,7 @@ args = {
     'block_size': 500,
     'batch_size': 16,
     'gradient_accumulation_steps': 1,
-    'num_train_epochs': 10,
+    'num_train_epochs': 50,
     'learning_rate': 5e-5,
     'weight_decay': 0.01,
     'num_warmup_steps': 0,

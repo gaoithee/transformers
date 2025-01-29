@@ -52,15 +52,15 @@ tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
 
 args = {
     'dataset_name': None,  # or a custom dataset path
-    'train_file': 'train_set.csv',
-    'validation_file': 'validation_set.csv',
+    'train_file': 'datasets/train_set.csv',
+    'validation_file': 'datasets/validation_set.csv',
     'output_dir': './output_test_32batch',
     'model_name_or_path': 'STLForCausalLM',
     'tokenizer_name': 'STLTokenizer',
     'block_size': 500,
     'batch_size': 32,
     'gradient_accumulation_steps': 1,
-    'num_train_epochs': 1,
+    'num_train_epochs': 50,
     'learning_rate': 5e-5,
     'weight_decay': 0.01,
     'num_warmup_steps': 0,
