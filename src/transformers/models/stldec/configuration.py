@@ -9,7 +9,7 @@ class STLConfig(PretrainedConfig):
     def __init__(
         self,
         vocab_size=35,
-        decoder_vocab_size=None,
+        decoder_vocab_size=None, # unused
         max_position_embeddings=1024,
         encoder_layers=12,
         encoder_ffn_dim=4096,

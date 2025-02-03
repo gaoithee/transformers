@@ -19,7 +19,7 @@ from transformers.utils import (
 from transformers.modeling_outputs import CausalLMOutputWithCrossAttentions
 
 from decoder import STLPreTrainedModel
-from utils2 import STLConfig
+from configuration import STLConfig
 from encoder import STLEncoder
 from decoder import STLDecoder
 

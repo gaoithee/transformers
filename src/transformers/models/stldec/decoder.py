@@ -20,7 +20,7 @@ from transformers.modeling_attn_mask_utils import _prepare_4d_attention_mask, _p
 from utils2 import STLAttention, STLSinusoidalPositionalEmbedding
 from configuration import STLConfig
 
-
+# copied from ...
 class STLPreTrainedModel(PreTrainedModel):
     config_class = STLConfig 
     base_model_prefix = "model" 
@@ -71,8 +71,8 @@ class STLDecoderBlock(nn.Module):
             embed_dim=self.embed_dim, 
             num_heads=num_decoder_attention_heads,
             dropout=dropout,
-            is_decoder=True, # not used
-            is_causal=True, # not used
+            is_decoder=True, # not used, debugging purposes
+            is_causal=True, # not used, debugging purposes
         )
         self.dropout = dropout
         self.activation_fn = nn.functional.gelu
@@ -84,7 +84,7 @@ class STLDecoderBlock(nn.Module):
             self.embed_dim,
             num_decoder_attention_heads,
             dropout=attention_dropout,
-            is_decoder=True, # not used
+            is_decoder=True, # not used, debugging purposes
         )
         self.encoder_attn_layer_norm = nn.LayerNorm(self.embed_dim)
 
@@ -92,6 +92,7 @@ class STLDecoderBlock(nn.Module):
         self.fc1 = nn.Linear(self.embed_dim, num_decoder_ffn_dim)
         self.fc2 = nn.Linear(num_decoder_ffn_dim, self.embed_dim)
         self.final_layer_norm = nn.LayerNorm(self.embed_dim)
+
 
     def forward(
         self,
@@ -223,12 +224,12 @@ class STLDecoder(STLPreTrainedModel):
     def __init__(self, config):
         super().__init__(config)
 
-        # Recupero dei parametri dal config
+        # Extract from `config` file
         embed_dim = config.d_model
         num_decoder_attention_heads = config.decoder_attention_heads
         num_decoder_ffn_dim = config.decoder_ffn_dim
         max_position_embeddings = config.max_position_embeddings
-        decoder_vocab_size = config.decoder_vocab_size
+        decoder_vocab_size = config.vocab_size
         pad_token_id = config.pad_token_id
         num_decoder_layers = config.decoder_layers
         scale_embedding = config.scale_embedding
@@ -243,15 +244,15 @@ class STLDecoder(STLPreTrainedModel):
         self.max_target_positions = max_position_embeddings
         self.embed_scale = math.sqrt(embed_dim) if scale_embedding else 1.0
 
-        # Inizializza l'embed_tokens se non passato esplicitamente
+        # Initialize the input embedding (if not passed already)
         self.embed_tokens = nn.Embedding(decoder_vocab_size, embed_dim, self.padding_idx)
         
-        # Aggiungi la posizione e le layer del decoder
+        # Initialize positional embedding also
         self.embed_positions = STLSinusoidalPositionalEmbedding(
             max_position_embeddings, embed_dim, self.padding_idx
         )
         
-        # Inizializzazione delle layer del decoder
+        # Initialize decoder layers (of a prespecified number)
         self.layers = nn.ModuleList([STLDecoderBlock(embed_dim, num_decoder_attention_heads, 
                                                       num_decoder_ffn_dim, dropout, 
                                                       attention_dropout, activation_dropout) 
@@ -259,9 +260,6 @@ class STLDecoder(STLPreTrainedModel):
 
         self.gradient_checkpointing = False
         self.post_init()
-
-    def get_input_embeddings(self):
-        return self.embed_tokens
 
     def forward(
         self,
