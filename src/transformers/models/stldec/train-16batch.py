@@ -1,3 +1,5 @@
+import os
+
 from handcoded_tokenizer import STLTokenizer
 from configuration import STLConfig
 from modeling_stldec import STLForCausalLM
@@ -8,7 +10,6 @@ import argparse
 import json
 import logging
 import math
-import os
 import random
 from itertools import chain
 from pathlib import Path
@@ -54,31 +55,30 @@ args = {
     'dataset_name': None,  # or a custom dataset path
     'train_file': 'datasets/train_set.csv',
     'validation_file': 'datasets/validation_set.csv',
-    'output_dir': './output_test_16batch',
+    'output_dir': './tf_output_test_16batch',
     'model_name_or_path': 'STLForCausalLM',
     'tokenizer_name': 'STLTokenizer',
     'block_size': 500,
-    'batch_size': 16,
+    'batch_size': 32,
     'gradient_accumulation_steps': 1,
-    'num_train_epochs': 50,
+    'num_train_epochs': 5,
     'learning_rate': 5e-5,
     'weight_decay': 0.01,
-    'num_warmup_steps': 0,
-    'max_train_steps': None,
     'seed': 42,
     'with_tracking': True,
     'hub_model_id': None,
     'push_to_hub': False,
     'trust_remote_code': False,
     'overwrite_cache': False,
-    'per_device_train_batch_size': 16,
-    'per_device_eval_batch_size': 16,
-    'checkpointing_steps': 'epoch',  
-    'resume_from_checkpoint': None,
+    'per_device_train_batch_size': 32,
+    'per_device_eval_batch_size': 32,
+    'checkpointing_steps': '400',  
+    'resume_from_checkpoint': 'tf_output_test_16batch/step_5400/',
     'lr_scheduler_type': 'linear',  
-    'num_warmup_steps': 100,   
-    'max_train_steps': 1000, 
-    'lr': 0.01                  
+    'num_warmup_steps': 5000,   
+    'max_train_steps': 50000, 
+#    'lr': 0.01,
+#    'report_to': "tensorboard"                  
 }
 
 
@@ -258,9 +258,9 @@ model, optimizer, train_dataloader, eval_dataloader, lr_scheduler = accelerator.
 # We need to recalculate our total training steps as the size of the training dataloader may have changed.
 num_update_steps_per_epoch = math.ceil(len(train_dataloader) / args["gradient_accumulation_steps"])
 if overrode_max_train_steps:
-  args["max_train_steps"] = args["num_train_epochs"] * num_update_steps_per_epoch
+   args["max_train_steps"] = args["num_train_epochs"] * num_update_steps_per_epoch
   # Afterwards we recalculate our number of training epochs
-  args["num_train_epochs"] = math.ceil(args["max_train_steps"] / num_update_steps_per_epoch)
+   args["num_train_epochs"] = math.ceil(args["max_train_steps"] / num_update_steps_per_epoch)
 
 # Figure out how many steps we should save the Accelerator states
 checkpointing_steps = args["checkpointing_steps"]
@@ -286,22 +286,24 @@ num_train_epochs = args["num_train_epochs"]
 per_device_train_batch_size = args["per_device_train_batch_size"]
 gradient_acc_steps = args["gradient_accumulation_steps"]
 max_train_steps = args["max_train_steps"]
-
+# num_train_steps = args["num_train_steps"]
 logger.info(f"  Num Epochs = {num_train_epochs}")
 logger.info(f"  Instantaneous batch size per device = {per_device_train_batch_size}")
 logger.info(f"  Total train batch size (w. parallel, distributed & accumulation) = {total_batch_size}")
 logger.info(f"  Gradient Accumulation steps = {gradient_acc_steps}")
-logger.info(f"  Total optimization steps = {max_train_steps}")
+# logger.info(f"	Optimization steps per epoch = {num_train_steps}")
+logger.info(f"  Max optimization steps = {max_train_steps}")
 
 # Only show the progress bar once on each machine.
-progress_bar = tqdm(range(args["max_train_steps"]), disable=not accelerator.is_local_main_process) # i 1000 sono questi!
+progress_bar = tqdm(range(max_train_steps), disable=not accelerator.is_local_main_process) # i 1000 sono questi!
 completed_steps = 0
 starting_epoch = 0
 # Potentially load in the weights and states from a previous save
 if args["resume_from_checkpoint"]:
-    print("questo non dovrebbe succedere")
+    # print("questo non dovrebbe succedere")
     if args["resume_from_checkpoint"] is not None or args["resume_from_checkpoint"] != "":
         checkpoint_path = args["resume_from_checkpoint"]
+        print("fin qua ci arrivo!")
         path = os.path.basename(args["resume_from_checkpoint"])
     else:
       # Get the most recent checkpoint
@@ -315,6 +317,11 @@ if args["resume_from_checkpoint"]:
     accelerator.load_state(checkpoint_path)
     # Extract `epoch_{i}` or `step_{i}`
     training_difference = os.path.splitext(path)[0]
+    
+    starting_epoch = 2
+    resume_step = 5400
+    
+    logger.info(f"Starting epoch = {starting_epoch}, resume step = {resume_step}")
 
     if "epoch" in training_difference:
       starting_epoch = int(training_difference.replace("epoch_", "")) + 1
@@ -323,32 +330,36 @@ if args["resume_from_checkpoint"]:
     
     else:
       # need to multiply `gradient_accumulation_steps` to reflect real steps
-      resume_step = int(training_difference.replace("step_", "")) * args["gradient_accumulation_steps"]
+      # resume_step = int(training_difference.replace("step_", "")) * args["gradient_accumulation_steps"]
+      resume_step = 5400
       starting_epoch = resume_step // len(train_dataloader)
       completed_steps = resume_step // args["gradient_accumulation_steps"]
       resume_step -= starting_epoch * len(train_dataloader)
 
-for epoch in range(starting_epoch, args["num_train_epochs"]):
+for epoch in range(starting_epoch, num_train_epochs):
   model.train()
   if args["with_tracking"]:
     total_loss = 0
   if args["resume_from_checkpoint"] and epoch == starting_epoch and resume_step is not None:
+    logger.info("correct scenario")
     active_dataloader = accelerator.skip_first_batches(train_dataloader, resume_step)
   else:
     active_dataloader = train_dataloader
+
+  total_steps = num_train_epochs * len(active_dataloader)
+  logger.info(f"Step totali previsti: {total_steps}")
 
   for step, batch in enumerate(active_dataloader):
     with accelerator.accumulate(model):
       outputs = model(**batch)
       loss = outputs.loss
-      # print(loss)
       if args["with_tracking"]:
         total_loss += loss.detach().float()
       accelerator.backward(loss)
       optimizer.step()
       lr_scheduler.step()
       optimizer.zero_grad()
-        
+      logger.info(f"  Loss = {loss}, epoch = {epoch}, step = {step + resume_step}")
       # Checks if the accelerator has performed an optimization step behind the scenes
     if accelerator.sync_gradients:
         progress_bar.update(1)
@@ -362,8 +373,9 @@ for epoch in range(starting_epoch, args["num_train_epochs"]):
                 accelerator.save_state(output_dir)
     if completed_steps >= args["max_train_steps"]:
         break
+# writer.flush()
 
-
+logger.info("***** Running validation *****")
 model.eval()
 losses = []
 for step, batch in enumerate(eval_dataloader):
