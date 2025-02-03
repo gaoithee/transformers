@@ -299,10 +299,11 @@ logger.info(f"  Gradient Accumulation steps = {gradient_accumulation_steps}")
 logger.info(f"  Max optimization steps = {max_train_steps}")
 
 # Initialize progress bar for tracking steps
-progress_bar = tqdm(range(max_train_steps), disable=not accelerator.is_local_main_process) # Disable progress bar for non-main processes
 completed_steps = args.get("completed_steps", 0)  # Default to 0 if not provided
 starting_epoch = args.get("starting_epoch", 0)  # Default to 0 if not provided
 updated_max_train_steps = max_train_steps - completed_steps
+progress_bar = tqdm(range(max_train_steps), disable=not accelerator.is_local_main_process) # Disable progress bar for non-main processes
+
 
 # Check if we are resuming from a checkpoint
 if resume_from_checkpoint:
@@ -334,8 +335,8 @@ if resume_from_checkpoint:
     else:
         # If the checkpoint was saved at a step, calculate based on that
         resume_step = completed_steps  # Example step (should be extracted from the checkpoint filename)
-        starting_epoch = resume_step // len(train_dataloader)  # Calculate epoch from step
-        completed_steps = resume_step // gradient_accumulation_steps  # Adjust for gradient accumulation
+        # starting_epoch = resume_step // len(train_dataloader)  # Calculate epoch from step
+        # completed_steps = resume_step // gradient_accumulation_steps  # Adjust for gradient accumulation
         resume_step -= starting_epoch * len(train_dataloader)  # Adjust the remaining steps in the current epoch
 
 # Main training loop, running for each epoch

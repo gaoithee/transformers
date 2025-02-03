@@ -18,7 +18,7 @@ AutoModelForCausalLM.register(STLConfig, STLForCausalLM)
 
 config = STLConfig()
 
-model_path = "tf_output_test_16batch/step_5400"
+model_path = "tf_output_test_16batch/step_5600"
 # Carica il modello e spostalo sulla device
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = AutoModelForCausalLM.from_pretrained(model_path, config = config).to(device)  # Sposta il modello sulla device
@@ -28,8 +28,8 @@ tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
 accelerator = Accelerator()
 
 # Definisci i percorsi
-optimizer_path = "tf_output_test_16batch/step_5400/optimizer.bin"
-scheduler_path = "tf_output_test_16batch/step_5400/scheduler.bin"
+optimizer_path = "tf_output_test_16batch/step_5600/optimizer.bin"
+scheduler_path = "tf_output_test_16batch/step_5600/scheduler.bin"
 
 # Carica lo stato dell'ottimizzatore e dello scheduler, se necessario
 # Questi passi dipendono dalla libreria che stai usando, di seguito un esempio generico

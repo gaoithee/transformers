@@ -1,3 +1,4 @@
+import ast
 import copy
 import math
 from typing import List, Optional, Tuple, Union
@@ -7,6 +8,7 @@ import torch
 import torch.utils.checkpoint
 from torch import nn
 import torch.nn.functional as F
+from torch.utils.data import Dataset
 
 from transformers.modeling_utils import PreTrainedModel
 from configuration import STLConfig

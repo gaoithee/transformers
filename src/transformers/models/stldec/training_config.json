@@ -2,7 +2,7 @@
     "dataset_name": null,
     "train_file": "datasets/train_set.csv",
     "validation_file": "datasets/validation_set.csv",
-    "output_dir": "./tf_output_test_16batch",
+    "output_dir": "./test_aspecific_training/",
     "model_name_or_path": "STLForCausalLM",
     "tokenizer_name": "STLTokenizer",
     "block_size": 500,
