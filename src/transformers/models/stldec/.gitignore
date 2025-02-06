@@ -6,3 +6,4 @@ output_test_32batch/
 output_test_16batch_grad2/
 marianOriginal/
 tf_output_test_16batch/
+lr_32_training/

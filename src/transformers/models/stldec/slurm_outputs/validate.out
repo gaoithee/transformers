@@ -8,20 +8,15 @@ Loading python/3.11.6--gcc--8.5.0
     util-linux-uuid/2.38.1-jkdi7kv
 Running on  nodes
 ---------------------------------------------
-SLURM job ID:        12068948
-SLURM job node list: lrdn3348
-DATE:                Mon Feb  3 14:54:21 CET 2025
+SLURM job ID:        12069502
+SLURM job node list: lrdn2814
+DATE:                Mon Feb  3 15:20:29 CET 2025
 ---------------------------------------------
-Traceback (most recent call last):
-  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/validate.py", line 31, in <module>
-    encoder = STLEncoder(embed_dim=1024, anchor_filename='anchor_set_1024_dim.pickle')
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/encoder.py", line 34, in __init__
-    anchor_set = load_pickle(anchor_filename)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/utils.py", line 10, in load_pickle
-    with open(path, 'rb') as f:
-         ^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: 'anchor_set_1024_dim.pickle'
-srun: error: lrdn3348: task 0: Exited with exit code 1
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/validate.py:35: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  optimizer = torch.load(optimizer_path)
+/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/validate.py:36: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  scheduler = torch.load(scheduler_path)
+/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/validate.py:53: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  encoder_hidden_states = torch.tensor(encoder_hidden_states, device=device).unsqueeze(0).unsqueeze(0)
 DONE!

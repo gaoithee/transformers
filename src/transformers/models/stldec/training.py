@@ -84,7 +84,7 @@ lr_scheduler_type = args['lr_scheduler_type']
 num_warmup_steps = args['num_warmup_steps']
 max_train_steps = args['max_train_steps']
 
-private_hub_token = ""
+private_hub_token = "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"
 ##########################################################################
 
 

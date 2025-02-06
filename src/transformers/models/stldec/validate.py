@@ -1,3 +1,4 @@
+import numpy as np
 from accelerate import Accelerator
 from safetensors import safe_open
 from safetensors.torch import load_file
@@ -15,9 +16,9 @@ from transformers import AutoConfig, AutoModelForCausalLM
 
 ##################################################################
 
-model_path = "tf_output_test_16batch/step_5400"
-optimizer_path = "tf_output_test_16batch/step_5400/optimizer.bin"
-scheduler_path = "tf_output_test_16batch/step_5400/scheduler.bin"
+model_path = "tf_output_test_16batch/step_12000"
+optimizer_path = "tf_output_test_16batch/step_12000/optimizer.bin"
+scheduler_path = "tf_output_test_16batch/step_12000/scheduler.bin"
 
 ##################################################################
 
@@ -60,19 +61,33 @@ for idx in range(len(subset_eval_df)):
             max_new_tokens = 500
         )
 
-    generated_text = tokenizer.decode(generated_ids[0].tolist())
-    generated_embedding = encoder.compute_embeddings(generated_text)
+    generated_text = tokenizer.decode(generated_ids[0][2:-2].tolist())
     gold_formula = subset_eval_df["Formula"][idx]
-    gold_embedding = encoder.compute_embeddings(gold_formula)
 
     formulae_dataset.append({
         "Gold Formula": gold_formula,
-        "Generated Formula": generated_text,
-        "Gold Formula Embedding": gold_embedding,
-        "Generated Formula Embedding": generated_embedding
+        "Generated Formula": generated_text
     })
     
-validation_output = pd.DataFrame(formulae_dataset)
-validation_output.to_csv('predicted_gold_formulae.csv')
+eval_df = pd.DataFrame(formulae_dataset)
+eval_df.to_csv('predicted_gold_formulae_12000.csv')
+eval_df = pd.read_csv('predicted_gold_formulae_12000.csv')
+encoder = STLEncoder(embed_dim=1024, anchor_filename='anchor_set_1024_dim.pickle')
 
+gold_embeddings = encoder.compute_embeddings(eval_df["Gold Formula"].tolist())
+generated_embeddings = encoder.compute_embeddings(eval_df["Generated Formula"].tolist())
+
+eval_df['Embedding Gold Formula'] = gold_embeddings.tolist()
+eval_df['Embedding Generated Formula'] = generated_embeddings.tolist()
+
+euclidean_distance = []
+
+for idx in range(len(eval_df)):
+    gold = torch.tensor(eval_df["Embedding Gold Formula"][idx])
+    generated = torch.tensor(eval_df["Embedding Generated Formula"][idx])
+    euclidean_distance.append(torch.dist(gold, generated))
+
+print(f"Mean euclidean distance: {np.mean(euclidean_distance)}")
+
+eval_df.to_csv('step_12000_formulae.csv')
 
