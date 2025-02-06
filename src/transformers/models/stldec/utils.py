@@ -21,6 +21,10 @@ from collections import deque
 
 from stl import *
 
+import pandas as pd
+from nltk.translate.bleu_score import sentence_bleu
+from handcoded_tokenizer import STLTokenizer
+
 ############################################################################################################################
 
 def load_pickle(path):
@@ -370,3 +374,77 @@ class CustomDataset(Dataset):
             'attention_mask': attention_mask,
             'encoder_hidden_states': encoder_hidden_states
         }
+
+############################################################################################################################
+
+#               METRICS
+
+def token_division(input_string):
+    tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
+    return [element for element in tokenizer.tokenize(input_string) if element != "pad"] 
+
+
+
+def bleu_score(dataset):
+
+    bleu_scores = []
+
+    for idx in range(len(dataset)):
+        gold = token_division(dataset["Gold Formula"][idx])
+        generated = token_division(dataset["Generated Formula"][idx])
+
+        bleu_scores.append(sentence_bleu(gold, generated))
+
+    return np.min(bleu_scores), np.mean(bleu_scores), np.max(bleu_scores)
+
+
+
+def exact_match(dataset):
+
+    percentage = []
+
+    for idx in range(len(dataset)):
+        gold = token_division(dataset["Gold Formula"][idx])
+        generated = token_division(dataset["Generated Formula"][idx])
+
+        match_count = 0
+        for gold_token, gen_token in zip(gold, generated):
+            if gold_token == gen_token:
+                match_count += 1
+
+        percentage.append(match_count/len(gold))
+
+
+        return np.min(percentage), np.mean(percentage), np.max(percentage)   
+    
+
+
+def cosine_similarity(dataset):
+    
+    similarities = []
+    
+    for idx in range(len(dataset)):
+        gold = ast.literal_eval(dataset["Embedding Gold Formula"][idx])
+        gen = ast.literal_eval(dataset["Embedding Generated Formula"][idx])
+
+        dot_product = np.dot(gold, gen)
+        gold_norm = np.linalg.norm(gold)
+        gen_norm = np.linalg.norm(gen)
+
+        similarities.append(dot_product / (gold_norm * gen_norm))
+
+    return np.min(similarities), np.mean(similarities), np.max(similarities) 
+
+
+def euclidean_distance(dataset):
+
+    distances = []
+
+    for idx in range(len(dataset)):
+
+        gold = torch.tensor(ast.literal_eval(dataset["Embedding Gold Formula"][idx]))
+        generated = torch.tensor(ast.literal_eval(dataset["Embedding Generated Formula"][idx]))
+
+        distances.append(torch.dist(gold, generated))
+
+    return np.min(distances), np.mean(distances), np.max(distances)     
