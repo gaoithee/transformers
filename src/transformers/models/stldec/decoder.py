@@ -17,7 +17,7 @@ from transformers.modeling_outputs import (
 )
 
 from transformers.modeling_attn_mask_utils import _prepare_4d_attention_mask, _prepare_4d_causal_attention_mask
-from utils2 import STLAttention, STLSinusoidalPositionalEmbedding
+from utils import STLAttention, STLSinusoidalPositionalEmbedding
 from configuration import STLConfig
 
 # copied from ...
