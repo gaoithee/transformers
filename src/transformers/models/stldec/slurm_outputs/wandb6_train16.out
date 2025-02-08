@@ -1,0 +1,41 @@
+Loading python/3.11.6--gcc--8.5.0
+  Loading requirement: bzip2/1.0.8-gp5wcz5 libmd/1.0.4-wja3f5q
+    libbsd/0.11.7-cgxjopl expat/2.5.0-bptl3xw ncurses/6.4-asx3jea
+    readline/8.2-nyw6mp6 gdbm/1.23-fs6otck libiconv/1.17-d7yvx2s
+    xz/5.4.1-hubmwr5 zlib-ng/2.1.4-6htiapk libxml2/2.10.3-5eeeokp
+    pigz/2.7-bopr5vp zstd/1.5.5-gawytfl tar/1.34-amqus5s gettext/0.22.3-2g7elif
+    libffi/3.4.4-6r7brdq libxcrypt/4.4.35-ss2rzin sqlite/3.43.2
+    util-linux-uuid/2.38.1-jkdi7kv
+Running on  nodes
+---------------------------------------------
+SLURM job ID:        12222084
+SLURM job node list: lrdn2895
+DATE:                Fri Feb  7 17:16:44 CET 2025
+---------------------------------------------
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+02/07/2025 17:17:22 - INFO - __main__ - ***** Running training *****
+02/07/2025 17:17:22 - INFO - __main__ -   Num examples = 78773
+02/07/2025 17:17:22 - INFO - __main__ -   Num Epochs = 5
+02/07/2025 17:17:22 - INFO - __main__ -   Instantaneous batch size per device = 32
+02/07/2025 17:17:22 - INFO - __main__ -   Total train batch size (w. parallel, distributed & accumulation) = 32
+02/07/2025 17:17:22 - INFO - __main__ -   Gradient Accumulation steps = 1
+02/07/2025 17:17:22 - INFO - __main__ -   Max optimization steps = 50000
+  0%|          | 0/50000 [00:00<?, ?it/s]02/07/2025 17:17:22 - INFO - accelerate.accelerator - Loading states from tf_output_test_16batch/step_15500
+02/07/2025 17:17:24 - INFO - accelerate.checkpointing - All model weights loaded successfully
+02/07/2025 17:17:26 - INFO - accelerate.checkpointing - All optimizer states loaded successfully
+02/07/2025 17:17:26 - INFO - accelerate.checkpointing - All scheduler states loaded successfully
+02/07/2025 17:17:26 - INFO - accelerate.checkpointing - All dataloader sampler states loaded successfully
+02/07/2025 17:17:26 - INFO - accelerate.checkpointing - All random states loaded successfully
+02/07/2025 17:17:26 - INFO - accelerate.accelerator - Loading in 0 custom states
+02/07/2025 17:17:26 - INFO - __main__ - Starting epoch = 5, resume step = 15500
+02/07/2025 17:17:26 - INFO - __main__ - ***** Running validation *****
+fin qua ci arrivo!
+Resumed from checkpoint: tf_output_test_16batch/step_15500
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/train-16batch.py", line 396, in <module>
+    logger.info(f"epoch {epoch}: perplexity: {perplexity} eval_loss: {eval_loss}")
+                         ^^^^^
+NameError: name 'epoch' is not defined
+  0%|          | 0/50000 [13:05<?, ?it/s]
+srun: error: lrdn2895: task 0: Exited with exit code 1
+DONE!
