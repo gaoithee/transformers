@@ -73,7 +73,7 @@ args = {
     'per_device_train_batch_size': 32,
     'per_device_eval_batch_size': 32,
     'checkpointing_steps': '500',  
-    'resume_from_checkpoint': 'tf_output_test_16batch/step_19500',
+    'resume_from_checkpoint': 'tf_output_test_16batch/step_16000',
     'lr_scheduler_type': 'linear',  
     'num_warmup_steps': 5000,   
     'max_train_steps': 50000, 
@@ -318,8 +318,8 @@ if args["resume_from_checkpoint"]:
     # Extract `epoch_{i}` or `step_{i}`
     training_difference = os.path.splitext(path)[0]
     
-    starting_epoch = 6
-    resume_step = 19500
+    starting_epoch = 5
+    resume_step = 16000
     
     logger.info(f"Starting epoch = {starting_epoch}, resume step = {resume_step}")
 
@@ -330,9 +330,9 @@ if args["resume_from_checkpoint"]:
     
     else:
       # need to multiply `gradient_accumulation_steps` to reflect real steps
-      # resume_step = int(training_difference.replace("step_", "")) * args["gradient_accumulation_steps"]
-      resume_step = 19500
-      starting_epoch = resume_step // len(train_dataloader)
+      resume_step = int(training_difference.replace("step_", "")) * args["gradient_accumulation_steps"]
+      resume_step = 16000
+      starting_epoch = resume_step // len(train_dataloader) - 1
       completed_steps = resume_step // args["gradient_accumulation_steps"]
       resume_step -= starting_epoch * len(train_dataloader)
 
@@ -346,12 +346,11 @@ for epoch in range(starting_epoch, num_train_epochs):
   else:
     active_dataloader = train_dataloader
 
-  total_steps = len(train_dataset) / per_device_train_batch_size * num_train_epochs - resume_step
-  logger.info(f"Active DataLoader length: {len(active_dataloader)}")
+  total_steps = num_train_epochs * len(active_dataloader)
   logger.info(f"Step totali previsti: {total_steps}")
 
   for step, batch in enumerate(active_dataloader):
-    print("entro nel training")
+    # print("entro nel training")
     with accelerator.accumulate(model):
       outputs = model(**batch)
       loss = outputs.loss
@@ -361,7 +360,7 @@ for epoch in range(starting_epoch, num_train_epochs):
       optimizer.step()
       lr_scheduler.step()
       optimizer.zero_grad()
-      logger.info(f"  Loss = {loss}, epoch = {epoch}, step = {step + resume_step}")
+      logger.info(f"  Loss = {loss}, epoch = {starting_epoch}, step = {step + resume_step}")
       # Checks if the accelerator has performed an optimization step behind the scenes
     if accelerator.sync_gradients:
         progress_bar.update(1)

@@ -1,0 +1,46 @@
+Loading python/3.11.6--gcc--8.5.0
+  Loading requirement: bzip2/1.0.8-gp5wcz5 libmd/1.0.4-wja3f5q
+    libbsd/0.11.7-cgxjopl expat/2.5.0-bptl3xw ncurses/6.4-asx3jea
+    readline/8.2-nyw6mp6 gdbm/1.23-fs6otck libiconv/1.17-d7yvx2s
+    xz/5.4.1-hubmwr5 zlib-ng/2.1.4-6htiapk libxml2/2.10.3-5eeeokp
+    pigz/2.7-bopr5vp zstd/1.5.5-gawytfl tar/1.34-amqus5s gettext/0.22.3-2g7elif
+    libffi/3.4.4-6r7brdq libxcrypt/4.4.35-ss2rzin sqlite/3.43.2
+    util-linux-uuid/2.38.1-jkdi7kv
+Running on  nodes
+---------------------------------------------
+SLURM job ID:        12303237
+SLURM job node list: lrdn3359
+DATE:                Mon Feb 10 11:01:58 CET 2025
+---------------------------------------------
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+02/10/2025 11:02:30 - INFO - __main__ - ***** Running training *****
+02/10/2025 11:02:30 - INFO - __main__ -   Num examples = 78773
+02/10/2025 11:02:30 - INFO - __main__ -   Num Epochs = 10
+02/10/2025 11:02:30 - INFO - __main__ -   Instantaneous batch size per device = 32
+02/10/2025 11:02:30 - INFO - __main__ -   Total train batch size (w. parallel, distributed & accumulation) = 32
+02/10/2025 11:02:30 - INFO - __main__ -   Gradient Accumulation steps = 1
+02/10/2025 11:02:30 - INFO - __main__ -   Max optimization steps = 50000
+  0%|          | 0/50000 [00:00<?, ?it/s]02/10/2025 11:02:30 - INFO - accelerate.accelerator - Loading states from tf_output_test_16batch/step_19500
+02/10/2025 11:02:31 - INFO - accelerate.checkpointing - All model weights loaded successfully
+02/10/2025 11:02:33 - INFO - accelerate.checkpointing - All optimizer states loaded successfully
+02/10/2025 11:02:33 - INFO - accelerate.checkpointing - All scheduler states loaded successfully
+02/10/2025 11:02:33 - INFO - accelerate.checkpointing - All dataloader sampler states loaded successfully
+02/10/2025 11:02:33 - INFO - accelerate.checkpointing - All random states loaded successfully
+02/10/2025 11:02:33 - INFO - accelerate.accelerator - Loading in 0 custom states
+02/10/2025 11:02:33 - INFO - __main__ - Starting epoch = 6, resume step = 19500
+02/10/2025 11:02:33 - INFO - __main__ - correct scenario
+02/10/2025 11:02:33 - INFO - __main__ - Active DataLoader length: 196
+02/10/2025 11:02:33 - INFO - __main__ - Step totali previsti: 22350.5625
+02/10/2025 11:03:16 - INFO - __main__ -   Loss = 0.1376730054616928, epoch = 7, step = 2266
+  0%|          | 1/50000 [00:46<644:53:11, 46.43s/it]02/10/2025 11:03:37 - INFO - __main__ -   Loss = 0.15839660167694092, epoch = 7, step = 2267
+  0%|          | 2/50000 [01:06<431:59:42, 31.10s/it]02/10/2025 11:03:57 - INFO - __main__ -   Loss = 0.09781983494758606, epoch = 7, step = 2268
+  0%|          | 3/50000 [01:27<363:50:02, 26.20s/it]02/10/2025 11:04:17 - INFO - __main__ -   Loss = 0.10495412349700928, epoch = 7, step = 2269
+  0%|          | 4/50000 [01:47<331:52:11, 23.90s/it]02/10/2025 11:04:38 - INFO - __main__ -   Loss = 0.14449116587638855, epoch = 7, step = 2270
+  0%|          | 5/50000 [02:07<314:05:40, 22.62s/it]02/10/2025 11:04:58 - INFO - __main__ -   Loss = 0.10140274465084076, epoch = 7, step = 2271
+  0%|          | 6/50000 [02:28<303:31:04, 21.86s/it]02/10/2025 11:05:18 - INFO - __main__ -   Loss = 0.12965668737888336, epoch = 7, step = 2272
+  0%|          | 7/50000 [02:48<296:49:26, 21.37s/it]02/10/2025 11:05:39 - INFO - __main__ -   Loss = 0.1408710479736328, epoch = 7, step = 2273
+  0%|          | 8/50000 [03:09<292:34:20, 21.07s/it]02/10/2025 11:05:59 - INFO - __main__ -   Loss = 0.11426649242639542, epoch = 7, step = 2274
+  0%|          | 9/50000 [03:29<289:33:48, 20.85s/it]02/10/2025 11:06:20 - INFO - __main__ -   Loss = 0.13794080913066864, epoch = 7, step = 2275
+  0%|          | 10/50000 [03:49<287:35:40, 20.71s/it]02/10/2025 11:06:40 - INFO - __main__ -   Loss = 0.12604974210262299, epoch = 7, step = 2276
+  0%|          | 11/50000 [04:10<286:10:51, 20.61s/it]02/10/2025 11:07:00 - INFO - __main__ -   Loss = 0.08382246643304825, epoch = 7, step = 2277
+  0%|          | 12/50000 [04:30<285:29:00, 20.56s/it]02/10/2025 11:07:21 - INFO - __main__ -   Loss = 0.1674824357032776, epoch = 7, step = 2278
