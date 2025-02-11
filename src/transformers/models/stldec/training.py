@@ -3,7 +3,7 @@ import os
 from handcoded_tokenizer import STLTokenizer
 from configuration import STLConfig
 from modeling_stldec import STLForCausalLM
-from utils2 import CustomDataset
+from utils import CustomDataset
 
 import argparse
 import json
