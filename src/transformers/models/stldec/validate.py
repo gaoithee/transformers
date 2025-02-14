@@ -16,9 +16,9 @@ from transformers import AutoConfig, AutoModelForCausalLM
 
 ##################################################################
 
-model_path = "tf_output_test_16batch/step_23500"
-optimizer_path = "tf_output_test_16batch/step_23500/optimizer.bin"
-scheduler_path = "tf_output_test_16batch/step_23500/scheduler.bin"
+model_path = "tf_output_test_16batch/step_24500"
+optimizer_path = "tf_output_test_16batch/step_24500/optimizer.bin"
+scheduler_path = "tf_output_test_16batch/step_24500/scheduler.bin"
 
 ##################################################################
 
@@ -70,8 +70,8 @@ for idx in range(len(subset_eval_df)):
     })
     
 eval_df = pd.DataFrame(formulae_dataset)
-eval_df.to_csv('predicted_gold_formulae_23500.csv')
-eval_df = pd.read_csv('predicted_gold_formulae_23500.csv')
+eval_df.to_csv('predicted_gold_formulae_24500.csv')
+eval_df = pd.read_csv('predicted_gold_formulae_24500.csv')
 encoder = STLEncoder(embed_dim=1024, anchor_filename='anchor_set_1024_dim.pickle')
 
 gold_embeddings = encoder.compute_embeddings(eval_df["Gold Formula"].tolist())
@@ -89,5 +89,5 @@ for idx in range(len(eval_df)):
 
 print(f"Mean euclidean distance: {np.mean(euclidean_distance)}")
 
-eval_df.to_csv('step_23500_formulae.csv')
+eval_df.to_csv('step_24500_formulae.csv')
 

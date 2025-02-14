@@ -391,8 +391,8 @@ for epoch in range(starting_epoch, num_train_epochs):
         if completed_steps >= updated_max_train_steps:
             break
 
-# ALSO saves at the end of each epoch!
-output_dir = f"epoch_{epoch}"
-if output_dir is not None:
-    output_dir = os.path.join(output_dir, output_dir)
-    accelerator.save_state(output_dir)
+        # ALSO saves at the end of each epoch!
+        output_dir = f"epoch_{epoch}"
+        if output_dir is not None:
+            output_dir = os.path.join(output_dir, output_dir)
+            accelerator.save_state(output_dir)

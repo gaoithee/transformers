@@ -9,7 +9,7 @@
 #SBATCH --exclusive
 #SBATCH --time=24:00:00
 #SBATCH --mem=481G
-#SBATCH --output=slurm_outputs/validate_step_23500.out
+#SBATCH --output=slurm_outputs/validate_step_24500.out
 
 module load python/3.11.6--gcc--8.5.0
 
