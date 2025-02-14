@@ -85,6 +85,7 @@ num_warmup_steps = args['num_warmup_steps']
 max_train_steps = args['max_train_steps']
 
 private_hub_token = "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"
+
 ##########################################################################
 
 
@@ -292,7 +293,7 @@ total_batch_size = per_device_train_batch_size * accelerator.num_processes * gra
 # Log training setup details
 logger.info("***** Running training *****")
 logger.info(f"  Num examples = {len(train_dataset)}")
-logger.info(f"  Num Epochs = {num_train_epochs}")
+logger.info(f"  Max num Epochs = {num_train_epochs}")
 logger.info(f"  Instantaneous batch size per device = {per_device_train_batch_size}")
 logger.info(f"  Total train batch size (w. parallel, distributed & accumulation) = {total_batch_size}")
 logger.info(f"  Gradient Accumulation steps = {gradient_accumulation_steps}")
@@ -304,6 +305,9 @@ starting_epoch = args.get("starting_epoch", 0)  # Default to 0 if not provided
 updated_max_train_steps = max_train_steps - completed_steps
 progress_bar = tqdm(range(max_train_steps), disable=not accelerator.is_local_main_process) # Disable progress bar for non-main processes
 
+logger.info(f"  Already completed optimization steps = {completed_steps}")
+logger.info(f"  Residual optimization steps = {updated_max_train_steps}")
+logger.info(f"  Checkpointed epoch = {starting_epoch}")
 
 # Check if we are resuming from a checkpoint
 if resume_from_checkpoint:
