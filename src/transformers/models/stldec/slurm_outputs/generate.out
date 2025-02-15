@@ -8,8 +8,44 @@ Loading python/3.11.6--gcc--8.5.0
     util-linux-uuid/2.38.1-jkdi7kv
 Running on  nodes
 ---------------------------------------------
-SLURM job ID:        12438937
-SLURM job node list: lrdn3334
-DATE:                Thu Feb 13 18:36:07 CET 2025
+SLURM job ID:        12475236
+SLURM job node list: lrdn2233
+DATE:                Fri Feb 14 13:09:43 CET 2025
 ---------------------------------------------
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/generate_sets.py", line 47, in <module>
+    depth_5['Embedding'] = embed_generated_formulae(depth_5)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/generate_sets.py", line 38, in embed_generated_formulae
+    formulae_embeddings = encoder.compute_embeddings(sampled_formulae)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/encoder.py", line 42, in compute_embeddings
+    return self.kernel.compute_bag_bag(converted_formula, self.anchor_set)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/kernel.py", line 69, in compute_bag_bag
+    rhos1, selfk1 = self._compute_robustness_no_time(phis1)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/kernel.py", line 129, in _compute_robustness_no_time
+    rho = phi.quantitative(self.signals, evaluate_at_all_times=False)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/stl.py", line 88, in quantitative
+    z: Tensor = self._quantitative(x, normalize)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/stl.py", line 181, in _quantitative
+    z: Tensor = -self.child._quantitative(x, normalize)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/stl.py", line 394, in _quantitative
+    z1: Tensor = self.child._quantitative(x[:, :, self.left_time_bound:], normalize)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/stl.py", line 216, in _quantitative
+    z1: Tensor = self.left_child._quantitative(x, normalize)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/stl.py", line 256, in _quantitative
+    z1: Tensor = self.left_child._quantitative(x, normalize)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/stl.py", line 151, in _quantitative
+    xj: Tensor = x[:, self.var_index, :]
+                 ~^^^^^^^^^^^^^^^^^^^^^^
+IndexError: index 3 is out of bounds for dimension 1 with size 3
+srun: error: lrdn2233: task 0: Exited with exit code 1
 DONE!

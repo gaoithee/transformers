@@ -14,6 +14,7 @@ from kernel import StlKernel
 
 
 encoder = STLEncoder(embed_dim = 1024, anchor_filename = "anchor_set_1024_dim.pickle")
+
 def generate_formulae_depth(n_phis, n_vars, depth):
 
     # generate formulae of depth equal to (depth + 1) 
@@ -32,10 +33,27 @@ def generate_formulae_depth(n_phis, n_vars, depth):
     
     return df
 
-def embed_generated_formulae(df, encoder):
-    sampled_formulae = list(map(str, df['Formula Obj'])
-    
+def embed_generated_formulae(df):
+    sampled_formulae = list(map(str, df['Formula Obj']))
+    formulae_embeddings = encoder.compute_embeddings(sampled_formulae)
+    return formulae_embeddings.tolist()
 
+
+depth_4 = pd.read_csv('datasets/depth_4_formulae.csv')
+depth_4['Embedding'] = embed_generated_formulae(depth_4)
+depth_4.to_csv('datasets/depth_4_formulae.csv')
+
+depth_5 = pd.read_csv('datasets/depth_5_formulae.csv')
+depth_5['Embedding'] = embed_generated_formulae(depth_5)
+depth_5.to_csv('datasets/depth_5_formulae.csv')
+
+depth_6 = pd.read_csv('datasets/depth_6_formulae.csv')
+depth_6['Embedding'] = embed_generated_formulae(depth_6)
+depth_6.to_csv('datasets/depth_6_formulae.csv')
+
+depth_7 = pd.read_csv('datasets/depth_7_formulae.csv')
+depth_7['Embedding'] = embed_generated_formulae(depth_7)
+depth_7.to_csv('datasets/depth_7_formulae.csv')
 
 
 # depth_3 = generate_formulae_depth(20000, 2, 2)

@@ -85,6 +85,7 @@ num_warmup_steps = args['num_warmup_steps']
 max_train_steps = args['max_train_steps']
 
 private_hub_token = "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"
+
 ##########################################################################
 
 
@@ -188,6 +189,7 @@ else:
 
 # Set the device to GPU if available, otherwise default to CPU.
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print("osti", device)
 
 # Create the training and evaluation datasets, moving them to the specified device (GPU or CPU)
 train_dataset = CustomDataset(raw_datasets['train'], device=device)
@@ -335,8 +337,8 @@ if resume_from_checkpoint:
     else:
         # If the checkpoint was saved at a step, calculate based on that
         resume_step = completed_steps  # Example step (should be extracted from the checkpoint filename)
-        # starting_epoch = resume_step // len(train_dataloader)  # Calculate epoch from step
-        # completed_steps = resume_step // gradient_accumulation_steps  # Adjust for gradient accumulation
+        starting_epoch = resume_step // len(train_dataloader)  # Calculate epoch from step
+        completed_steps = resume_step // gradient_accumulation_steps  # Adjust for gradient accumulation
         resume_step -= starting_epoch * len(train_dataloader)  # Adjust the remaining steps in the current epoch
 
 # Main training loop, running for each epoch
@@ -375,9 +377,9 @@ for epoch in range(starting_epoch, num_train_epochs):
             logger.info(f"  Loss = {loss}, epoch = {epoch}, step = {step + resume_step}")  # Log the loss
 
         # Update progress bar if gradients are synchronized
-        if accelerator.sync_gradients:
-            progress_bar.update(1)
-            completed_steps += 1
+        #if accelerator.sync_gradients:
+        #    progress_bar.update(1)
+        #    completed_steps += 1
         
         # Save a checkpoint every specified number of steps
         if isinstance(checkpointing_steps, int):
