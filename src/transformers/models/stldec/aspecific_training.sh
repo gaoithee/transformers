@@ -4,15 +4,13 @@
 #SBATCH --account IscrC_IRA-LLMs
 #SBATCH --partition=boost_usr_prod
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=32
-#SBATCH --gres=gpu:1
+#SBATCH --ntasks-per-node=4
+#SBATCH --gres=gpu:4
 #SBATCH --gpus-per-task=1
 #SBATCH --exclusive
 #SBATCH --time=24:00:00
 #SBATCH --mem=481G
 #SBATCH --output=slurm_outputs/asp_training.out
-#SBATCH --error=errors/asp_training.out
 
 module load python/3.11.6--gcc--8.5.0
 

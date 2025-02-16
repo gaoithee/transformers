@@ -394,7 +394,7 @@ for epoch in range(starting_epoch, num_train_epochs):
             break
 
         # ALSO saves at the end of each epoch!
-        output_dir = f"epoch_{epoch}"
-        if output_dir is not None:
-            output_dir = os.path.join(output_dir, output_dir)
-            accelerator.save_state(output_dir)
+#        output_dir = f"epoch_{epoch}"
+#        if output_dir is not None:
+#            output_dir = os.path.join(output_dir, output_dir)
+#            accelerator.save_state(output_dir)
