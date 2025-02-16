@@ -61,7 +61,7 @@ args = {
     'block_size': 500,
     'batch_size': 32,
     'gradient_accumulation_steps': 1,
-    'num_train_epochs': 10,
+    'num_train_epochs': 15,
     'learning_rate': 5e-5,
     'weight_decay': 0.01,
     'seed': 42,
@@ -73,7 +73,7 @@ args = {
     'per_device_train_batch_size': 32,
     'per_device_eval_batch_size': 32,
     'checkpointing_steps': '500',  
-    'resume_from_checkpoint': 'tf_output_test_16batch/step_24000',
+    'resume_from_checkpoint': 'tf_output_test_16batch/step_28500',
     'lr_scheduler_type': 'linear',  
     'num_warmup_steps': 5000,   
     'max_train_steps': 50000, 
@@ -319,7 +319,7 @@ if args["resume_from_checkpoint"]:
     training_difference = os.path.splitext(path)[0]
     
     starting_epoch = 9
-    resume_step = 24000
+    resume_step = 28500
     
     logger.info(f"Starting epoch = {starting_epoch}, resume step = {resume_step}")
 
@@ -331,7 +331,7 @@ if args["resume_from_checkpoint"]:
     else:
       # need to multiply `gradient_accumulation_steps` to reflect real steps
       # resume_step = int(training_difference.replace("step_", "")) * args["gradient_accumulation_steps"]
-      resume_step = 24000
+      resume_step = 28500
       starting_epoch = resume_step // len(train_dataloader)
       completed_steps = resume_step // args["gradient_accumulation_steps"]
       resume_step -= starting_epoch * len(train_dataloader)
@@ -351,7 +351,7 @@ for epoch in range(starting_epoch, num_train_epochs):
   logger.info(f"Step totali previsti: {total_steps}")
 
   for step, batch in enumerate(active_dataloader):
-    print("entro nel training")
+    # print("entro nel training")
     with accelerator.accumulate(model):
       outputs = model(**batch)
       loss = outputs.loss

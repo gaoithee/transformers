@@ -1,3 +1,4 @@
+dummy_datasets/
 datasets/
 .ipynb_checkpoints/
 __pycache__/
@@ -7,3 +8,6 @@ output_test_16batch_grad2/
 marianOriginal/
 tf_output_test_16batch/
 lr_32_training/
+test_training/
+epoch_8/
+step_20000/

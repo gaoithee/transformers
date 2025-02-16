@@ -1,11 +1,12 @@
 #!/bin/bash
 #SBATCH --no-requeue
-#SBATCH --job-name="cont"
+#SBATCH --job-name="compl"
 #SBATCH --account IscrC_IRA-LLMs
 #SBATCH --partition=boost_usr_prod
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:1
+#SBATCH --ntasks-per-node=4
+#SBATCH --gres=gpu:4
+#SBATCH --gpus-per-task=1
 #SBATCH --exclusive
 #SBATCH --time=24:00:00
 #SBATCH --mem=481G
@@ -31,6 +32,7 @@ source /leonardo/home/userexternal/scanduss/.venv/bin/activate
 #variables
 
 srun python3 training.py
+#accelerate launch training.py
 
 
 echo "DONE!"
