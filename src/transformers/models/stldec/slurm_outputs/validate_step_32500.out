@@ -19,3 +19,5 @@ Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0;
   scheduler = torch.load(scheduler_path)
 /leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/validate.py:58: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
   encoder_hidden_states = torch.tensor(encoder_hidden_states, device=device).unsqueeze(0).unsqueeze(0)
+Mean euclidean distance: 1.2981716394424438
+DONE!

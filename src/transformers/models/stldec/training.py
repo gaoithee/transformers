@@ -53,8 +53,11 @@ tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
 
 ##########################################################################
 
+config_file = 'nocheck_config.json' # if you do not have previous checkpoints
+# config_file = 'training_config.json' otherwise -> remember to specify `completed_steps` and `starting_epoch` alsp
+
 # Upload training configuration file 
-with open('training_config.json', 'r') as f:
+with open(config_file, 'r') as f:
     args = json.load(f)
 
 # Read from `training_config.json` and define the corresponding variables
@@ -358,6 +361,7 @@ for epoch in range(starting_epoch, num_train_epochs):
         active_dataloader = accelerator.skip_first_batches(train_dataloader, resume_step)  # Skip batches up to resume_step
     else:
         active_dataloader = train_dataloader  # Regular dataloader if not resuming
+        resume_step = 0
 
     total_steps = num_train_epochs * len(active_dataloader)  # Total steps for the epoch
     logger.info(f"Total expected steps: {total_steps}")

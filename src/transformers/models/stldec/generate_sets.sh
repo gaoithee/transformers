@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --no-requeue
-#SBATCH --job-name="gen"
+#SBATCH --job-name="gen2"
 #SBATCH --account IscrC_IRA-LLMs
 #SBATCH --partition=boost_usr_prod
 #SBATCH --nodes=1
@@ -9,7 +9,7 @@
 #SBATCH --exclusive
 #SBATCH --time=24:00:00
 #SBATCH --mem=481G
-#SBATCH --output=slurm_outputs/generate.out
+#SBATCH --output=slurm_outputs/generate2.out
 
 module load python/3.11.6--gcc--8.5.0
 
