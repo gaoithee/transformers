@@ -171,7 +171,7 @@ class StlGenerator:
             return False, False, left_bound, rnd.randint(left_bound, self.time_bound_max_range) + 1
 
     def _get_atom(self, nvars):
-        variable = rnd.randint(nvars)
+        variable = rnd.randint(0, nvars)
         lte = rnd.rand() > 0.5
         threshold = rnd.normal(self.threshold_mean, self.threshold_sd)
         return variable, threshold, lte
