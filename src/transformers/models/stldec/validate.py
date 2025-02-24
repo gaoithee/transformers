@@ -20,10 +20,6 @@ model_path = "tf_output_test_16batch/step_33500"
 optimizer_path = "tf_output_test_16batch/step_33500/optimizer.bin"
 scheduler_path = "tf_output_test_16batch/step_33500/scheduler.bin"
 
-# model_path = "step_20000/step_20000"
-# optimizer_path = "step_20000/step_20000/optimizer.bin"
-# scheduler_path = "step_20000/step_20000/scheduler.bin"
-
 ##################################################################
 
 AutoConfig.register("STLdec", STLConfig)

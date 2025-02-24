@@ -28,6 +28,8 @@ from handcoded_tokenizer import STLTokenizer
 import networkx as nx
 import phis_generator_depth
 
+from datasets import load_dataset
+
 ############################################################################################################################
 
 def load_pickle(path):
@@ -302,6 +304,89 @@ class STLAttention(nn.Module):
 
         return attn_output, None, past_key_value
 
+class DatasetProcessor:
+    def __init__(self, dataset_name, split="train", device="cuda" if torch.cuda.is_available() else "cpu"):
+        self.device = device
+        self.original_dataset = load_dataset('csv', data_files=dataset_name, split=split)
+        self.processed_dataset = self._create_processed_dataset()
+
+    def _create_processed_dataset(self):
+        def transform_entry(entry):
+            # Convertire 'Embedding' da stringa a lista di float e poi a tensor
+            formula_embedding = eval(entry['Embedding'])  # Converti la stringa in lista
+            encoder_hidden_states = torch.tensor(formula_embedding, dtype=torch.float32).to(self.device)
+
+            # Convertire 'Encoded_Formula' da stringa a lista di interi
+            encoded_formula = eval(entry['Encoded_Formula'])  # Converti la stringa in lista
+            input_ids = encoded_formula[:-1]  # Tutti i token tranne l'ultimo
+            labels = encoded_formula[1:]  # Tutti i token tranne il primo
+            attention_mask = [0 if token == 1 else 1 for token in input_ids]
+
+            # Restituiamo solo le nuove colonne
+            return {
+                'input_ids': input_ids,
+                'labels': labels,
+                'attention_mask': attention_mask,
+                'encoder_hidden_states': encoder_hidden_states.tolist()  # Convertire tensor in lista per compatibilità Dataset
+            }
+
+        # Creiamo un dataset nuovo applicando `.map()` con tqdm
+        new_dataset = self.original_dataset.map(
+            transform_entry, desc="Processing Dataset", num_proc=1, remove_columns=self.original_dataset.column_names
+        )
+
+        # Convertiamo input_ids, labels e attention_mask in tensori PyTorch
+        def convert_to_tensors(batch):
+            batch["input_ids"] = [torch.tensor(x, dtype=torch.long).to(self.device) for x in batch["input_ids"]]
+            batch["labels"] = [torch.tensor(x, dtype=torch.long).to(self.device) for x in batch["labels"]]
+            batch["attention_mask"] = [torch.tensor(x, dtype=torch.long).to(self.device) for x in batch["attention_mask"]]
+            batch["encoder_hidden_states"] = [torch.tensor(x, dtype=torch.float32).to(self.device) for x in batch["encoder_hidden_states"]]
+            return batch
+
+        # Applichiamo la conversione in batch per efficienza
+        new_dataset = new_dataset.map(convert_to_tensors, batched=True)
+
+        return new_dataset
+
+    def get_processed_dataset(self):
+        return self.processed_dataset
+
+class DatasetProcessorOLD:
+    def __init__(self, dataset_name, split="train", device="cuda" if torch.cuda.is_available() else "cpu"):
+        self.device = device
+        self.original_dataset = load_dataset('csv', data_files=dataset_name, split=split)
+        self.processed_dataset = self._create_processed_dataset()
+
+    def _create_processed_dataset(self):
+        def transform_entry(entry):
+            # Convertire 'Embedding' da stringa a lista di float e poi a tensor
+            formula_embedding = eval(entry['Embedding'])  # Converti la stringa in lista
+            encoder_hidden_states = torch.tensor(formula_embedding, dtype=torch.float32).to(self.device)
+
+            # Convertire 'Encoded_Formula' da stringa a lista di interi
+            encoded_formula = eval(entry['Encoded_Formula'])  # Converti la stringa in lista
+            input_ids = encoded_formula[:-1]  # Tutti i token tranne l'ultimo
+            labels = encoded_formula[1:]  # Tutti i token tranne il primo
+            attention_mask = [0 if token == 1 else 1 for token in input_ids]
+
+            # Restituiamo solo le nuove colonne
+            return {
+                'input_ids': torch.tensor(input_ids, dtype=torch.long).to(self.device),
+                'labels': torch.tensor(labels, dtype=torch.long).to(self.device),
+                'attention_mask': torch.tensor(attention_mask, dtype=torch.long).to(self.device),
+                'encoder_hidden_states': encoder_hidden_states
+            }
+
+        # Applica la trasformazione con map() e mostra la barra di avanzamento
+        processed_dataset = self.original_dataset.map(
+            transform_entry, desc="Processing Dataset", num_proc=1
+        )
+
+        return processed_dataset
+
+    def get_processed_dataset(self):
+        return self.processed_dataset
+
 
 # Create a `CustomDataset` class to properly format input data with respect to 
 # the `input_ids`, `labels`, and `attention_mask` attributes for model training.
@@ -314,8 +399,54 @@ class CustomDataset(Dataset):
         - df: A pandas DataFrame containing the data (e.g., `Encoded_Formula`, `Embedding`).
         - device: The device ('cpu' or 'cuda') where the tensors will be moved for processing.
         """
-        self.df = df
-        self.device = device  
+        self.df = df['train']
+        self.device = device
+
+        encoded_formulae = []
+        formulae_embeddings = []
+        input_ids = []
+        labels = []
+        attention_masks = []
+
+        for idx in range(len(self.df)):
+            # Extract the encoded formula (tokenized input sequence) from the DataFrame
+            # encoded_formula = self.df['Encoded_Formula'][idx]
+            # Convert the string representation of a list back to a Python list using ast.literal_eval
+            encoded_formula = ast.literal_eval(self.df['Encoded_Formula'][idx])
+            # encoded_formula = [int(x) for x in encoded_formula.split()]
+            encoded_formulae.append(encoded_formula)
+
+            # Extract the precomputed formula embedding (hidden states) from the DataFrame
+            formula_embedding = self.df['Embedding'][idx]
+
+            # Clean the string and convert it back to a tensor
+            # formula_embedding = formula_embedding.replace("tensor(", "").rstrip(")")
+            # formula_embedding = eval(formula_embedding)
+            formula_embedding = ast.literal_eval(formula_embedding.strip())
+            encoder_hidden_states = torch.tensor(formula_embedding, dtype=torch.float32).to(self.device)
+            formulae_embeddings.append(encoder_hidden_states)
+            
+            # Define the input_ids by excluding the last token (shifted tokens for prediction)
+            input_ids.append(torch.tensor(encoded_formula[:-1], dtype=torch.long).to(self.device))  # All tokens except the last
+            # Define the labels by excluding the first token (shifted tokens for teacher forcing)
+            labels.append(torch.tensor(encoded_formula[1:], dtype=torch.long).to(self.device))     # All tokens except the first
+
+            # Create the attention mask to indicate which tokens should be attended to.
+            # Tokens equal to '1' (typically padding tokens) will be masked (set to 0), 
+            # and the rest will be visible (set to 1).
+            attention_mask = [0 if token == 1 else 1 for token in encoded_formula[:-1]]  # Use encoded_formula for mask
+            attention_mask = torch.tensor(attention_mask, dtype=torch.long).to(self.device)
+            attention_masks.append(attention_mask)
+
+        # Create the DataFrame with the processed tensors
+        self.df = {
+            'input_ids': input_ids,
+            'labels': labels,
+            'attention_mask': attention_masks,
+            'encoder_hidden_states': formulae_embeddings
+        }
+
+        # self.df = pd.DataFrame(temp, device=device) 
 
     def __len__(self):
         """
@@ -328,54 +459,19 @@ class CustomDataset(Dataset):
 
     def __getitem__(self, idx):
         """
-        Retrieves a specific example from the dataset, processes it, and formats it 
-        into the required structure for the model (e.g., `input_ids`, `labels`, `attention_mask`).
+        Retrieves the dataset item at the given index.
         
         Args:
-        - idx: Index of the example to retrieve.
+        - idx: The index of the sample to retrieve.
         
         Returns:
-        - A dictionary containing the formatted input data, including:
-            - `input_ids`: The tokenized input sequence (excluding the last token).
-            - `labels`: The tokenized target sequence (excluding the first token).
-            - `attention_mask`: A mask indicating which tokens should be attended to.
-            - `encoder_hidden_states`: Embedding for each formula (precomputed, used as hidden states).
+        - A dictionary containing the input data for the model.
         """
-        # Extract the encoded formula (tokenized input sequence) from the DataFrame
-        encoded_formula = self.df['Encoded_Formula'][idx]
-        # Convert the string representation of a list back to a Python list using ast.literal_eval
-        encoded_formula = ast.literal_eval(encoded_formula.strip())
-
-        # Extract the precomputed formula embedding (hidden states) from the DataFrame
-        formula_embedding = self.df['Embedding'][idx]
-        # Clean the string and convert it back to a tensor
-        formula_embedding = formula_embedding.replace("tensor(", "").rstrip(")")
-        formula_embedding = eval(formula_embedding)
-        
-        # Define the input_ids by excluding the last token (shifted tokens for prediction)
-        input_ids = encoded_formula[:-1]  # All tokens except the last
-        # Define the labels by excluding the first token (shifted tokens for teacher forcing)
-        labels = encoded_formula[1:]     # All tokens except the first
-
-        # Create the attention mask to indicate which tokens should be attended to.
-        # Tokens equal to '1' (typically padding tokens) will be masked (set to 0), 
-        # and the rest will be visible (set to 1).
-        attention_mask = [0 if token == '1' else 1 for token in input_ids]
-
-        # Convert `input_ids`, `labels`, and `attention_mask` to tensors and move them to the desired device (e.g., GPU or CPU)
-        input_ids = torch.tensor(input_ids, dtype=torch.long).to(self.device)
-        labels = torch.tensor(labels, dtype=torch.long).to(self.device)
-        attention_mask = torch.tensor(attention_mask, dtype=torch.long).to(self.device)
-
-        # Convert the formula embedding (list of hidden states) to a tensor and move it to the device
-        encoder_hidden_states = torch.tensor(formula_embedding, dtype=torch.float32).to(self.device)
-
-        # Return the formatted data as a dictionary, which the model can use directly for training or evaluation
         return {
-            'input_ids': input_ids,
-            'labels': labels,
-            'attention_mask': attention_mask,
-            'encoder_hidden_states': encoder_hidden_states
+            'input_ids': self.df['input_ids'][idx],
+            'labels': self.df['labels'][idx],
+            'attention_mask': self.df['attention_mask'][idx],
+            'encoder_hidden_states': self.df['encoder_hidden_states'][idx]
         }
 
 ############################################################################################################################

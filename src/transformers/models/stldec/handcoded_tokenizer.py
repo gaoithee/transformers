@@ -161,7 +161,14 @@ class STLTokenizer(PreTrainedTokenizer):
         splitted_sequence = self.tokenize(sequence)
         return self.convert_tokens_to_ids(splitted_sequence)
 
-        
+    def postpad_sequence(self, sequence, pad_token_id):
+       """
+       Fills the sequence up to max_length padding elements 
+       """        
+       num_extra_elements = self.model_max_length - len(sequence) -1
+       if num_extra_elements > 0:
+           sequence.extend([pad_token_id] * num_extra_elements)
+       return sequence
 
     def decode(self, token_ids: List[int]) -> str:
         """
