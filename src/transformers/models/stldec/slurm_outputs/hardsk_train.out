@@ -1,0 +1,42 @@
+Loading python/3.11.6--gcc--8.5.0
+  Loading requirement: bzip2/1.0.8-gp5wcz5 libmd/1.0.4-wja3f5q
+    libbsd/0.11.7-cgxjopl expat/2.5.0-bptl3xw ncurses/6.4-asx3jea
+    readline/8.2-nyw6mp6 gdbm/1.23-fs6otck libiconv/1.17-d7yvx2s
+    xz/5.4.1-hubmwr5 zlib-ng/2.1.4-6htiapk libxml2/2.10.3-5eeeokp
+    pigz/2.7-bopr5vp zstd/1.5.5-gawytfl tar/1.34-amqus5s gettext/0.22.3-2g7elif
+    libffi/3.4.4-6r7brdq libxcrypt/4.4.35-ss2rzin sqlite/3.43.2
+    util-linux-uuid/2.38.1-jkdi7kv
+Running on  nodes
+---------------------------------------------
+SLURM job ID:        12920131
+SLURM job node list: lrdn3384
+DATE:                Sun Feb 23 14:57:32 CET 2025
+---------------------------------------------
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+02/23/2025 14:58:05 - INFO - __main__ - LOADING DATASET
+02/23/2025 14:58:05 - INFO - __main__ - ***** Dataset customization *****
+osti cuda
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/training.py", line 206, in <module>
+    processor = DatasetProcessor(data_files['train'])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/utils.py", line 310, in __init__
+    self.original_dataset = load_dataset('csv', data_files=dataset_name, split=split)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/load.py", line 2151, in load_dataset
+    builder_instance.download_and_prepare(
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/datasets/builder.py", line 875, in download_and_prepare
+    raise OSError(
+OSError: Not enough disk space. Needed: Unknown size (download: Unknown size, generated: Unknown size, post-processed: Unknown size)
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/.venv/bin/accelerate", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1172, in launch_command
+    simple_launcher(args)
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/accelerate/commands/launch.py", line 762, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/leonardo/home/userexternal/scanduss/.venv/bin/python3', 'training.py']' returned non-zero exit status 1.
+DONE!

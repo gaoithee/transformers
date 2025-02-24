@@ -11,3 +11,7 @@ lr_32_training/
 test_training/
 epoch_8/
 step_20000/
+
+balanced/
+easyskewed/
+errors/

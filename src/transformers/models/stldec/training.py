@@ -1,9 +1,11 @@
 import os
+import pandas as pd
 
 from handcoded_tokenizer import STLTokenizer
 from configuration import STLConfig
 from modeling_stldec import STLForCausalLM
 from utils import CustomDataset
+from utils import DatasetProcessor
 
 import argparse
 import json
@@ -54,7 +56,8 @@ tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
 ##########################################################################
 
 config_file = 'nocheck_config.json' # if you do not have previous checkpoints
-# config_file = 'training_config.json' otherwise -> remember to specify `completed_steps` and `starting_epoch` alsp
+# config_file = 'easysk_config.json' 
+# config_file = 'hardsk_config.json'
 
 # Upload training configuration file 
 with open(config_file, 'r') as f:
@@ -185,34 +188,42 @@ else:
     # Handle the case where the dataset extension is ".txt"
     if extension == "txt":
         extension = "text"
-
+    logger.info("LOADING DATASET")
     # Load the dataset based on the extension (e.g., 'csv', 'json', 'text', etc.)
-    raw_datasets = load_dataset(extension, data_files=data_files, **dataset_args)
+    # raw_datasets = load_dataset(extension, data_files=data_files, **dataset_args)
 
 
 # Set the device to GPU if available, otherwise default to CPU.
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print("osti", device)
 
+# raw_dataset = pd.read_csv(train_file)
+logger.info("***** Dataset customization *****")
 # Create the training and evaluation datasets, moving them to the specified device (GPU or CPU)
-train_dataset = CustomDataset(raw_datasets['train'], device=device)
-eval_dataset = CustomDataset(raw_datasets['validation'], device=device)
+# train_dataset = CustomDataset(raw_datasets, device=device)
+# eval_dataset = CustomDataset(raw_datasets['validation'], device=device)
+
+processor = DatasetProcessor(data_files['train'])
+train_dataset = processor.get_processed_dataset()
+
 
 # Create DataLoaders for training and evaluation.
 # The DataLoader is responsible for batching the data, shuffling it, and using the specified collate function.
+logger.info("DataLoader - beginning")
 train_dataloader = DataLoader(
     train_dataset, 
     shuffle=True,  # Shuffle the data to ensure randomness in batches
     collate_fn=default_data_collator,  # The function used to combine individual data samples into a batch
     batch_size=args["batch_size"]  # Set the batch size as defined in the arguments
 )
+logger.info("DataLoader - ending")
 
-eval_dataloader = DataLoader(
-    eval_dataset, 
-    shuffle=True,  # Shuffle for evaluation as well (typically not needed but can be done for randomness)
-    collate_fn=default_data_collator,  # Same collate function as training
-    batch_size=args["batch_size"]  # Set the batch size for evaluation
-)
+# eval_dataloader = DataLoader(
+#     eval_dataset, 
+#     shuffle=True,  # Shuffle for evaluation as well (typically not needed but can be done for randomness)
+#     collate_fn=default_data_collator,  # Same collate function as training
+#     batch_size=args["batch_size"]  # Set the batch size for evaluation
+# )
 
 # Optimizer setup:
 # Split model parameters into two groups:
@@ -259,9 +270,14 @@ lr_scheduler = get_scheduler(
 
 # Prepare everything for distributed training using the Accelerator.
 # This prepares the model, optimizer, dataloaders, and scheduler for efficient training across multiple devices.
-model, optimizer, train_dataloader, eval_dataloader, lr_scheduler = accelerator.prepare(
-    model, optimizer, train_dataloader, eval_dataloader, lr_scheduler
+# model, optimizer, train_dataloader, eval_dataloader, lr_scheduler = accelerator.prepare(
+#     model, optimizer, train_dataloader, eval_dataloader, lr_scheduler
+# )
+
+model, optimizer, train_dataloader, lr_scheduler = accelerator.prepare(
+    model, optimizer, train_dataloader, lr_scheduler
 )
+
 
 # Recalculate the total number of steps for training after preparing the DataLoader.
 # This is important because the DataLoader size might have changed after `accelerator.prepare`.
@@ -302,6 +318,7 @@ logger.info(f"  Instantaneous batch size per device = {per_device_train_batch_si
 logger.info(f"  Total train batch size (w. parallel, distributed & accumulation) = {total_batch_size}")
 logger.info(f"  Gradient Accumulation steps = {gradient_accumulation_steps}")
 logger.info(f"  Max optimization steps = {max_train_steps}")
+logger.info(f"  Output directory = {output_dir}")
 
 # Initialize progress bar for tracking steps
 completed_steps = args.get("completed_steps", 0)  # Default to 0 if not provided
@@ -363,6 +380,7 @@ for epoch in range(starting_epoch, num_train_epochs):
         active_dataloader = train_dataloader  # Regular dataloader if not resuming
         resume_step = 0
 
+    logger.info(f"Active dataloader length: {len(active_dataloader)}")
     total_steps = num_train_epochs * len(active_dataloader)  # Total steps for the epoch
     logger.info(f"Total expected steps: {total_steps}")
 
@@ -384,24 +402,24 @@ for epoch in range(starting_epoch, num_train_epochs):
             logger.info(f"  Loss = {loss}, epoch = {epoch}, step = {step + resume_step}")  # Log the loss
 
         # Update progress bar if gradients are synchronized
-        #if accelerator.sync_gradients:
-        #    progress_bar.update(1)
-        #    completed_steps += 1
+        if accelerator.sync_gradients:
+            progress_bar.update(1)
+            completed_steps += 1
         
         # Save a checkpoint every specified number of steps
         if isinstance(checkpointing_steps, int):
-            if completed_steps % checkpointing_steps == 0 and accelerator.sync_gradients:
-                output_dir = f"step_{completed_steps}"  # Define checkpoint folder based on steps
-                if output_dir is not None:
-                    output_dir = os.path.join(output_dir, output_dir)  # Include the output directory path
-                accelerator.save_state(output_dir)  # Save model state
+           if completed_steps % checkpointing_steps == 0 and accelerator.sync_gradients:
+                output_dir = f"step_{completed_steps}"
+                if args["output_dir"] is not None:
+                    output_dir = os.path.join(args["output_dir"], output_dir)
+                    accelerator.save_state(output_dir)
 
         # Stop training if the max steps are reached
         if completed_steps >= updated_max_train_steps:
             break
 
         # ALSO saves at the end of each epoch!
-#        output_dir = f"epoch_{epoch}"
-#        if output_dir is not None:
-#            output_dir = os.path.join(output_dir, output_dir)
-#            accelerator.save_state(output_dir)
+#         output_dir = f"epoch_{epoch}"
+#         if output_dir is not None:
+#             output_dir = os.path.join(output_dir, output_dir)
+#             accelerator.save_state(output_dir)
