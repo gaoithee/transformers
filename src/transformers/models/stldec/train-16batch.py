@@ -55,7 +55,7 @@ args = {
     'dataset_name': None,  # or a custom dataset path
     'train_file': 'datasets/train_set.csv',
     'validation_file': 'datasets/validation_set.csv',
-    'output_dir': './tf_output_test_16batch',
+    'output_dir': './comparison',
     'model_name_or_path': 'STLForCausalLM',
     'tokenizer_name': 'STLTokenizer',
     'block_size': 500,
@@ -73,7 +73,7 @@ args = {
     'per_device_train_batch_size': 32,
     'per_device_eval_batch_size': 32,
     'checkpointing_steps': '500',  
-    'resume_from_checkpoint': 'tf_output_test_16batch/step_32500',
+    'resume_from_checkpoint': False,
     'lr_scheduler_type': 'linear',  
     'num_warmup_steps': 5000,   
     'max_train_steps': 50000, 
@@ -318,8 +318,8 @@ if args["resume_from_checkpoint"]:
     # Extract `epoch_{i}` or `step_{i}`
     training_difference = os.path.splitext(path)[0]
     
-    starting_epoch = 9
-    resume_step = 32500
+    starting_epoch = 0
+    resume_step = 0
     
     logger.info(f"Starting epoch = {starting_epoch}, resume step = {resume_step}")
 
@@ -331,7 +331,7 @@ if args["resume_from_checkpoint"]:
     else:
       # need to multiply `gradient_accumulation_steps` to reflect real steps
       # resume_step = int(training_difference.replace("step_", "")) * args["gradient_accumulation_steps"]
-      resume_step = 32500
+      resume_step = 0
       starting_epoch = resume_step // len(train_dataloader)
       completed_steps = resume_step // args["gradient_accumulation_steps"]
       resume_step -= starting_epoch * len(train_dataloader)

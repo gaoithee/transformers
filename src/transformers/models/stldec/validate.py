@@ -16,9 +16,9 @@ from transformers import AutoConfig, AutoModelForCausalLM
 
 ##################################################################
 
-model_path = "tf_output_test_16batch/step_33500"
-optimizer_path = "tf_output_test_16batch/step_33500/optimizer.bin"
-scheduler_path = "tf_output_test_16batch/step_33500/scheduler.bin"
+model_path = "../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/balanced_@/step_12000"
+optimizer_path = "../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/balanced_@/step_12000/optimizer.bin"
+scheduler_path = "../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/balanced_@/step_12000/scheduler.bin"
 
 ##################################################################
 
@@ -38,44 +38,45 @@ scheduler = torch.load(scheduler_path)
 optimizer = accelerator.prepare(optimizer)
 scheduler = accelerator.prepare(scheduler)
 
-eval_df = pd.read_csv("datasets/validation_set.csv")
+eval_df = pd.read_pickle("datasets/new_balanced_validation_set.pkl")
 
 ##################################################################
 
-subset_eval_df = eval_df[:200]
+eval_df = eval_df.head(200)
+
 formulae_dataset = []
 
-for idx in range(len(subset_eval_df)):
-    embedding_str = subset_eval_df["Embedding"][idx]
-    tensor_str_cleaned = embedding_str[len("tensor("):-1]
-    numbers_str = tensor_str_cleaned.strip("[]")
-    numbers = list(map(float, numbers_str.split(", ")))
-    encoder_hidden_states = torch.tensor(numbers).to(device)
-    encoder_hidden_states = torch.tensor(encoder_hidden_states, device=device).unsqueeze(0).unsqueeze(0)
+for idx in range(len(eval_df)):
+    embedding = eval_df["Embedding"][idx]
+    encoder_hidden_states = torch.tensor(embedding, dtype = torch.float32, device=device).unsqueeze(0).unsqueeze(0)
 
     with torch.no_grad():
         generated_ids = model.generate(
             encoder_hidden_states=encoder_hidden_states,  # Usa gli ID tokenizzati
             pad_token_id=model.config.pad_token_id,  # ID del token di padding, se presente
             bos_token_id=model.config.bos_token_id,
+            forced_eos_token_id = config.forced_eos_token_id,
             max_new_tokens = 500
         )
+    # print(generated_ids[0])
+    generated_text = tokenizer.decode(generated_ids[0].tolist())
+    # print(generated_text)
+    generated_text = generated_text[3:-2]
+    # print(generated_text)
+    formulae_dataset.append(generated_text)
 
-    generated_text = tokenizer.decode(generated_ids[0][2:-2].tolist())
-    gold_formula = subset_eval_df["Formula"][idx]
-
-    formulae_dataset.append({
-        "Gold Formula": gold_formula,
-        "Generated Formula": generated_text
-    })
-    
-eval_df = pd.DataFrame(formulae_dataset)
-eval_df.to_csv('step_33500.csv')
-eval_df = pd.read_csv('step_33500.csv')
 encoder = STLEncoder(embed_dim=1024, anchor_filename='anchor_set_1024_dim.pickle')
 
-gold_embeddings = encoder.compute_embeddings(eval_df["Gold Formula"].tolist())
-generated_embeddings = encoder.compute_embeddings(eval_df["Generated Formula"].tolist())
+generated_embeddings = encoder.compute_embeddings(formulae_dataset)
+gold_embeddings = encoder.compute_embeddings(eval_df["Formula"])
+
+
+
+
+# eval_df.head()
+
+# gold_embeddings = encoder.compute_embeddings(eval_df["Gold Formula"])
+# generated_embeddings = encoder.compute_embeddings(eval_df["Generated Formula"])
 
 eval_df['Embedding Gold Formula'] = gold_embeddings.tolist()
 eval_df['Embedding Generated Formula'] = generated_embeddings.tolist()
@@ -83,11 +84,11 @@ eval_df['Embedding Generated Formula'] = generated_embeddings.tolist()
 euclidean_distance = []
 
 for idx in range(len(eval_df)):
-    gold = torch.tensor(eval_df["Embedding Gold Formula"][idx])
-    generated = torch.tensor(eval_df["Embedding Generated Formula"][idx])
-    euclidean_distance.append(torch.dist(gold, generated))
+     gold = torch.tensor(eval_df["Embedding Gold Formula"][idx])
+     generated = torch.tensor(eval_df["Embedding Generated Formula"][idx])
+     euclidean_distance.append(torch.dist(gold, generated))
 
 print(f"Mean euclidean distance: {np.mean(euclidean_distance)}")
 
-eval_df.to_csv('step_33500_formulae.csv')
+# eval_df.to_csv('balanced/step_7000_formulae.csv')
 

@@ -1,18 +1,16 @@
 #!/bin/bash
 #SBATCH --no-requeue
-#SBATCH --job-name="balanced"
-
+#SBATCH --job-name="easysk512"
 #SBATCH --account IscrC_IRA-LLMs
 #SBATCH --partition=boost_usr_prod
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
 
-
 #SBATCH --exclusive
-#SBATCH --time=24:00:00
-#SBATCH --mem=481G
-#SBATCH --output=slurm_outputs/balanced_train.out
+#SBATCH --time=20:00:00
+#SBATCH --mem=450G
+#SBATCH --output=slurm_outputs/easysk_512.out
 
 module load python/3.11.6--gcc--8.5.0
 

@@ -1,0 +1,79 @@
+import numpy as np
+from accelerate import Accelerator
+from safetensors import safe_open
+from safetensors.torch import load_file
+import torch
+from torch.utils.data import Dataset
+from torch.utils.data import DataLoader 
+import ast
+import pandas as pd
+from handcoded_tokenizer import STLTokenizer
+from configuration import STLConfig
+from modeling_stldec import STLForCausalLM
+from encoder import STLEncoder
+
+from transformers import AutoConfig, AutoModelForCausalLM 
+
+
+##################################################################
+
+eval_df = pd.read_pickle("datasets/new_balanced_validation_set.pkl")
+
+gold_formulae = eval_df['Formula'] 
+
+formulae_dataset = []
+
+model_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/balanced_@/step_14000"
+optimizer_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/balanced_@/step_14000/optimizer.bin"
+scheduler_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/balanced_@/step_14000/scheduler.bin"
+
+##################################################################
+
+AutoConfig.register("STLdec", STLConfig)
+AutoModelForCausalLM.register(STLConfig, STLForCausalLM)
+
+config = STLConfig()
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')    
+model = AutoModelForCausalLM.from_pretrained(model_path, config = config).to(device)  # Sposta il modello sulla device
+tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
+encoder = STLEncoder(embed_dim=1024, anchor_filename='anchor_set_1024_dim.pickle')
+
+accelerator = Accelerator()
+
+optimizer = torch.load(optimizer_path)
+scheduler = torch.load(scheduler_path)
+optimizer = accelerator.prepare(optimizer)
+scheduler = accelerator.prepare(scheduler)
+
+##################################################################
+
+generated_formulae = []
+
+for idx in range(len(eval_df)):
+    embedding = eval_df["Embedding"][idx]
+    encoder_hidden_states = torch.tensor(embedding, dtype=torch.float32).to(device)
+    encoder_hidden_states = encoder_hidden_states.unsqueeze(0).unsqueeze(0)
+
+    with torch.no_grad():
+        generated_ids = model.generate(
+            encoder_hidden_states=encoder_hidden_states,  # Usa gli ID tokenizzati
+            pad_token_id=model.config.pad_token_id,  # ID del token di padding, se presente
+            bos_token_id=model.config.bos_token_id,
+            eos_token_id=model.config.forced_eos_token_id,
+            max_new_tokens = 500
+        )
+   
+    generated_text = tokenizer.decode(generated_ids[0].tolist())
+    generated_text = generated_text[3:-2]
+    generated_formulae.append(generated_text)
+
+formulae_dataset.append(generated_formulae)
+eval_df = pd.DataFrame(formulae_dataset).transpose()
+
+# formulae_dataset.append(eval_df['Formula'])
+
+eval_df['gold formula'] = gold_formulae
+
+# eval_df = pd.concat([pd.DataFrame({'Gold Formula': gold_formulae}), eval_df], axis=1)
+
+eval_df.to_csv('step_14000.csv', index=False)

@@ -304,20 +304,63 @@ class STLAttention(nn.Module):
 
         return attn_output, None, past_key_value
 
+
 class DatasetProcessor:
     def __init__(self, dataset_name, split="train", device="cuda" if torch.cuda.is_available() else "cpu"):
         self.device = device
+        self.original_dataset = pd.read_pickle(dataset_name)  # Load the dataset from the pickle file
+        self.processed_dataset = self._create_processed_dataset()
+
+    def _create_processed_dataset(self):
+        # Transform a single entry
+        def transform_entry(entry):
+            # Convert 'Embedding' from string to list of floats if necessary
+            formula_embedding = entry['Embedding512']
+            encoder_hidden_states = torch.tensor(formula_embedding, dtype=torch.float32).to(self.device)
+
+            # Convert 'Encoded_Formula' from string to list of integers
+            encoded_formula = entry['Encoded_Formula']
+            input_ids = encoded_formula[:-1]  # All tokens except the last
+            labels = encoded_formula[1:]  # All tokens except the first
+            attention_mask = [0 if token == 1 else 1 for token in input_ids]
+            
+            input_ids = torch.tensor(input_ids, dtype=torch.long).to(self.device)            
+            labels = torch.tensor(labels, dtype=torch.long).to(self.device)
+            attention_mask = torch.tensor(attention_mask, dtype=torch.long).to(self.device)
+
+
+            # Return only the transformed columns
+            return {
+                'input_ids': input_ids,
+                'labels': labels,
+                'attention_mask': attention_mask,
+                'encoder_hidden_states': encoder_hidden_states
+            }
+
+        # Apply the transformation to each row in the dataset using pandas .apply()
+        transformed_data = self.original_dataset.apply(transform_entry, axis=1)
+
+        return transformed_data
+
+    def get_processed_dataset(self):
+        return self.processed_dataset
+
+
+class DatasetProcessor2:
+    def __init__(self, dataset_name, split="train", device="cuda" if torch.cuda.is_available() else "cpu"):
+        self.device = device
+#        self.original_dataset = pd.read_pickle(dataset_name)
         self.original_dataset = load_dataset('csv', data_files=dataset_name, split=split)
         self.processed_dataset = self._create_processed_dataset()
 
     def _create_processed_dataset(self):
         def transform_entry(entry):
             # Convertire 'Embedding' da stringa a lista di float e poi a tensor
-            formula_embedding = eval(entry['Embedding'])  # Converti la stringa in lista
+            formula_embedding = eval(entry['Embedding']) # Converti la stringa in lista
             encoder_hidden_states = torch.tensor(formula_embedding, dtype=torch.float32).to(self.device)
 
             # Convertire 'Encoded_Formula' da stringa a lista di interi
-            encoded_formula = eval(entry['Encoded_Formula'])  # Converti la stringa in lista
+            encoded_formula = eval(entry['Encoded_Formula'])
             input_ids = encoded_formula[:-1]  # Tutti i token tranne l'ultimo
             labels = encoded_formula[1:]  # Tutti i token tranne il primo
             attention_mask = [0 if token == 1 else 1 for token in input_ids]
@@ -331,8 +374,9 @@ class DatasetProcessor:
             }
 
         # Creiamo un dataset nuovo applicando `.map()` con tqdm
+        # removed_columns = list(self.original_dataset.columns)
         new_dataset = self.original_dataset.map(
-            transform_entry, desc="Processing Dataset", num_proc=1, remove_columns=self.original_dataset.column_names
+            transform_entry, num_proc=1, remove_columns=self.original_dataset.column_names
         )
 
         # Convertiamo input_ids, labels e attention_mask in tensori PyTorch
@@ -498,13 +542,13 @@ def bleu_score(dataset):
 
 
 
-def exact_match(dataset):
+def exact_match(dataset, gold_formula_column: str, generated_formula_column: str):
 
     percentage = []
 
     for idx in range(len(dataset)):
-        gold = token_division(dataset["Gold Formula"][idx])
-        generated = token_division(dataset["Generated Formula"][idx])
+        gold = token_division(dataset[gold_formula_column][idx])
+        generated = token_division(dataset[generated_formula_column][idx])
 
         match_count = 0
         for gold_token, gen_token in zip(gold, generated):
@@ -514,7 +558,7 @@ def exact_match(dataset):
         percentage.append(match_count/len(gold))
 
 
-        return np.min(percentage), np.mean(percentage), np.max(percentage)   
+        return np.mean(percentage)   
     
 
 

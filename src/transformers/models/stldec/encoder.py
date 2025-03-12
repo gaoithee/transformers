@@ -3,6 +3,7 @@ import torch
 from torch.nn.functional import normalize
 import copy
 import numpy as np
+import pandas as pd
 from typing import List, Optional, Tuple, Union
 
 from phis_generator import StlGenerator
@@ -43,21 +44,11 @@ class STLEncoder():
 
 
 # EXAMPLE OF USAGE
-# formulae_to_embed = [
-#     'not ( x_1 <= 0.0956 )', 
-#     'not ( x_2 >= 1.118 )', 
-#     'not ( ( not ( x_0 <= -0.692 ) and ( eventually[8,19] ( x_2 <= -1.5116 ) until[6,inf] x_2 >= -0.3382 ) ) )', 
-#     '( ( x_2 >= -0.4612 or x_1 <= -1.1656 ) or x_0 <= -0.8679 )']
+# df = pd.read_csv('datasets/test_balanced_validation_set.csv')
+# formulae_to_embed = df['Formula']
 
 # here we do not pass an anchor set so the Encoder creates a new one of dimension set to `embed_dim` 
-# encoder = STLEncoder(embed_dim=10)
-
-# another option is the following: 
-# encoder = STLEncoder(embed_dim=10, anchor_filename='anchor_set_10_dim.pickle')
+# encoder = STLEncoder(embed_dim=1024, anchor_filename='anchor_set_1024_dim.pickle')
 # formulae_embeddings = encoder.compute_embeddings(formulae_to_embed)
-
-# for i in range(len(formulae_to_embed)):
-#     print(f"Formula: {formulae_to_embed[i]}")
-#     embedding_str = ', '.join([f"{x:.4f}" for x in formulae_embeddings[i]])
-#     print(f"Embedding: tensor([{embedding_str}])\n")
+# print(formulae_embeddings)
 
