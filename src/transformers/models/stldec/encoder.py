@@ -38,9 +38,13 @@ class STLEncoder():
 
         self.anchor_set = anchor_set
 
-    def compute_embeddings(self, formula: List[str]):
+    def compute_embeddings2(self, formula: List[str]):
         converted_formula = list(map(from_string_to_formula, formula))
         return self.kernel.compute_bag_bag(converted_formula, self.anchor_set)
+
+    def compute_embeddings(self, formula: List[str]):
+        # converted_formula = list(map(from_string_to_formula, formula))
+        return self.kernel.compute_bag_bag(formula, self.anchor_set)
 
 
 # EXAMPLE OF USAGE

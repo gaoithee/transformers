@@ -4,10 +4,10 @@ from sklearn.decomposition import KernelPCA
 import stl
 from kernel import StlKernel
 from traj_measure import BaseMeasure
-from utils import get_leaves_idx
-from phiselect import filter_time_depth
+# from utils import get_leaves_idx
+# from phiselect import filter_time_depth
 
-'''
+
 def get_leaves_idx(phi):
     # needed when one only wants to set var thresholds
     phi_str = str(phi)
@@ -20,7 +20,6 @@ def filter_time_depth(phi_list, max_time_depth):
     def check_time_depth(phi): return phi.time_depth() < max_time_depth
     phi_ok = list(filter(check_time_depth, phi_list))
     return phi_ok
-'''
 
 
 def rescale_var_thresholds(formula, mu_list, std_list):

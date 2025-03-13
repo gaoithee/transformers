@@ -21,7 +21,7 @@ eval_df = pd.read_pickle("datasets/depth_8_formulae.pkl")
 # eval_df = eval_df.head(5)
 gold_formulae = eval_df['Formula'] 
 
-steps = ['balanced_512/step_24000', 'easyskewed_512/step_24000', 'hardskewed_512/step_24000', 'old_datasets_512/step_24000']
+steps = ['balanced/step_24000', 'easyskewed/step_24000', 'hardskewed/step_24000', 'old_datasets/step_24000']
 
 formulae_dataset = []
 
@@ -39,7 +39,7 @@ for i in steps:
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = AutoModelForCausalLM.from_pretrained(model_path, config = config).to(device)  # Sposta il modello sulla device
     tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
-    encoder = STLEncoder(embed_dim=512, anchor_filename='anchor_set_512.pickle')
+    encoder = STLEncoder(embed_dim=1024, anchor_filename='anchor_set_1024_dim.pickle')
 
     accelerator = Accelerator()
 
@@ -54,7 +54,7 @@ for i in steps:
     generated_formulae = []
 
     for idx in range(len(eval_df)):
-        embedding = eval_df["Embedding512"][idx]
+        embedding = eval(eval_df["Embedding"][idx])
         encoder_hidden_states = torch.tensor(embedding, dtype=torch.float32).to(device)
         encoder_hidden_states = encoder_hidden_states.unsqueeze(0).unsqueeze(0)
 
@@ -77,5 +77,5 @@ for i in steps:
 eval_df = pd.DataFrame(formulae_dataset).transpose()
 
 eval_df['gold formula'] = gold_formulae
-print('ci sono in teoria')
-eval_df.to_csv('model512.csv', index=False)
+
+eval_df.to_csv('model1024.csv', index=False)

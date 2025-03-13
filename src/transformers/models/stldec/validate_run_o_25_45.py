@@ -21,14 +21,14 @@ eval_df = pd.read_pickle("datasets/new_balanced_validation_set.pkl")
 
 gold_formulae = eval_df['Formula'] 
 
-steps = ['step_25000', 'step_30000', 'step_35000', 'step_40000', 'step_45000']
+steps = ['step_48000']
 
 formulae_dataset = []
 
 for i in steps:
-    model_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/old_datasets_512/{i}"
-    optimizer_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/old_datasets_512/{i}/optimizer.bin"
-    scheduler_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/old_datasets_512/{i}/scheduler.bin"
+    model_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/old_datasets/{i}"
+    optimizer_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/old_datasets/{i}/optimizer.bin"
+    scheduler_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/old_datasets/{i}/scheduler.bin"
 
 ##################################################################
 
@@ -39,7 +39,7 @@ for i in steps:
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = AutoModelForCausalLM.from_pretrained(model_path, config = config).to(device)  # Sposta il modello sulla device
     tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
-    encoder = STLEncoder(embed_dim=512, anchor_filename='anchor_set_512.pickle')
+    encoder = STLEncoder(embed_dim=1024, anchor_filename='anchor_set_1024_dim.pickle')
 
     accelerator = Accelerator()
 
@@ -53,7 +53,7 @@ for i in steps:
     generated_formulae = []
 
     for idx in range(len(eval_df)):
-        embedding = eval_df["Embedding512"][idx]
+        embedding = eval_df["Embedding"][idx]
         encoder_hidden_states = torch.tensor(embedding, dtype=torch.float32).to(device)
         encoder_hidden_states = encoder_hidden_states.unsqueeze(0).unsqueeze(0)
 
@@ -77,4 +77,4 @@ eval_df = pd.DataFrame(formulae_dataset).transpose()
 
 eval_df['gold formula'] = gold_formulae
 
-eval_df.to_csv('oldtrain512/steps25000_45000.csv', index=False)
+eval_df.to_csv('oldtrain/step48000.csv', index=False)

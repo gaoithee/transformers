@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --no-requeue
-#SBATCH --job-name="o25-45"
+#SBATCH --job-name="1024-48"
 #SBATCH --account IscrC_IRA-LLMs
 #SBATCH --partition=boost_usr_prod
 #SBATCH --nodes=1
@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --time=10:00:00
 #SBATCH --mem=450G
-#SBATCH --output=slurm_outputs/validate_o_512_25000_45000.out
+#SBATCH --output=slurm_outputs/validate_o_1024_48000.out
 
 module load python/3.11.6--gcc--8.5.0
 

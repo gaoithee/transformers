@@ -5,9 +5,9 @@ import time
 import torch
 from botorch.models import SingleTaskGP
 from botorch.fit import fit_gpytorch_model
-from botorch.acquisition.analytic import LogExpectedImprovement, UpperConfidenceBound
-from botorch.acquisition.monte_carlo import qExpectedImprovement, qUpperConfidenceBound
-from botorch.acquisition.logei import qLogExpectedImprovement
+from botorch.acquisition.analytic import UpperConfidenceBound
+from botorch.acquisition.monte_carlo import qUpperConfidenceBound
+# from botorch.acquisition.logei import qLogExpectedImprovement
 from botorch.generation import get_best_candidates, gen_candidates_torch
 from botorch.sampling.normal import SobolQMCNormalSampler
 from botorch.optim import gen_batch_initial_conditions
@@ -20,13 +20,77 @@ import itertools
 import warnings
 
 from trajectories import TrajectoryDataset, get_dataset
-from utils import from_string_to_formula, get_leaves_idx, from_str_to_n_nodes, dump_pickle, execution_time
+from utils3 import from_string_to_formula, get_leaves_idx, from_str_to_n_nodes, dump_pickle, execution_time
 from phis_generator import StlGenerator
-from phisearch import get_embeddings, search_from_embeddings
+# from phisearch import get_embeddings, search_from_embeddings
 from kernel_embeddings import rescale_var_thresholds
 
+import numpy as np
+from accelerate import Accelerator
+from safetensors import safe_open
+from safetensors.torch import load_file
+import torch
+from torch.utils.data import Dataset
+from torch.utils.data import DataLoader 
+import ast
+import pandas as pd
+from handcoded_tokenizer import STLTokenizer
+from configuration import STLConfig
+from modeling_stldec import STLForCausalLM
+from encoder import STLEncoder
+
+from transformers import AutoConfig, AutoModelForCausalLM 
+
+from encoder import STLEncoder
 
 warnings.filterwarnings("ignore")
+
+encoder = STLEncoder(embed_dim=512, anchor_filename='anchor_set_512.pickle')
+
+model_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/old_datasets_512/step_24000"
+optimizer_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/old_datasets_512/step_24000/optimizer.bin"
+scheduler_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/old_datasets_512/step_24000/scheduler.bin"
+
+AutoConfig.register("STLdec", STLConfig)
+AutoModelForCausalLM.register(STLConfig, STLForCausalLM)
+
+config = STLConfig()
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+model = AutoModelForCausalLM.from_pretrained(model_path, config = config).to(device)  # Sposta il modello sulla device
+tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
+accelerator = Accelerator()
+optimizer = torch.load(optimizer_path)
+scheduler = torch.load(scheduler_path)
+optimizer = accelerator.prepare(optimizer)
+scheduler = accelerator.prepare(scheduler)
+
+
+
+def search_from_embeddings(candidate_embeddings):
+#    print(candidate_embeddings)
+    generated_formulae = []
+    for embedding in candidate_embeddings:
+#        print(embedding)
+        # encoder_hidden_states = torch.tensor(embedding, dtype=torch.float32).to(device)
+        encoder_hidden_states = embedding.unsqueeze(0).unsqueeze(0)
+        # print(encoder_hidden_states)
+
+        with torch.no_grad():
+            generated_ids = model.generate(
+                encoder_hidden_states=encoder_hidden_states,  # Usa gli ID tokenizzati
+                pad_token_id=model.config.pad_token_id,  # ID del token di padding, se presente
+                bos_token_id=model.config.bos_token_id,
+                eos_token_id=model.config.forced_eos_token_id,
+                max_new_tokens = 500
+            )
+   
+        generated_text = tokenizer.decode(generated_ids[0].tolist())
+        print(generated_text)
+        generated_text = generated_text[3:-2]
+        generated_formulae.append(generated_text)
+#        print(generated_formulae)
+    return generated_formulae
+
 
 
 def get_pos_neg_robustness(phi, traj_data):
@@ -67,14 +131,14 @@ def get_embeddings(folder_index, max_n_vars, device, phis, n_pc=-1):
 
 
 def generate_initial_data(traj_data, folder_index, max_n_vars, device, n_pc=-1, n=10, seed=None):
-    sampler_phis = StlGenerator(leaf_prob=0.5, seed=seed)
+    sampler_phis = StlGenerator(leaf_prob=0.5)
     init_phis = []
     while len(init_phis) < n:
         sampled_phis = list(
             filter(lambda p: from_str_to_n_nodes(p) <= 2, sampler_phis.bag_sample(n, nvars=traj_data.nvars)))
         init_phis += copy.deepcopy(sampled_phis)
     init_phis = init_phis[:n]
-    init_x = get_embeddings(folder_index, max_n_vars, device, init_phis, n_pc=n_pc)
+    init_x = encoder.compute_embeddings(init_phis)
     def current_obj(p): return objective(p, traj_data)
     init_y = torch.tensor(list(map(current_obj, init_phis)))
     return init_phis, init_x.to(device), init_y.to(device)
@@ -83,16 +147,17 @@ def generate_initial_data(traj_data, folder_index, max_n_vars, device, n_pc=-1, 
 # TODO: need to adapt custom search
 def custom_search(candidate_embeddings, traj_data, folder_index, k, neigh_n, device, max_n_vars,
                   n_pc=-1, timespan=None, nodes=None):
-    retrieved_str = search_from_embeddings(candidate_embeddings, traj_data.nvars, folder_index, k, neigh_n, device,
-                                           n_pc=n_pc, timespan=timespan, nodes=nodes)[0]
-    retrieved = [list(map(from_string_to_formula, sub_l)) for sub_l in retrieved_str]
+    # inverti l'embedding con il transformer
+    retrieved_str = search_from_embeddings(candidate_embeddings)[0]
+ #   print(retrieved_str)
+    retrieved = [[from_string_to_formula(retrieved_str)]]
     new_f = []
     for results in retrieved:
         results_valid_idx = list(filter(lambda i: max(get_leaves_idx(results[i])[1]) < traj_data.nvars,
                                         list(range(len(results)))))
         results_valid = [results[i] for i in results_valid_idx]
         new_f += results_valid
-    new_emb = get_embeddings(folder_index, max_n_vars, device, new_f, n_pc=n_pc)
+    new_emb = encoder.compute_embeddings(new_f)
     # TODO: should we return only phis whose actual embedding is close to that searched?
     # TODO: e.g. with some sort of filtering on distances computed by the index?
     # TODO: for this we need a threshold on euclidean distances vs similarity
@@ -153,7 +218,7 @@ def refine_phi(phi, traj_data, n_alphas=50):
 dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Running on {device}".format(device=dev))
 # import dataset of trajectories
-dataset = TrajectoryDataset(data_fn=get_dataset, dataname='maritime', indexes=None, device=dev)
+dataset = TrajectoryDataset(data_fn=get_dataset, dataname='data/linear', indexes=None, device=dev)
 dataset.normalize()
 # set up for search engine
 base_folder = os.getcwd()
@@ -166,11 +231,11 @@ n_neigh = 64
 gp_covar = gpytorch.kernels.MaternKernel()
 # bayes opt loop
 npc = -1  # [25, 50, 100, 250, 500] -1
-bounds_dim = 1000 if npc == -1 else npc
-bounds = torch.stack([torch.zeros(bounds_dim), torch.ones(bounds_dim)]).to(dev)
+bounds_dim = 512 if npc == -1 else npc
+bounds = torch.stack([torch.zeros(bounds_dim), torch.ones(bounds_dim)*0.5]).to(dev)
 n_init_points = 100
-n_batches_acq = 1  # 100
-n_pts_batch = 25  # 1
+n_batches_acq = 10  # 100
+n_pts_batch = 1  # 1
 n_tried_batches = 1
 n_seeds = 10
 best_acc = 0.
@@ -191,16 +256,16 @@ for _ in range(n_seeds):
         start_optim = time.time()
         emulator = get_fitted_gp(x, y.unsqueeze(-1), state_d=None, covar=gp_covar)
         # possible acquisition functions
-        ei = LogExpectedImprovement(emulator, y.max())
+        # ei = LogExpectedImprovement(emulator, y.max())
         ucb = UpperConfidenceBound(emulator, beta=0.1)
         # bayesian optimization loop
         used_phis, used_x, used_y = [copy.deepcopy(item) for item in [phis, x, y]]
         for new_batch in range(n_batches_acq):
             sampler = SobolQMCNormalSampler(torch.Size([bounds_dim]), seed=current_seed)
-            qEI = qLogExpectedImprovement(emulator, used_y.max(), sampler=sampler)  # log too
+            # qEI = qLogExpectedImprovement(emulator, used_y.max(), sampler=sampler)  # log too
             qUCB = qUpperConfidenceBound(emulator, beta=0.2, sampler=sampler)
             # torch.optim.SGD
-            candidates_x = get_candidates_from_acquisition(qUCB, bounds, n_pts_batch, n_tried_batches, torch.optim.Adam)
+            candidates_x = get_candidates_from_acquisition(ucb, bounds, n_pts_batch, n_tried_batches, torch.optim.Adam)
             candidates_x, new_phis = custom_search(candidates_x, train_dataset, index_folder, topk, n_neigh, dev,
                                                    maxvars, n_pc=npc, timespan=None, nodes=None)
             new_obj = torch.tensor(list(map(current_objective, new_phis))).to(dev)
