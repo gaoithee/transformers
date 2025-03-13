@@ -17,55 +17,69 @@ from transformers import AutoConfig, AutoModelForCausalLM
 
 ##################################################################
 
-model_path = "balanced/step_500"
-optimizer_path = "balanced/step_500/optimizer.bin"
-scheduler_path = "balanced/step_500/scheduler.bin"
+eval_df = pd.read_pickle("datasets/new_balanced_validation_set.pkl")
 
-##################################################################
+gold_formulae = eval_df['Formula'] 
 
-AutoConfig.register("STLdec", STLConfig)
-AutoModelForCausalLM.register(STLConfig, STLForCausalLM)
-
-config = STLConfig()
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-model = AutoModelForCausalLM.from_pretrained(model_path, config = config).to(device)  # Sposta il modello sulla device
-tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
-encoder = STLEncoder(embed_dim=1024, anchor_filename='anchor_set_1024_dim.pickle')
-
-accelerator = Accelerator()
-
-optimizer = torch.load(optimizer_path)
-scheduler = torch.load(scheduler_path)
-optimizer = accelerator.prepare(optimizer)
-scheduler = accelerator.prepare(scheduler)
-
-eval_df = pd.read_csv("datasets/test_balanced_validation_set.csv")
-
-##################################################################
+steps = ['step_11000', 'step_12000', 'step_13000', 'step_14000', 'step_15000']
 
 formulae_dataset = []
 
-for idx in range(len(eval_df)):
-    embedding = eval(eval_df["Embedding"][idx])
-    embedding = torch.tensor(embedding, dtype=torch.long).to(device)
-    tok_formula = eval(eval_df["Encoded_Formula"][idx])
+for i in steps:
+    model_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/balanced_@/{i}"
+    optimizer_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/balanced_@/{i}/optimizer.bin"
+    scheduler_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/balanced_@/{i}/scheduler.bin"
 
+##################################################################
 
-    with torch.no_grad():
-        generated_ids = model.generate(
-            encoder_hidden_states=embedding,  # Usa gli ID tokenizzati
-            pad_token_id=model.config.pad_token_id,  # ID del token di padding, se presente
-            bos_token_id=model.config.bos_token_id,
-            max_new_tokens = 500
-        )
+    AutoConfig.register("STLdec", STLConfig)
+    AutoModelForCausalLM.register(STLConfig, STLForCausalLM)
 
-    generated_text = tokenizer.decode(generated_ids[0][2:-2].tolist())
-    gold_formula = eval_df["Formula"][idx]
+    config = STLConfig()
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model = AutoModelForCausalLM.from_pretrained(model_path, config = config).to(device)  # Sposta il modello sulla device
+    tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
+    encoder = STLEncoder(embed_dim=1024, anchor_filename='anchor_set_1024_dim.pickle')
 
-    formulae_dataset.append({
-        "Gold Formula": gold_formula,
-        "Generated Formula": generated_text
-    })
-    
-eval_df = pd.DataFrame(formulae_dataset)
-eval_df.to_csv('balanced_500_supertest.csv')
+    accelerator = Accelerator()
+
+    optimizer = torch.load(optimizer_path)
+    scheduler = torch.load(scheduler_path)
+    optimizer = accelerator.prepare(optimizer)
+    scheduler = accelerator.prepare(scheduler)
+
+##################################################################
+
+    generated_formulae = []
+
+    for idx in range(len(eval_df)):
+        embedding = eval_df["Embedding"][idx]
+        encoder_hidden_states = torch.tensor(embedding, dtype=torch.float32).to(device)
+        encoder_hidden_states = encoder_hidden_states.unsqueeze(0).unsqueeze(0)
+
+        with torch.no_grad():
+            generated_ids = model.generate(
+                encoder_hidden_states=encoder_hidden_states,  # Usa gli ID tokenizzati
+                pad_token_id=model.config.pad_token_id,  # ID del token di padding, se presente
+                bos_token_id=model.config.bos_token_id,
+                eos_token_id=model.config.forced_eos_token_id,
+                max_new_tokens = 500
+            )
+   
+        generated_text = tokenizer.decode(generated_ids[0].tolist())
+        generated_text = generated_text[3:-2]
+        generated_formulae.append(generated_text)
+
+    print(i)
+    formulae_dataset.append(generated_formulae)
+    eval_df2 = pd.DataFrame(formulae_dataset).transpose()
+    eval_df2.to_csv('partial.csv', index=False)
+
+# formulae_dataset.append(eval_df['Formula'])
+
+eval_df.columns = steps
+eval_df['gold formula'] = gold_formulae
+
+# eval_df = pd.concat([pd.DataFrame({'Gold Formula': gold_formulae}), eval_df], axis=1)
+
+eval_df.to_csv('balanced/steps11000_15000.csv', index=False)

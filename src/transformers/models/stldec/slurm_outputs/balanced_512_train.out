@@ -1,0 +1,90 @@
+Loading python/3.11.6--gcc--8.5.0
+  Loading requirement: bzip2/1.0.8-gp5wcz5 libmd/1.0.4-wja3f5q
+    libbsd/0.11.7-cgxjopl expat/2.5.0-bptl3xw ncurses/6.4-asx3jea
+    readline/8.2-nyw6mp6 gdbm/1.23-fs6otck libiconv/1.17-d7yvx2s
+    xz/5.4.1-hubmwr5 zlib-ng/2.1.4-6htiapk libxml2/2.10.3-5eeeokp
+    pigz/2.7-bopr5vp zstd/1.5.5-gawytfl tar/1.34-amqus5s gettext/0.22.3-2g7elif
+    libffi/3.4.4-6r7brdq libxcrypt/4.4.35-ss2rzin sqlite/3.43.2
+    util-linux-uuid/2.38.1-jkdi7kv
+Running on  nodes
+---------------------------------------------
+SLURM job ID:        13463658
+SLURM job node list: lrdn3241
+DATE:                Wed Mar  5 17:07:52 CET 2025
+---------------------------------------------
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+03/05/2025 17:08:12 - INFO - __main__ - LOADING DATASET
+03/05/2025 17:08:12 - INFO - __main__ - ***** Dataset customization *****
+03/05/2025 17:08:40 - INFO - __main__ - DataLoader - beginning
+03/05/2025 17:08:40 - INFO - __main__ - DataLoader - ending
+03/05/2025 17:08:40 - INFO - __main__ - ***** Running training *****
+03/05/2025 17:08:40 - INFO - __main__ -   Num examples = 78000
+03/05/2025 17:08:40 - INFO - __main__ -   Max num Epochs = 10
+03/05/2025 17:08:40 - INFO - __main__ -   Instantaneous batch size per device = 32
+03/05/2025 17:08:40 - INFO - __main__ -   Total train batch size (w. parallel, distributed & accumulation) = 32
+03/05/2025 17:08:40 - INFO - __main__ -   Gradient Accumulation steps = 1
+03/05/2025 17:08:40 - INFO - __main__ -   Max optimization steps = 50000
+03/05/2025 17:08:40 - INFO - __main__ -   Output directory = ../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/hardskewed/
+osti cuda
+  0%|          | 0/50000 [00:00<?, ?it/s]03/05/2025 17:08:40 - INFO - __main__ -   Already completed optimization steps = 0
+03/05/2025 17:08:40 - INFO - __main__ -   Residual optimization steps = 50000
+03/05/2025 17:08:40 - INFO - __main__ -   Checkpointed epoch = 0
+03/05/2025 17:08:40 - INFO - __main__ - Active dataloader length: 2438
+03/05/2025 17:08:40 - INFO - __main__ - Total expected steps: 24380
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/training.py", line 390, in <module>
+    outputs = model(**batch)  # Forward pass
+              ^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/modeling_stldec.py", line 88, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/decoder.py", line 360, in forward
+    layer_outputs = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/decoder.py", line 174, in forward
+    hidden_states, cross_attn_weights, cross_attn_present_key_value = self.encoder_attn.forward(
+                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/utils.py", line 250, in forward
+    key = self._shape(self.W_k(key_value_states), -1, batch_size)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (32x1024 and 512x512)
+  0%|          | 0/50000 [00:04<?, ?it/s]
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/.venv/bin/accelerate", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1172, in launch_command
+    simple_launcher(args)
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/accelerate/commands/launch.py", line 762, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/leonardo/home/userexternal/scanduss/.venv/bin/python3', 'training.py']' returned non-zero exit status 1.
+DONE!

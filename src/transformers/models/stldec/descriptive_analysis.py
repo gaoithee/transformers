@@ -12,6 +12,7 @@ def mean_formulae_depth(dataset):
     return np.mean(formulae_depths)
 
 def get_depth(formula):
+    formula = from_string_to_formula(formula)
     phi_g = build_dag(formula)[0]
     return len(nx.dag_longest_path(phi_g)) - 1
 
@@ -129,16 +130,17 @@ def build_dag(formula):
 
 #######################################################################
 
-train = pd.read_csv('datasets/train_set.csv')
-eval = pd.read_csv('datasets/validation_set.csv')
-test = pd.read_csv('datasets/test_set.csv')
+# train = pd.read_csv('datasets/train_set.csv')
+# eval = pd.read_csv('datasets/validation_set.csv')
+# test = pd.read_csv('datasets/test_set.csv')
 
 
 
-print(f"Training set: {mean_formulae_depth(train)}")
-print(f"Validation set: {mean_formulae_depth(eval)}")
-print(f"Test set: {mean_formulae_depth(test)}")
+# print(f"Training set: {mean_formulae_depth(train)}")
+# print(f"Validation set: {mean_formulae_depth(eval)}")
+# print(f"Test set: {mean_formulae_depth(test)}")
 
 
-
-
+df = pd.read_pickle('datasets/new_train_set.pkl')
+df['Complexity'] = df["Formula"].apply(get_depth)
+df.to_pickle('datasets/centered_train_set.pkl')

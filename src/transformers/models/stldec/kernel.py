@@ -8,7 +8,7 @@ class StlKernel:
         measure,
         normalize=True,
         exp_kernel=True,
-        sigma2=0.5, # 0.5 meglio, inizialmente era a 0.2
+        sigma2=0.2, # 0.5 meglio, inizialmente era a 0.2
         integrate_time=False,
         samples=100000,
         varn=2,

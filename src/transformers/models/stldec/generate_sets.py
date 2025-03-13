@@ -14,7 +14,7 @@ from utils import from_string_to_formula, load_pickle, dump_pickle, get_depth
 from kernel import StlKernel
 
 
-encoder = STLEncoder(embed_dim = 1024, anchor_filename = "anchor_set_1024_dim.pickle")
+encoder = STLEncoder(embed_dim = 512, anchor_filename = "anchor_set_512.pickle")
 tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
 
 
@@ -57,34 +57,22 @@ def embed_generated_formulae(df):
     formulae_embeddings = encoder.compute_embeddings(df)
     return formulae_embeddings.tolist()
 
-formula = generate_formulae_depth(20000, 1, 1)
-embedding = embed_generated_formulae(formula)
-depth_5 = pd.DataFrame({'Formula': formula, 'Embedding': embedding})
-depth_5.to_csv('datasets/depth_2_formulae.csv')
 
-# depth_3 = generate_formulae_depth(20000, 2, 2)
-# depth_3['Embedding'] = embed_generated_formulae(depth_3)
-# depth_3.to_csv('depth_3_formulae.csv')
+# df = pd.read_csv('datasets/train_set.csv')
+df = pd.read_csv('datasets/fragments/depth_8_formulae.csv')
+formulae_to_embed = df['Formula']
+# formulae_to_embed = ["always ( eventually[6,20] ( x_1 >= -0.7636 ) )", "always ( eventually[1,25] ( x_1 >= -0.5783 ) )"]
 
-# depth_4 = generate_formulae_depth(20000, 3, 3)
-# depth_4['Embedding'] = embed_generated_formulae(depth_4)
-# depth_4.to_csv('depth_4_formulae.csv')
+# here we do not pass an anchor set so the Encoder creates a new one of dimension set to `embed_dim` 
+# encoder = STLEncoder(embed_dim=1024, anchor_filename='anchor_set_1024_dim.pickle')
+# print('computing embeddings')
 
-# depth_5 = generate_formulae_depth(20000, 4, 4)
-# depth_5['Embedding'] = embed_generated_formulae(depth_5)
-# depth_5.to_csv('depth_5_formulae.csv')
-# depth_5 = pd.read_csv('datasets/depth_5_formulae.csv')
-# depth_5['Embedding'] = embed_generated_formulae(depth_5)
-# depth_5.to_csv('datasets/depth_5_formulae.csv')
+formulae_embeddings = encoder.compute_embeddings(formulae_to_embed)
+
+# print(formulae_embeddings.tolist())
+
+df['Embedding512'] = formulae_embeddings.tolist()
 
 
-
-
-# depth_6 = generate_formulae_depth(20, 3, 5)
-# depth_6['Embedding'] = embed_generated_formulae(depth_6)
-# depth_6.to_csv('test_formulae.csv')
-
-# depth_7 = generate_formulae_depth(20000, 6, 6)
-# depth_7['Embedding'] = embed_generated_formulae(depth_7)
-# depth_7.to_csv('depth_7_formulae.csv')
-
+# print('produce new file')
+df.to_pickle('datasets/depth_8_formulae.pkl')

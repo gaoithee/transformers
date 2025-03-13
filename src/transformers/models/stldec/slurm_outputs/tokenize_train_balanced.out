@@ -8,8 +8,8 @@ Loading python/3.11.6--gcc--8.5.0
     util-linux-uuid/2.38.1-jkdi7kv
 Running on  nodes
 ---------------------------------------------
-SLURM job ID:        12877737
-SLURM job node list: lrdn3215
-DATE:                Sat Feb 22 16:40:26 CET 2025
+SLURM job ID:        13312681
+SLURM job node list: lrdn3320
+DATE:                Sun Mar  2 17:47:37 CET 2025
 ---------------------------------------------
 DONE!

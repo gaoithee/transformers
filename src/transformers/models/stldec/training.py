@@ -4,7 +4,7 @@ import pandas as pd
 from handcoded_tokenizer import STLTokenizer
 from configuration import STLConfig
 from modeling_stldec import STLForCausalLM
-from utils import CustomDataset
+from customdataset import CustomDataset
 from utils import DatasetProcessor
 
 import argparse
@@ -55,9 +55,10 @@ tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
 
 ##########################################################################
 
-config_file = 'nocheck_config.json' # if you do not have previous checkpoints
-# config_file = 'easysk_config.json' 
+# config_file = 'nocheck_config.json' # if you do not have previous checkpoints
+config_file = 'easysk_config.json' 
 # config_file = 'hardsk_config.json'
+# config_file = 'oldtrain_config.json'
 
 # Upload training configuration file 
 with open(config_file, 'r') as f:
@@ -190,7 +191,7 @@ else:
         extension = "text"
     logger.info("LOADING DATASET")
     # Load the dataset based on the extension (e.g., 'csv', 'json', 'text', etc.)
-    # raw_datasets = load_dataset(extension, data_files=data_files, **dataset_args)
+#     raw_datasets = load_dataset(extension, data_files=data_files, **dataset_args)
 
 
 # Set the device to GPU if available, otherwise default to CPU.
@@ -200,10 +201,10 @@ print("osti", device)
 # raw_dataset = pd.read_csv(train_file)
 logger.info("***** Dataset customization *****")
 # Create the training and evaluation datasets, moving them to the specified device (GPU or CPU)
-# train_dataset = CustomDataset(raw_datasets, device=device)
+# train_dataset = CustomDataset(raw_datasets['train'], device=device)
 # eval_dataset = CustomDataset(raw_datasets['validation'], device=device)
 
-processor = DatasetProcessor(data_files['train'])
+processor = DatasetProcessor(train_file)
 train_dataset = processor.get_processed_dataset()
 
 
@@ -415,7 +416,7 @@ for epoch in range(starting_epoch, num_train_epochs):
                     accelerator.save_state(output_dir)
 
         # Stop training if the max steps are reached
-        if completed_steps >= updated_max_train_steps:
+        if completed_steps >= args["max_train_steps"]:
             break
 
         # ALSO saves at the end of each epoch!

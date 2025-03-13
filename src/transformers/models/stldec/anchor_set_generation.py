@@ -68,13 +68,13 @@ def anchorGeneration(diff_init = False, # to control whether we want formulae to
     else:
         anchor_set = sampler.bag_sample(bag_size=embed_dim, nvars=n_vars) 
 
-    filename = f'anchor_set_{embed_dim}_dim'
+    filename = f'anchor_set_no_diff_{embed_dim}_dim'
     dump_pickle(filename, anchor_set)
     return filename
 
 
 # EXAMPLE OF USAGE
-anchorGeneration(diff_init = True, embed_dim = 1000)
+anchorGeneration(diff_init = False, embed_dim = 1024)
 
 
 

@@ -11,7 +11,14 @@ lr_32_training/
 test_training/
 epoch_8/
 step_20000/
-
-balanced/
 easyskewed/
 errors/
+
+easysk/
+easysk512/
+hardsk/
+hardsk512/
+oldtrain/
+oltrain512/
+balanced/
+balanced512/

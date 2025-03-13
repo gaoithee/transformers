@@ -59,9 +59,9 @@ class STLTokenizer(PreTrainedTokenizer):
         """
         return len(self.vocab)
 
-    def prepad_sequence(self, sequence, undo = False):
+    def prepad_sequence(self, sequence, space_token = ' ', new_space_token = '@', undo = False):
         """
-        Replaces spaces in the input sequence with a specified padding token.
+        Replaces spaces in the input sequence with a specified token.
 
         Args:
             sequence (str): The input sequence.
@@ -71,9 +71,9 @@ class STLTokenizer(PreTrainedTokenizer):
             str: The preprocessed sequence with spaces or padding tokens replaced.
         """
         if undo:
-            return sequence.replace(f'{self.pad_token}', ' ')
+            return sequence.replace(new_space_token, space_token)
         else:
-            return sequence.replace(' ', f'{self.pad_token}')
+            return sequence.replace(space_token, new_space_token)
 
     def add_bos_eos(self, sequence: str) -> str:
         """
