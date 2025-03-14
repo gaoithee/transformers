@@ -1,0 +1,767 @@
+Loading python/3.11.6--gcc--8.5.0
+  Loading requirement: bzip2/1.0.8-gp5wcz5 libmd/1.0.4-wja3f5q
+    libbsd/0.11.7-cgxjopl expat/2.5.0-bptl3xw ncurses/6.4-asx3jea
+    readline/8.2-nyw6mp6 gdbm/1.23-fs6otck libiconv/1.17-d7yvx2s
+    xz/5.4.1-hubmwr5 zlib-ng/2.1.4-6htiapk libxml2/2.10.3-5eeeokp
+    pigz/2.7-bopr5vp zstd/1.5.5-gawytfl tar/1.34-amqus5s gettext/0.22.3-2g7elif
+    libffi/3.4.4-6r7brdq libxcrypt/4.4.35-ss2rzin sqlite/3.43.2
+    util-linux-uuid/2.38.1-jkdi7kv
+Running on  nodes
+---------------------------------------------
+SLURM job ID:        13877708
+SLURM job node list: lrdn3344
+DATE:                Fri Mar 14 00:06:56 CET 2025
+---------------------------------------------
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+Running on cuda
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.292 or x_2 <= 0.0212 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.292 or x_2 <= 0.0212 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+Current seed:  50
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[10,17] ( x_0 >= 36.5734 ) obj value:  12.538803100585938
+Best formula with scaled parameters:  always[5,9] ( x_0 >= 32.9276 )
+Execution time = 00:04:30
+/s ( x_0 >= -0.308 until[18,20] ( x_2 <= -0.0921 or ( x_2 <= -0.0112 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.3581 until[17,21] ( x_2 <= -0.0921 or ( x_2 <= -0.0112 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.308 until[18,20] ( x_2 <= -0.0921 or ( x_2 <= -0.0112 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.308 until[17,21] ( x_2 <= -0.0921 or ( x_2 <= -0.0112 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.308 until[17,21] ( x_2 <= -0.0921 or ( x_2 <= -0.0112 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_2 <= -0.0921 or ( x_2 <= -0.0112 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.3581 until[17,21] ( x_2 <= -0.098 or ( x_2 <= -0.0112 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.308 until[18,20] ( x_2 <= -0.0921 or ( x_2 <= -0.0112 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_2 <= -0.0921 or ( x_2 <= -0.0112 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.3081 until[18,20] ( x_2 <= -0.0921 or ( x_2 <= -0.0112 until[18,20] x_2 >= -0.0112 ) ) ) s
+Current seed:  50
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[0,inf] ( not ( x_0 <= -0.7562 ) ) obj value:  10.3213472366333
+Best formula with scaled parameters:  always[0,inf] ( not ( x_0 <= -0.7562 ) )
+Execution time = 00:04:32
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.498 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[17,20] x_0 >= -0.498 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[17,20] x_0 >= -0.498 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.498 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[17,20] x_1 >= -1.011 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[17,20] x_0 >= -0.498 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[17,20] x_1 >= -1.011 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[17,20] x_1 >= -1.011 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[17,20] x_0 >= -0.498 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.498 ) s
+Current seed:  50
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[12,21] ( x_0 >= 38.2106 ) obj value:  17.98796272277832
+Best formula with scaled parameters:  always[6,11] ( x_0 >= 37.2003 )
+Execution time = 00:04:30
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.0981 ) ) s
+Current seed:  50
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[11,inf] ( x_0 >= 46.0677 ) obj value:  15.367661476135254
+Best formula with scaled parameters:  always[5,inf] ( x_0 >= 44.7589 )
+Execution time = 00:04:30
+/s ( x_0 >= -0.399 until[18,20] x_2 >= -1.0112 ) s
+/s ( x_0 >= -0.399 until[18,20] x_2 >= -1.0112 ) s
+/s ( x_0 >= -0.399 until[18,20] x_2 <= 1.021 ) s
+/s ( x_0 >= -0.399 until[17,21] x_2 >= -1.0112 ) s
+/s ( x_0 >= -0.399 until[18,20] x_2 <= 1.011 ) s
+/s ( x_0 >= -0.4581 until[18,20] ( x_0 >= -0.392 or ( x_2 <= -0.0112 until[18,20] x_2 <= -0.0112 ) ) ) s
+/s ( x_0 >= -0.4081 until[18,20] ( x_0 >= -0.392 or ( x_2 <= -0.0112 until[18,20] x_2 <= -0.0112 ) ) ) s
+/s ( x_0 >= -0.4081 until[18,20] ( x_0 >= -0.392 or ( x_2 <= -0.0112 until[18,20] x_2 <= -0.0112 ) ) ) s
+/s ( x_0 >= -0.399 until[17,20] x_2 >= -1.0112 ) s
+/s ( x_0 >= -0.399 until[18,20] x_2 <= 1.021 ) s
+Current seed:  50
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[9,18] ( eventually[14,16] ( x_0 >= 37.6936 ) ) obj value:  13.529869079589844
+Best formula with scaled parameters:  always[4,9] ( eventually[7,8] ( x_0 >= 36.8906 ) )
+Execution time = 00:04:30
+/s ( ( x_0 >= -0.5471 or x_2 <= -0.088 ) until[18,20] x_1 >= -1.011 ) s
+/s ( ( x_0 >= -0.5571 or x_2 <= -0.088 ) until[18,20] x_1 >= -1.011 ) s
+/s ( ( x_0 >= -0.5571 or x_2 <= 0.021 ) until[19,21] x_1 >= -1.0112 ) s
+/s ( ( x_0 >= -0.5571 or x_2 <= -0.088 ) until[18,20] x_1 >= -1.011 ) s
+/s ( ( x_0 >= -0.5571 or x_2 <= -0.088 ) until[18,20] x_1 >= -1.011 ) s
+/s ( ( x_0 >= -0.5571 or x_2 <= 0.021 ) until[19,21] x_1 >= -1.0112 ) s
+/s ( ( x_0 >= -0.5571 or x_2 <= 0.021 ) until[19,21] x_1 >= -1.0112 ) s
+/s ( ( x_0 >= -0.5571 or x_2 <= 0.021 ) until[19,21] x_1 >= -1.011 ) s
+/s ( ( x_0 >= -0.5471 or x_2 <= -0.088 ) until[18,20] x_1 >= -1.011 ) s
+/s ( ( x_0 >= -0.5571 or x_2 <= -0.088 ) until[18,20] x_1 >= -1.011 ) s
+Current seed:  34
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually[13,15] ( always ( x_0 >= 36.1181 ) ) obj value:  14.538957595825195
+Best formula with scaled parameters:  eventually[6,7] ( always ( x_0 >= 34.7722 ) )
+Execution time = 00:04:30
+/s eventually[12,18] ( x_0 >= -0.5051 ) s
+/s always[10,17] ( x_0 >= -0.4921 ) s
+/s always[12,17] ( x_0 >= -0.5051 ) s
+/s always[12,16] ( x_0 >= -0.4921 ) s
+/s always[10,17] ( x_0 >= -0.5051 ) s
+/s always[12,16] ( x_0 >= -0.5051 ) s
+/s always[10,15] ( x_0 >= -0.4921 ) s
+/s always[10,18] ( x_0 >= -0.5051 ) s
+/s always[10,18] ( x_0 >= -0.4921 ) s
+/s always[12,17] ( x_0 >= -0.4921 ) s
+Current seed:  34
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[12,inf] ( x_0 >= 43.24 ) obj value:  15.224040031433105
+Best formula with scaled parameters:  always[6,inf] ( x_0 >= 42.7682 )
+Execution time = 00:04:28
+/s ( x_0 >= -0.399 until[17,20] x_2 >= -1.0112 ) s
+/s ( x_0 >= -0.3581 until[15,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[17,21] x_2 >= -1.0112 ) s
+/s ( x_0 >= -0.399 until[17,21] x_2 >= -1.0112 ) s
+/s ( x_0 >= -0.399 until[17,21] x_2 >= -1.0112 ) s
+/s ( x_0 >= -0.3581 until[17,21] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.3581 until[15,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[15,18] x_2 >= -1.0112 ) s
+/s ( x_0 >= -0.399 until[15,18] x_2 >= -1.0111 ) s
+/s ( x_0 >= -0.399 until[15,18] x_2 >= -1.0112 ) s
+Current seed:  34
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always ( x_0 >= 44.631 ) obj value:  14.7720947265625
+Best formula with scaled parameters:  always ( x_0 >= 39.592 )
+Execution time = 00:04:29
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.4571 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.8181 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.4571 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.818 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.4571 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.818 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+Current seed:  34
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[0,20] ( x_0 >= 46.098 ) obj value:  15.637189865112305
+Best formula with scaled parameters:  always[0,10] ( x_0 >= 50.1944 )
+Execution time = 00:04:30
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= 0.011 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= 0.011 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= 0.011 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.088 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= 0.011 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= 0.011 ) ) s
+Current seed:  34
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always ( eventually[14,21] ( always[7,15] ( x_0 >= 44.3254 ) ) ) obj value:  20.815773010253906
+Best formula with scaled parameters:  always ( eventually[7,11] ( always[3,7] ( x_0 >= 40.1151 ) ) )
+Execution time = 00:04:30
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.021 ) until[19,21] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.021 ) until[19,21] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.021 ) until[19,21] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.021 ) until[19,21] x_0 >= -0.492 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+Current seed:  511
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[3,16] ( x_0 >= 44.996 ) obj value:  12.25346851348877
+Best formula with scaled parameters:  always[1,8] ( x_0 >= 33.2091 )
+Execution time = 00:04:30
+/s ( x_0 >= -0.299 until[18,20] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.259 until[18,20] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.259 until[18,20] ( x_2 <= -0.0921 or x_2 >= -0.0921 ) ) s
+/s ( x_0 >= -0.259 until[17,21] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.259 until[18,20] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.259 until[18,20] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.259 until[18,20] ( x_2 <= -0.0921 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.259 until[18,20] ( x_2 <= -0.0921 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.259 until[18,20] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.259 until[18,20] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+Current seed:  511
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  not ( eventually[12,16] ( x_0 <= -0.4755 ) ) obj value:  11.093216896057129
+Best formula with scaled parameters:  not ( eventually[6,8] ( x_0 <= -0.4755 ) )
+Execution time = 00:04:32
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[17,20] x_0 >= -0.392 ) s
+/s ( ( x_0 >= -0.4571 or x_0 >= -0.458 ) until[18,20] x_2 <= 1.011 ) s
+/s ( x_0 >= -0.4571 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.8181 ) ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[17,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.4571 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.8181 ) ) s
+/s ( x_0 >= -0.4571 or ( x_1 <= 0.0112 until[18,20] x_2 >= -0.818 ) ) s
+/s ( x_0 >= -0.4571 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.8181 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.0981 ) ) s
+Current seed:  511
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually[11,17] ( always[6,15] ( x_0 >= 31.304 ) ) obj value:  20.853660583496094
+Best formula with scaled parameters:  eventually[5,8] ( always[3,8] ( x_0 >= 29.7954 ) )
+Execution time = 00:04:30
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.3921 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[19,21] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+Current seed:  511
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[19,21] ( always ( x_0 >= 44.1864 ) ) obj value:  18.33647346496582
+Best formula with scaled parameters:  always[9,10] ( always ( x_0 >= 44.2275 ) )
+Execution time = 00:04:30
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.358 or ( x_2 <= -0.0112 until[18,20] x_2 <= -0.0182 ) ) ) s
+/s ( x_0 >= -0.3581 until[18,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.358 or ( x_2 <= -0.0112 until[18,20] x_2 <= -0.0882 ) ) ) s
+Current seed:  511
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always ( x_0 >= 33.8814 ) obj value:  13.83073616027832
+Best formula with scaled parameters:  always ( x_0 >= 38.645 )
+Execution time = 00:04:30
+/s ( ( x_1 >= 0.0111 or x_2 >= 0.021 ) or eventually[19,21] ( x_0 >= -0.758 ) ) s
+/s ( ( x_2 >= 0.0111 or x_1 >= 0.011 ) or eventually[19,21] ( x_0 >= -0.758 ) ) s
+/s ( ( x_2 >= 0.0111 or x_1 >= 0.011 ) or eventually[19,21] ( x_0 >= -0.718 ) ) s
+/s ( ( x_2 >= 0.0111 or x_1 >= 0.011 ) or eventually[19,21] ( x_0 >= -0.718 ) ) s
+/s ( ( x_2 >= 0.0111 or x_1 >= 0.011 ) or eventually[19,21] ( x_0 >= -0.718 ) ) s
+/s ( ( x_2 >= 0.0111 or x_1 >= 0.011 ) or eventually[19,21] ( x_0 >= -0.758 ) ) s
+/s ( ( x_2 >= 0.0111 or x_1 >= 0.011 ) or eventually[19,21] ( x_0 >= -0.718 ) ) s
+/s ( ( x_2 >= 0.0111 or x_1 >= 0.011 ) until[19,21] x_0 >= -0.718 ) s
+/s ( ( x_2 >= 0.0111 or x_1 >= 0.011 ) or eventually[19,21] ( x_0 >= -0.718 ) ) s
+/s ( ( x_2 >= 0.0111 or x_1 >= 0.011 ) or eventually[19,21] ( x_0 >= -0.758 ) ) s
+Current seed:  160
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[10,inf] ( x_0 >= 43.228 ) obj value:  15.108624458312988
+Best formula with scaled parameters:  always[5,inf] ( x_0 >= 39.9325 )
+Execution time = 00:04:30
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.292 or x_2 <= 0.0212 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.292 or x_2 <= 0.0212 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.358 or ( x_2 <= -0.0112 until[18,20] x_2 <= -0.0112 ) ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.358 or ( x_2 <= -0.0112 until[18,20] x_2 <= -0.0112 ) ) ) s
+/s ( x_0 >= -0.3581 until[18,20] x_2 <= 1.021 ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.358 or x_2 <= 0.0921 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.358 or ( x_2 <= -0.0112 until[18,20] x_2 <= -0.0112 ) ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.292 or x_2 <= 0.0212 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.358 or ( x_2 <= -0.0112 until[18,20] x_2 <= -0.0882 ) ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.292 or ( x_2 <= -0.0112 until[18,20] x_2 <= -0.0112 ) ) ) s
+Current seed:  160
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[4,inf] ( x_0 >= 32.7286 ) obj value:  13.395566940307617
+Best formula with scaled parameters:  always[2,inf] ( x_0 >= 32.4737 )
+Execution time = 00:04:31
+/s ( ( x_0 >= -0.3571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.392 ) s
+/s ( ( x_0 >= -0.3571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.392 ) s
+/s ( ( x_0 >= -0.3571 or x_0 >= -0.398 ) until[18,20] x_2 <= 1.011 ) s
+/s ( ( x_0 >= -0.3571 or x_0 >= -0.358 ) until[18,20] x_2 <= 1.011 ) s
+/s ( ( x_0 >= -0.3571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.392 ) s
+/s ( ( x_0 >= -0.3571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.392 ) s
+/s ( ( x_0 >= -0.3571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.392 ) s
+/s ( ( x_0 >= -0.3571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3571 until[18,20] ( x_2 <= -0.098 or x_1 >= 0.0112 ) ) s
+/s ( ( x_0 >= -0.3571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.392 ) s
+Current seed:  160
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always ( x_0 >= 29.9737 ) obj value:  14.553641319274902
+Best formula with scaled parameters:  always ( x_0 >= 29.5132 )
+Execution time = 00:04:30
+/s ( x_0 >= -0.358 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_2 <= -0.098 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.358 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.011 ) ) s
+/s ( x_0 >= -0.358 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_2 <= -0.098 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_2 <= -0.098 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.358 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.358 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.358 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.3581 until[17,21] ( x_2 <= -0.098 or x_2 >= 0.0985 ) ) s
+Current seed:  160
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[7,14] ( eventually[8,17] ( x_0 >= 26.1572 ) ) obj value:  16.822582244873047
+Best formula with scaled parameters:  always[3,7] ( eventually[4,9] ( x_0 >= 28.3758 ) )
+Execution time = 00:04:30
+/s ( x_0 >= -0.4581 until[10,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.4581 until[10,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.4581 until[13,19] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.4581 until[10,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.4581 until[10,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.4581 until[10,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.4581 until[10,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.4581 until[10,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.4581 until[13,19] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.4581 until[10,18] x_2 >= -1.011 ) s
+Current seed:  160
+Accuracy:  0.3333 Precision:  0.3333 Recall:  1.0 Misclassification Rate:  0.6667
+Best formula:  not ( eventually[6,19] ( x_0 <= -1.2035 ) ) obj value:  13.210060119628906
+Best formula with scaled parameters:  not ( eventually[3,10] ( x_0 <= -1.2035 ) )
+Execution time = 00:04:29
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_2 >= -1.1111 or eventually[19,21] ( x_0 >= -0.558 ) ) s
+Current seed:  627
+Accuracy:  0.3684 Precision:  0.3684 Recall:  1.0 Misclassification Rate:  0.6316
+Best formula:  always[3,13] ( not ( eventually[14,20] ( x_0 <= -3.1237 ) ) ) obj value:  17.156599044799805
+Best formula with scaled parameters:  always[1,6] ( not ( eventually[7,10] ( x_0 <= -3.1237 ) ) )
+Execution time = 00:04:30
+/s ( ( x_0 >= -0.4571 or x_0 >= -0.458 ) until[18,20] x_2 <= 1.011 ) s
+/s ( ( x_0 >= -0.4571 or x_0 >= -0.458 ) until[18,20] x_2 <= 1.011 ) s
+/s ( ( x_0 >= -0.4571 or x_0 >= -0.458 ) until[18,20] x_2 <= 1.011 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+/s ( ( x_0 >= -0.4571 or x_0 >= -0.458 ) until[18,20] x_2 <= 1.011 ) s
+/s ( ( x_0 >= -0.4571 or x_0 >= -0.458 ) until[18,20] x_2 <= -1.011 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+/s ( ( x_0 >= -0.4571 or x_0 >= -0.458 ) until[18,20] x_2 <= -1.011 ) s
+/s ( ( x_0 >= -0.4571 or x_0 >= -0.458 ) until[18,20] x_2 <= -1.011 ) s
+Current seed:  627
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[8,inf] ( x_0 >= 31.1938 ) obj value:  14.166749954223633
+Best formula with scaled parameters:  always[4,inf] ( x_0 >= 32.3377 )
+Execution time = 00:04:30
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.4571 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+/s ( x_0 >= -0.457 or ( x_2 <= 0.0112 until[18,20] x_1 <= -0.0981 ) ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+/s ( x_0 >= -0.4571 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.4571 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+Current seed:  627
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always ( x_0 >= 38.0109 ) obj value:  14.774847030639648
+Best formula with scaled parameters:  always ( x_0 >= 37.6061 )
+Execution time = 00:04:31
+/s ( x_0 >= -0.418 until[12,19] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[15,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.418 until[15,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.418 until[12,19] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.418 until[15,18] x_2 >= -1.0111 ) s
+/s ( x_0 >= -0.399 until[12,19] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.418 until[17,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[10,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.418 until[17,20] x_2 >= -1.0111 ) s
+/s ( x_0 >= -0.399 until[15,18] x_2 >= -1.011 ) s
+Current seed:  627
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[2,inf] ( x_0 >= 25.7141 ) obj value:  13.794737815856934
+Best formula with scaled parameters:  always[1,inf] ( x_0 >= 26.1091 )
+Execution time = 00:04:29
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.399 until[17,21] ( x_2 <= -0.0981 or x_2 >= 0.0981 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0981 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.399 until[17,21] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.399 until[17,21] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0981 ) ) s
+Current seed:  627
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[11,21] ( x_0 >= 28.2863 ) obj value:  12.050090789794922
+Best formula with scaled parameters:  always[5,10] ( x_0 >= 27.4381 )
+Execution time = 00:04:30
+/s ( x_0 >= -0.418 until[17,21] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.4581 until[17,20] ( x_2 <= -0.098 or x_2 >= 0.0112 ) ) s
+/s ( x_0 >= -0.418 until[18,20] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.418 until[18,20] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.418 until[17,21] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.399 until[17,21] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[17,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.418 until[18,20] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.4581 until[17,20] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.418 until[18,20] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+Current seed:  498
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[2,inf] ( x_0 >= 29.6976 ) obj value:  13.10037612915039
+Best formula with scaled parameters:  always[1,inf] ( x_0 >= 28.176 )
+Execution time = 00:04:31
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.492 ) s
+/s ( ( x_0 >= -0.4581 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.498 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.498 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.498 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.498 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.498 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.498 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.498 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.498 ) s
+/s ( ( x_0 >= -0.4581 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.498 ) s
+Current seed:  498
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[12,inf] ( x_0 >= 26.4805 ) obj value:  16.35169792175293
+Best formula with scaled parameters:  always[6,inf] ( x_0 >= 26.2882 )
+Execution time = 00:04:30
+/s ( ( x_2 >= -0.0181 or x_1 >= 0.0112 ) until[19,21] x_0 >= -0.618 ) s
+/s ( ( x_2 >= -0.0181 or x_1 >= 0.0112 ) until[19,21] x_0 >= -0.618 ) s
+/s ( ( x_2 >= -0.0181 or x_0 >= -0.558 ) until[19,21] x_1 >= -0.071 ) s
+/s ( ( x_2 >= -0.0181 or x_0 >= -0.558 ) until[19,21] x_1 >= -0.071 ) s
+/s ( ( x_2 >= -0.0181 or x_1 >= 0.0112 ) until[19,21] x_0 >= -0.618 ) s
+/s ( ( x_2 >= -0.0181 or x_0 >= -0.658 ) until[18,20] x_1 >= -0.071 ) s
+/s ( ( x_2 >= -0.0181 or x_0 >= -0.558 ) until[19,21] x_1 >= -0.071 ) s
+/s ( ( x_2 >= -0.0181 or x_0 >= -0.558 ) until[19,21] x_1 >= -0.071 ) s
+/s ( ( x_2 >= 0.0111 or x_1 >= 0.0112 ) until[19,21] x_0 >= -0.658 ) s
+/s ( ( x_2 >= -0.0181 or x_1 >= 0.0112 ) until[19,21] x_0 >= -0.618 ) s
+Current seed:  498
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[14,21] ( eventually[11,13] ( x_0 >= 32.4971 ) ) obj value:  13.943513870239258
+Best formula with scaled parameters:  always[7,11] ( eventually[5,6] ( x_0 >= 35.7874 ) )
+Execution time = 00:04:30
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+/s ( ( x_0 >= -0.4571 or x_2 <= -0.088 ) until[18,20] x_0 >= -0.4551 ) s
+Current seed:  498
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[2,21] ( eventually[17,20] ( x_0 >= 33.4195 ) ) obj value:  12.872457504272461
+Best formula with scaled parameters:  always[1,11] ( eventually[8,10] ( x_0 >= 18.3402 ) )
+Execution time = 00:04:30
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= 0.011 ) ) s
+/s ( x_0 >= -0.518 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.011 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+/s ( x_0 >= -0.558 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.0112 ) ) s
+Current seed:  498
+Accuracy:  0.3889 Precision:  0.3889 Recall:  1.0 Misclassification Rate:  0.6111
+Best formula:  always[1,20] ( not ( x_0 <= -2.214 ) ) obj value:  17.52640724182129
+Best formula with scaled parameters:  always[0,10] ( not ( x_0 <= -2.214 ) )
+Execution time = 00:04:30
+/s ( x_0 >= -0.4581 until[18,20] ( x_2 <= -0.088 or x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.458 until[18,20] ( x_2 <= -0.088 or x_2 >= -0.0881 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.4581 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.458 until[18,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.458 until[18,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.458 until[18,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.458 until[18,20] x_2 >= -1.011 ) s
+Current seed:  53
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[8,inf] ( always[6,14] ( x_0 >= 37.643 ) ) obj value:  13.892979621887207
+Best formula with scaled parameters:  always[4,inf] ( always[3,7] ( x_0 >= 35.9059 ) )
+Execution time = 00:04:30
+/s ( x_0 >= -0.399 until[15,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[17,21] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.399 until[17,20] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.358 until[17,21] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.399 until[17,21] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.399 until[17,21] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.3581 until[17,21] ( x_2 <= -0.098 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_2 <= -0.098 or x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.399 until[17,20] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.358 until[17,21] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+Current seed:  53
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[16,inf] ( x_0 >= 22.1937 ) obj value:  21.193742752075195
+Best formula with scaled parameters:  always[8,inf] ( x_0 >= 20.715 )
+Execution time = 00:04:31
+/s ( x_0 >= -0.358 until[17,20] ( x_2 <= -0.0981 or ( x_2 >= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.359 until[17,20] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.359 until[15,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.359 until[17,20] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.358 until[17,20] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.359 until[17,20] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.358 until[17,20] ( x_2 <= -0.0981 or x_2 >= -0.098 ) ) s
+/s ( x_0 >= -0.358 until[17,21] ( x_2 <= -0.0981 or ( x_2 >= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.358 until[17,20] ( x_2 <= -0.0981 or ( x_2 >= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.359 until[15,18] x_2 >= -1.011 ) s
+Current seed:  53
+Accuracy:  0.1579 Precision:  0.1579 Recall:  1.0 Misclassification Rate:  0.8421
+Best formula:  always[0,15] ( not ( x_0 <= -1.601 ) ) obj value:  11.628567695617676
+Best formula with scaled parameters:  always[0,8] ( not ( x_0 <= -1.601 ) )
+Execution time = 00:04:31
+/s ( x_0 >= -0.418 until[17,20] x_2 >= -1.0111 ) s
+/s ( x_0 >= -0.4581 until[17,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.4581 until[15,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.418 until[13,19] x_2 >= -1.0111 ) s
+/s ( x_0 >= -0.408 until[17,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.408 until[17,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.408 until[17,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.4581 until[15,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.408 until[17,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.4581 until[15,18] x_2 >= -1.011 ) s
+Current seed:  53
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[10,20] ( x_0 >= 30.4808 ) obj value:  11.52756404876709
+Best formula with scaled parameters:  always[5,10] ( x_0 >= 28.2303 )
+Execution time = 00:04:29
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.392 or ( x_2 <= -0.0112 until[18,20] x_2 <= -0.0882 ) ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_0 >= -0.392 or x_2 <= 0.0912 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_0 >= -0.392 or x_2 <= 0.0912 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_0 >= -0.392 or x_2 <= 0.0912 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_0 >= -0.392 or x_2 <= 0.0912 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_0 >= -0.392 or x_2 <= 0.0912 ) ) s
+/s ( x_0 >= -0.3981 until[18,20] ( x_0 >= -0.392 or x_2 <= 0.0981 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.392 or ( x_2 <= -0.0112 until[18,20] x_2 <= -0.0112 ) ) ) s
+Current seed:  53
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[9,21] ( x_0 >= 25.0098 ) obj value:  12.756806373596191
+Best formula with scaled parameters:  always[4,10] ( x_0 >= 26.2597 )
+Execution time = 00:04:30
+/s ( x_0 >= -0.3981 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3981 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3981 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3981 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3981 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3981 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3981 until[18,20] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[19,21] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3981 until[19,21] x_0 >= -0.392 ) s
+/s ( x_0 >= -0.3581 until[19,21] x_0 >= -0.392 ) s
+Current seed:  199
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually[8,inf] ( always[8,20] ( always[0,21] ( x_0 >= 44.251 ) ) ) obj value:  14.638365745544434
+Best formula with scaled parameters:  eventually[4,inf] ( always[4,10] ( always[0,11] ( x_0 >= 36.7201 ) ) )
+Execution time = 00:04:30
+/s ( x_0 >= -0.4571 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.8181 ) ) s
+/s ( x_0 >= -0.4571 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.818 ) ) s
+/s ( x_0 >= -0.4571 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.818 ) ) s
+/s ( x_0 >= -0.4571 until[18,20] ( x_2 <= 0.018 or x_2 >= 0.0112 ) ) s
+/s ( x_0 >= -0.4571 until[18,20] ( x_2 <= 0.018 or x_2 >= 0.0112 ) ) s
+/s ( ( x_0 >= -0.4571 or x_0 >= -0.458 ) until[18,20] x_2 <= 1.011 ) s
+/s ( x_0 >= -0.4571 until[18,20] ( x_2 <= 0.018 or x_2 >= 0.0112 ) ) s
+/s ( x_0 >= -0.4571 until[17,21] ( x_2 <= 0.018 or x_2 >= 0.0112 ) ) s
+/s ( ( x_0 >= -0.418 or x_2 <= -0.0881 ) until[17,20] x_0 >= -0.392 ) s
+/s ( ( x_0 >= -0.4181 or x_0 >= -0.3921 ) until[18,20] x_2 <= 1.011 ) s
+Current seed:  199
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[15,inf] ( x_0 >= 42.1439 ) obj value:  16.530616760253906
+Best formula with scaled parameters:  always[7,inf] ( x_0 >= 38.9831 )
+Execution time = 00:04:30
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0981 ) ) s
+/s ( x_0 >= -0.399 until[17,21] ( x_2 <= -0.0981 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.399 until[17,21] ( x_2 <= -0.0981 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0981 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0981 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.399 until[18,20] ( x_2 <= -0.0981 or x_2 >= 0.0985 ) ) s
+/s ( x_0 >= -0.399 or ( x_2 <= 0.0812 until[18,20] x_2 >= -0.0981 ) ) s
+Current seed:  199
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[7,20] ( x_0 >= 19.3191 ) obj value:  15.271719932556152
+Best formula with scaled parameters:  always[3,10] ( x_0 >= 18.1007 )
+Execution time = 00:04:30
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_0 >= -0.4921 ) ) s
+/s ( x_0 >= -0.499 until[17,20] x_2 >= -1.0112 ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.458 until[18,20] x_2 >= -1.0112 ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_0 >= -0.4981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.088 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.088 ) ) s
+Current seed:  199
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[2,inf] ( x_0 >= 34.4034 ) obj value:  16.001953125
+Best formula with scaled parameters:  always[1,inf] ( x_0 >= 39.0634 )
+Execution time = 00:04:30
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.092 or x_2 <= 0.0282 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.092 or x_2 <= 0.0212 ) ) s
+/s ( x_0 >= -0.3081 until[19,21] x_0 >= -0.292 ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.092 or x_2 <= 0.0282 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.092 or x_2 <= 0.0282 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.092 or x_2 <= 0.0212 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.092 or x_2 <= 0.0212 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.092 or x_2 <= 0.0282 ) ) s
+/s ( x_0 >= -0.3581 until[18,20] ( x_0 >= -0.092 or x_2 <= 0.0282 ) ) s
+/s ( x_0 >= -0.3581 until[19,21] ( x_0 >= -0.092 or x_2 <= 0.0282 ) ) s
+Current seed:  199
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[16,inf] ( eventually[15,20] ( x_0 >= 10.1545 ) ) obj value:  16.783174514770508
+Best formula with scaled parameters:  always[8,inf] ( eventually[7,10] ( x_0 >= 10.9423 ) )
+Execution time = 00:04:31
+/s ( ( x_0 >= -0.5571 or x_2 <= 0.021 ) until[19,21] x_1 >= -1.1112 ) s
+/s ( ( x_0 >= -0.5571 or x_2 <= 0.021 ) until[19,21] x_1 >= -1.1112 ) s
+/s ( ( x_2 <= -0.0881 or x_0 >= -0.558 ) until[19,21] x_0 >= -0.592 ) s
+/s ( ( x_0 >= -0.5571 or x_2 <= 0.021 ) until[19,21] x_1 >= -1.1112 ) s
+/s ( ( x_0 >= -0.5571 or x_2 <= 0.021 ) until[19,21] x_1 >= -1.1112 ) s
+/s ( ( x_0 >= -0.5571 or x_2 <= 0.021 ) until[19,21] x_1 >= -1.1112 ) s
+/s ( ( x_0 >= -0.5571 or x_2 <= 0.021 ) until[19,21] x_1 >= -1.1112 ) s
+/s ( ( x_2 <= -0.0881 or x_0 >= -0.558 ) until[19,21] x_1 >= -1.011 ) s
+/s ( ( x_0 >= -0.5571 or x_2 <= 0.021 ) until[19,21] x_1 >= -1.1112 ) s
+/s ( ( x_0 >= -0.5571 or x_2 <= 0.021 ) until[19,21] x_1 >= -1.1112 ) s
+Current seed:  596
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[3,inf] ( x_0 >= 33.9404 ) obj value:  13.312509536743164
+Best formula with scaled parameters:  always[1,inf] ( x_0 >= 33.9241 )
+Execution time = 00:04:31
+/s ( x_0 >= -0.399 until[15,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[17,20] ( x_2 <= -0.0981 or x_2 >= 0.0981 ) ) s
+/s ( x_0 >= -0.399 until[15,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[15,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[17,20] ( x_2 <= -0.0981 or x_2 >= 0.0981 ) ) s
+/s ( x_0 >= -0.399 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.8181 ) ) s
+/s ( x_0 >= -0.399 until[15,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[15,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.8181 ) ) s
+/s ( x_0 >= -0.399 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.8181 ) ) s
+Current seed:  596
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[11,inf] ( always[17,21] ( x_0 >= 41.0136 ) ) obj value:  14.913543701171875
+Best formula with scaled parameters:  always[5,inf] ( always[8,10] ( x_0 >= 30.5423 ) )
+Execution time = 00:04:29
+/s always[10,15] ( x_0 >= -0.4921 ) s
+/s always[10,15] ( x_0 >= -0.4921 ) s
+/s always[10,15] ( x_0 >= -0.4921 ) s
+/s always[10,17] ( x_0 >= -0.4921 ) s
+/s always[10,17] ( x_0 >= -0.4921 ) s
+/s always[10,18] ( x_0 >= -0.4921 ) s
+/s always[10,18] ( x_0 >= -0.4921 ) s
+/s always[12,16] ( x_0 >= -0.4921 ) s
+/s always[12,16] ( x_0 >= -0.4921 ) s
+/s always[10,18] ( x_0 >= -0.4921 ) s
+Current seed:  596
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[10,15] ( x_0 >= 14.4478 ) obj value:  13.351558685302734
+Best formula with scaled parameters:  always[5,8] ( x_0 >= 13.4625 )
+Execution time = 00:04:29
+/s ( x_0 >= -0.4581 until[13,19] x_0 >= -0.4921 ) s
+/s ( x_0 >= -0.4581 until[15,18] x_0 >= -0.4921 ) s
+/s eventually[10,13] ( x_0 >= -0.4921 ) s
+/s eventually[6,17] ( x_0 >= -0.4921 ) s
+/s ( x_0 >= -0.4581 until[13,19] x_0 >= -0.4921 ) s
+/s ( x_0 >= -0.4581 until[15,18] x_0 >= -0.4921 ) s
+/s ( x_0 >= -0.4581 until[17,20] x_0 >= -0.4921 ) s
+/s eventually[6,17] ( x_0 >= -0.4921 ) s
+/s ( x_0 >= -0.4581 until[15,18] x_0 >= -0.4921 ) s
+/s ( x_0 >= -0.4581 until[15,18] x_0 >= -0.4921 ) s
+Current seed:  596
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[4,13] ( x_0 >= 26.7193 ) obj value:  13.650308609008789
+Best formula with scaled parameters:  always[2,7] ( x_0 >= 26.4774 )
+Execution time = 00:04:30
+/s ( x_0 >= -0.399 until[15,18] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.418 until[18,20] ( x_2 <= -0.0981 or ( x_2 <= -0.011 until[18,20] x_2 >= -0.0112 ) ) ) s
+/s ( x_0 >= -0.399 until[17,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[17,21] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[17,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[17,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[17,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[17,21] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[17,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 until[17,21] x_2 >= -1.011 ) s
+Current seed:  596
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[15,inf] ( x_0 >= 42.9115 ) obj value:  16.308439254760742
+Best formula with scaled parameters:  always[7,inf] ( x_0 >= 46.6318 )
+Execution time = 00:04:29
+/s ( x_0 >= -0.498 or ( x_2 <= 0.0112 until[18,20] x_1 <= 0.0112 ) ) s
+/s ( x_0 >= -0.498 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.098 ) ) s
+/s ( x_0 >= -0.557 or ( x_2 <= 0.0112 until[18,20] x_1 <= 0.011 ) ) s
+/s ( x_0 >= -0.557 or ( x_2 <= 0.0112 until[18,20] x_1 <= 0.0112 ) ) s
+/s ( x_0 >= -0.499 or ( x_2 <= 0.0112 until[18,20] x_1 <= 0.0112 ) ) s
+/s ( x_0 >= -0.498 or ( x_2 <= 0.0112 until[18,20] x_1 <= 0.0112 ) ) s
+/s ( x_0 >= -0.498 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.0881 ) ) s
+/s ( x_0 >= -0.498 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.098 ) ) s
+/s ( x_0 >= -0.557 or ( x_2 <= 0.0112 until[18,20] x_1 <= 0.011 ) ) s
+/s ( x_0 >= -0.498 or ( x_2 <= 0.0112 until[18,20] x_1 >= -0.098 ) ) s
+Current seed:  460
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[5,17] ( always[10,inf] ( x_0 >= 36.9049 ) ) obj value:  14.509382247924805
+Best formula with scaled parameters:  always[2,8] ( always[5,inf] ( x_0 >= 35.8003 ) )
+Execution time = 00:04:30
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 until[15,18] x_2 >= -1.0111 ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.458 or ( x_2 <= 0.0212 until[18,20] x_2 >= -0.0981 ) ) s
+Current seed:  460
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[10,16] ( x_0 >= 35.5497 ) obj value:  14.361223220825195
+Best formula with scaled parameters:  always[5,8] ( x_0 >= 39.8888 )
+Execution time = 00:04:30
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+/s ( ( x_0 >= -0.5181 or x_2 <= 0.0212 ) until[18,20] x_0 >= -0.558 ) s
+Current seed:  460
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[11,inf] ( x_0 >= 39.6361 ) obj value:  14.324222564697266
+Best formula with scaled parameters:  always[5,inf] ( x_0 >= 31.5706 )
+Execution time = 00:04:30
+/s ( x_0 >= -0.3081 until[18,20] x_0 >= -0.3921 ) s
+/s always[15,18] ( ( x_0 >= -0.3592 and x_0 >= -0.2921 ) ) s
+/s ( x_0 >= -0.3582 until[18,20] x_0 >= -0.3921 ) s
+/s always[15,18] ( ( x_0 >= -0.3592 and x_0 >= 0.2821 ) ) s
+/s ( x_0 >= -0.3581 until[19,21] x_0 >= -0.2921 ) s
+/s ( x_0 >= -0.3581 until[19,21] x_0 >= -0.2921 ) s
+/s ( x_0 >= -0.3582 until[19,21] x_0 >= -0.3921 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.3921 ) s
+/s ( x_0 >= -0.3581 until[19,21] x_0 >= -0.2921 ) s
+/s ( x_0 >= -0.3581 until[18,20] x_0 >= -0.3921 ) s
+Current seed:  460
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  ( x_0 >= 26.6295 until[19,21] x_0 >= 26.6457 ) obj value:  10.221633911132812
+Best formula with scaled parameters:  ( x_0 >= 27.4521 until[9,10] x_0 >= 27.4689 )
+Execution time = 00:04:30
+/s ( x_0 >= -0.399 until[17,20] x_2 >= -1.011 ) s
+/s ( x_0 >= -0.399 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.8181 ) ) s
+/s ( x_0 >= -0.418 until[17,21] ( x_2 <= -0.0981 or x_2 >= 0.011 ) ) s
+/s ( x_0 >= -0.399 until[17,20] ( x_2 <= -0.0981 or x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.418 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.0881 ) ) s
+/s ( x_0 >= -0.399 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.8181 ) ) s
+/s ( x_0 >= -0.418 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.0881 ) ) s
+/s ( x_0 >= -0.399 or ( x_2 <= 0.0112 until[18,20] x_2 >= -0.8181 ) ) s
+/s ( x_0 >= -0.399 until[17,20] ( x_2 <= -0.0981 or x_2 >= -0.0981 ) ) s
+/s ( x_0 >= -0.399 until[17,20] ( x_2 <= -0.0981 or x_1 >= 0.091 ) ) s
+Current seed:  460
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[10,17] ( not ( always[11,17] ( x_0 <= -0.389 ) ) ) obj value:  19.61602210998535
+Best formula with scaled parameters:  always[5,9] ( not ( always[5,8] ( x_0 <= -0.389 ) ) )
+Execution time = 00:04:30
+DONE!
