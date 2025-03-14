@@ -1,0 +1,767 @@
+Loading python/3.11.6--gcc--8.5.0
+  Loading requirement: bzip2/1.0.8-gp5wcz5 libmd/1.0.4-wja3f5q
+    libbsd/0.11.7-cgxjopl expat/2.5.0-bptl3xw ncurses/6.4-asx3jea
+    readline/8.2-nyw6mp6 gdbm/1.23-fs6otck libiconv/1.17-d7yvx2s
+    xz/5.4.1-hubmwr5 zlib-ng/2.1.4-6htiapk libxml2/2.10.3-5eeeokp
+    pigz/2.7-bopr5vp zstd/1.5.5-gawytfl tar/1.34-amqus5s gettext/0.22.3-2g7elif
+    libffi/3.4.4-6r7brdq libxcrypt/4.4.35-ss2rzin sqlite/3.43.2
+    util-linux-uuid/2.38.1-jkdi7kv
+Running on  nodes
+---------------------------------------------
+SLURM job ID:        13877246
+SLURM job node list: lrdn3367
+DATE:                Thu Mar 13 23:48:52 CET 2025
+---------------------------------------------
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+Running on cuda
+/s always[19,inf] ( x_0 >= -0.4522 ) s
+/s always[19,inf] ( x_0 >= -0.4522 ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 and x_0 >= -0.4922 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 and x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 and x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 and x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 and x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 and x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 and x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 and x_2 <= -1.2522 ) ) s
+Current seed:  215
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[17,inf] ( x_0 >= -12.2555 ) obj value:  8.064939498901367
+Best formula with scaled parameters:  always[3,inf] ( x_0 >= -11.4432 )
+Execution time = 00:09:15
+/s always[11,inf] ( always[19,inf] ( x_0 >= -0.4522 ) ) s
+/s always[11,inf] ( always[19,inf] ( x_0 >= -0.3522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.3522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.3522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.3522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.3522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.3522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.3522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.3522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.3522 ) ) s
+Current seed:  215
+Accuracy:  0.975 Precision:  0.95 Recall:  1.0 Misclassification Rate:  0.025
+Best formula:  always[16,inf] ( x_0 >= -6.3514 ) obj value:  7.591700553894043
+Best formula with scaled parameters:  always[3,inf] ( x_0 >= -5.4825 )
+Execution time = 00:09:15
+/s eventually[12,inf] ( x_0 >= 0.6522 ) s
+/s eventually[12,inf] ( x_0 >= 0.6522 ) s
+/s ( ( x_2 <= -0.9299 until[19,21] x_0 >= -0.6922 ) or ( x_2 <= -0.2922 until[16,20] x_0 >= -0.5922 ) ) s
+/s ( ( x_2 <= -0.9299 until[19,21] x_0 >= -0.6922 ) or ( x_2 <= -0.2922 until[16,20] x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( x_0 >= 0.6522 ) s
+/s ( ( x_2 <= -0.9299 until[19,21] x_0 >= -0.6922 ) or ( x_2 <= -0.2922 until[16,20] x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5222 or x_0 >= 0.5922 ) ) s
+/s ( ( x_2 <= -0.9299 until[19,21] x_0 >= -0.6922 ) or ( x_2 <= -0.2922 until[16,20] x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5222 or x_0 >= 0.5922 ) ) s
+/s ( ( x_2 <= -0.9299 until[19,21] x_0 >= -0.6922 ) or ( x_2 <= -0.2922 until[16,20] x_0 >= -0.5922 ) ) s
+Current seed:  215
+Accuracy:  0.925 Precision:  0.875 Recall:  1.0 Misclassification Rate:  0.075
+Best formula:  always ( x_0 >= -4.4723 ) obj value:  7.9717116355896
+Best formula with scaled parameters:  always ( x_0 >= -3.4709 )
+Execution time = 00:09:17
+/s eventually[19,inf] ( x_0 >= 0.2524 ) s
+/s eventually[19,inf] ( x_0 >= 0.2524 ) s
+/s eventually[19,inf] ( x_0 >= 0.2524 ) s
+/s eventually[19,inf] ( x_0 >= 0.2524 ) s
+/s eventually[19,inf] ( x_0 >= 0.2524 ) s
+/s eventually[19,inf] ( x_0 >= 0.2524 ) s
+/s eventually[19,inf] ( x_0 >= 0.2524 ) s
+/s eventually[19,inf] ( x_0 >= 0.2524 ) s
+/s eventually[19,inf] ( x_0 >= 0.2524 ) s
+/s eventually[19,inf] ( x_0 >= 0.2524 ) s
+Current seed:  215
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always ( x_0 >= -13.7794 ) obj value:  7.753512382507324
+Best formula with scaled parameters:  always ( x_0 >= -13.1463 )
+Execution time = 00:09:14
+/s always[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+Current seed:  215
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[11,inf] ( x_0 >= 0.6709 ) obj value:  7.885263442993164
+Best formula with scaled parameters:  always[2,inf] ( x_0 >= -0.1818 )
+Execution time = 00:09:17
+/s eventually[12,inf] ( eventually[19,inf] ( ( x_0 >= 0.5224 until[19,21] x_0 >= 0.5924 ) ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( ( x_0 >= 0.5222 until[19,21] x_0 >= 0.5922 ) ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5224 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5229 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5224 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5224 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5224 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5224 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5224 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5224 until[19,21] x_0 >= 0.5922 ) ) s
+Current seed:  173
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually[8,19] ( eventually[12,inf] ( eventually[19,21] ( x_0 >= 5.2249 ) ) ) obj value:  6.999792575836182
+Best formula with scaled parameters:  eventually[1,4] ( eventually[2,inf] ( eventually[3,4] ( x_0 >= 4.686 ) ) )
+Execution time = 00:09:16
+/s eventually[12,inf] ( x_0 >= 0.7222 ) s
+/s eventually[12,inf] ( x_0 >= 0.6522 ) s
+/s eventually[12,inf] ( x_0 >= 0.6522 ) s
+/s eventually[12,inf] ( x_0 >= 0.6522 ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+Current seed:  173
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually[6,inf] ( x_0 >= 6.7334 ) obj value:  8.189571380615234
+Best formula with scaled parameters:  eventually[1,inf] ( x_0 >= 6.1059 )
+Execution time = 00:09:15
+/s eventually[19,inf] ( ( x_0 >= 0.7222 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 or x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 or x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 or x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6922 or x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6922 or x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6922 or x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6922 or x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6922 or x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6922 or x_0 >= 0.6922 ) ) s
+Current seed:  173
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually[1,inf] ( not ( x_0 <= 0.8259 ) ) obj value:  7.745701313018799
+Best formula with scaled parameters:  eventually[0,inf] ( not ( x_0 <= 0.8259 ) )
+Execution time = 00:09:15
+/s eventually[19,inf] ( ( x_0 >= 0.6922 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6922 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6922 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= 0.5922 ) ) s
+Current seed:  173
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually ( x_0 >= 9.698 ) obj value:  7.896145820617676
+Best formula with scaled parameters:  eventually ( x_0 >= 9.1061 )
+Execution time = 00:09:15
+/s always[11,inf] ( always[19,inf] ( x_0 >= -0.3522 ) ) s
+/s always[11,inf] ( always[19,inf] ( x_0 >= -0.3522 ) ) s
+/s always[11,inf] ( always[19,inf] ( x_0 >= -0.3522 ) ) s
+/s always[11,inf] ( always[19,inf] ( x_0 >= -0.3522 ) ) s
+/s always[11,inf] ( always[19,inf] ( x_0 >= -0.3522 ) ) s
+/s always[11,inf] ( always[19,inf] ( x_0 >= -0.3522 ) ) s
+/s always[11,inf] ( always[19,inf] ( x_0 >= -0.3522 ) ) s
+/s always[11,inf] ( always[19,inf] ( x_0 >= -0.3522 ) ) s
+/s always[11,inf] ( always[19,inf] ( x_0 >= -0.3522 ) ) s
+/s always[11,inf] ( always[19,inf] ( x_0 >= -0.3522 ) ) s
+Current seed:  173
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[12,inf] ( x_0 >= -0.8413 ) obj value:  8.228655815124512
+Best formula with scaled parameters:  always[2,inf] ( x_0 >= -1.8026 )
+Execution time = 00:09:16
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.3522 ) s
+Current seed:  315
+Accuracy:  0.9 Precision:  0.8182 Recall:  1.0 Misclassification Rate:  0.1
+Best formula:  always ( x_0 >= -5.9711 ) obj value:  8.367644309997559
+Best formula with scaled parameters:  always ( x_0 >= -5.1208 )
+Execution time = 00:09:14
+/s eventually[12,inf] ( x_0 >= 0.4522 ) s
+/s eventually[12,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+Current seed:  315
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  not ( always[5,inf] ( x_0 <= 0.7477 ) ) obj value:  8.033753395080566
+Best formula with scaled parameters:  not ( always[1,inf] ( x_0 <= 0.7477 ) )
+Execution time = 00:09:14
+/s eventually[19,inf] ( ( x_0 >= 0.6224 until[19,21] x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6224 until[19,21] x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6224 until[19,21] x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6224 until[19,21] x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6224 until[19,21] x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6224 until[19,21] x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6224 until[19,21] x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6224 until[19,21] x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6224 until[19,21] x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6224 until[19,21] x_0 >= 0.6922 ) ) s
+Current seed:  315
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually[8,inf] ( eventually[15,19] ( x_0 >= 3.7716 ) ) obj value:  6.8118577003479
+Best formula with scaled parameters:  eventually[1,inf] ( eventually[3,4] ( x_0 >= 3.069 ) )
+Execution time = 00:09:16
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.6522 ) ) s
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.6522 ) ) s
+/s eventually[12,inf] ( always[19,21] ( x_0 >= 0.5522 ) ) s
+/s eventually[12,inf] ( always[19,21] ( x_0 >= 0.6522 ) ) s
+/s eventually[12,inf] ( always[19,21] ( x_0 >= 0.6522 ) ) s
+/s eventually[12,inf] ( always[19,21] ( x_0 >= 0.6522 ) ) s
+/s eventually[12,inf] ( always[19,21] ( x_0 >= 0.6522 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.6522 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.6522 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.6522 ) ) s
+Current seed:  315
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always ( x_0 >= -12.0611 ) obj value:  7.9003190994262695
+Best formula with scaled parameters:  always ( x_0 >= -10.4717 )
+Execution time = 00:09:15
+/s eventually[12,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s eventually[12,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s eventually[19,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s eventually[19,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s eventually[19,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s eventually[12,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s eventually[19,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s eventually[19,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s eventually[19,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s eventually[19,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+Current seed:  315
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[0,inf] ( x_0 >= -14.4327 ) obj value:  7.107761859893799
+Best formula with scaled parameters:  always[0,inf] ( x_0 >= -13.7699 )
+Execution time = 00:09:15
+/s always[19,inf] ( ( x_0 >= -0.4922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+Current seed:  477
+Accuracy:  0.925 Precision:  0.8571 Recall:  1.0 Misclassification Rate:  0.075
+Best formula:  always ( x_0 >= -2.9545 ) obj value:  7.6819329261779785
+Best formula with scaled parameters:  always ( x_0 >= -2.2257 )
+Execution time = 00:09:16
+/s always[12,inf] ( x_0 >= -0.3522 ) s
+/s always[19,inf] ( x_0 >= -0.3522 ) s
+/s always[19,inf] ( x_0 >= -0.4522 ) s
+/s always[19,inf] ( x_0 >= -0.3522 ) s
+/s always[19,inf] ( x_0 >= -0.3522 ) s
+/s always[19,inf] ( x_0 >= -0.3522 ) s
+/s always[19,inf] ( x_0 >= -0.3522 ) s
+/s always[19,inf] ( x_0 >= -0.3522 ) s
+/s always[19,inf] ( x_0 >= -0.3522 ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_0 >= -0.4922 ) ) s
+Current seed:  477
+Accuracy:  0.95 Precision:  0.9048 Recall:  1.0 Misclassification Rate:  0.05
+Best formula:  always ( x_0 >= -7.4637 ) obj value:  7.882129192352295
+Best formula with scaled parameters:  always ( x_0 >= -6.6221 )
+Execution time = 00:09:15
+/s eventually[19,inf] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) s
+Current seed:  477
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually ( x_0 >= 6.2304 ) obj value:  9.194891929626465
+Best formula with scaled parameters:  eventually ( x_0 >= 5.6557 )
+Execution time = 00:09:16
+/s always[12,inf] ( always[19,21] ( x_0 >= -0.3522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.3522 ) ) s
+/s always[19,inf] ( always[16,inf] ( x_0 >= -0.3522 ) ) s
+/s always[19,inf] ( always[16,20] ( x_0 >= -0.3522 ) ) s
+/s always[19,inf] ( always[16,20] ( x_0 >= -0.3522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.2929 until[19,21] x_0 >= -0.2922 ) ) s
+/s always[19,inf] ( always[16,20] ( x_0 >= -0.3522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.3929 until[19,21] x_0 >= -0.2922 ) ) s
+/s always[19,inf] ( x_0 >= -0.4522 ) s
+/s always[19,inf] ( ( x_0 >= -0.3929 until[19,21] x_0 >= -0.3922 ) ) s
+Current seed:  477
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[0,inf] ( x_0 >= -15.6213 ) obj value:  8.007841110229492
+Best formula with scaled parameters:  always[0,inf] ( x_0 >= -14.4393 )
+Execution time = 00:09:15
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+Current seed:  477
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always ( x_0 >= -15.5967 ) obj value:  7.718503952026367
+Best formula with scaled parameters:  always ( x_0 >= -14.8852 )
+Execution time = 00:09:15
+/s always[12,inf] ( always[19,21] ( x_0 >= -0.5522 ) ) s
+/s always[11,inf] ( always[19,inf] ( x_0 >= -0.5522 ) ) s
+/s always[19,inf] ( x_0 >= -0.5522 ) s
+/s always[19,inf] ( always[16,20] ( x_0 >= -0.4522 ) ) s
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.5522 ) ) s
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.5522 ) ) s
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.5522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 and x_0 >= -0.4992 ) ) s
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.5522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 and x_0 >= -0.4999 ) ) s
+Current seed:  511
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always ( x_0 >= -9.342 ) obj value:  7.915403842926025
+Best formula with scaled parameters:  always ( x_0 >= -8.2831 )
+Execution time = 00:09:15
+/s always[11,inf] ( always[19,inf] ( x_0 >= 0.3222 ) ) s
+/s always[11,inf] ( always[19,inf] ( x_0 >= 0.2522 ) ) s
+/s always[11,inf] ( always[19,inf] ( x_0 >= 0.2522 ) ) s
+/s always[12,inf] ( always[19,inf] ( x_0 >= -0.1524 ) ) s
+/s always[12,inf] ( always[19,inf] ( x_0 >= -0.2522 ) ) s
+/s always[12,inf] ( always[19,inf] ( x_0 >= -0.2522 ) ) s
+/s always[12,inf] ( always[19,inf] ( x_0 >= -0.2522 ) ) s
+/s always[12,inf] ( always[19,inf] ( x_0 >= -0.2522 ) ) s
+/s always[12,inf] ( always[19,21] ( always[19,21] ( x_0 >= -0.1522 ) ) ) s
+/s always[12,inf] ( always[19,21] ( always[19,21] ( x_0 >= -0.1522 ) ) ) s
+Current seed:  511
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually[13,inf] ( x_0 >= 9.561 ) obj value:  6.9941911697387695
+Best formula with scaled parameters:  eventually[2,inf] ( x_0 >= 9.0639 )
+Execution time = 00:09:16
+/s always[19,inf] ( ( x_0 >= -0.5922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s ( x_2 <= -1.2599 or always[19,21] ( always[16,18] ( x_0 >= -0.5922 ) ) ) s
+/s ( x_2 <= -1.2599 or always[19,21] ( always[16,18] ( x_0 >= -0.5922 ) ) ) s
+/s ( x_2 <= -1.2599 or always[19,21] ( always[16,18] ( x_0 >= -0.5922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s ( x_2 <= -1.2599 or always[19,21] ( always[16,18] ( x_0 >= -0.5922 ) ) ) s
+/s ( x_2 <= -1.2599 or always[19,21] ( always[16,18] ( x_0 >= -0.5922 ) ) ) s
+/s ( x_2 <= -1.2599 or always[19,21] ( always[16,18] ( x_0 >= -0.5922 ) ) ) s
+Current seed:  511
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always ( x_0 >= -13.22 ) obj value:  7.430227279663086
+Best formula with scaled parameters:  always ( x_0 >= -12.4238 )
+Execution time = 00:09:17
+/s always[19,inf] ( ( x_0 >= -0.3929 until[19,21] x_0 >= -0.3992 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.3929 until[19,21] x_0 >= -0.3992 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.3929 and x_0 >= -0.3999 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.3929 and x_2 <= -1.2529 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.3929 and x_0 >= -0.3999 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.3929 and x_2 <= -1.2529 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.3929 until[19,21] x_0 >= -0.3992 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.3929 and x_2 <= -1.2529 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.3929 and x_2 <= -1.2529 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.3929 and x_2 <= -1.2522 ) ) s
+Current seed:  511
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always ( x_0 >= -20.2251 ) obj value:  7.704240798950195
+Best formula with scaled parameters:  always ( x_0 >= -18.2014 )
+Execution time = 00:09:16
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5222 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= -0.5922 ) ) s
+Current seed:  511
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually[0,inf] ( x_0 >= 11.0571 ) obj value:  8.960397720336914
+Best formula with scaled parameters:  eventually[0,inf] ( x_0 >= 10.3863 )
+Execution time = 00:09:15
+/s eventually[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s eventually[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s eventually[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s eventually[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s eventually[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.6922 or x_0 >= -0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s eventually[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s ( x_2 <= -1.2999 or always[19,21] ( always[16,18] ( x_0 >= -0.5922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.6922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+Current seed:  160
+Accuracy:  0.95 Precision:  0.9048 Recall:  1.0 Misclassification Rate:  0.05
+Best formula:  always[19,inf] ( ( x_0 >= -7.3793 or x_0 >= -7.3793 ) ) obj value:  7.715485095977783
+Best formula with scaled parameters:  always[3,inf] ( ( x_0 >= -6.6093 or x_0 >= -6.6093 ) )
+Execution time = 00:09:16
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.4522 ) ) s
+/s always[19,inf] ( always[16,20] ( x_0 >= -0.4522 ) ) s
+/s always[19,inf] ( always[16,20] ( x_0 >= -0.4522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4929 and x_0 >= -0.4999 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4929 and x_0 >= -0.4999 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4929 and x_0 >= -0.4999 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4929 and x_0 >= -0.4999 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.3929 and x_0 >= -0.4999 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.3929 and x_0 >= -0.4922 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.3929 and x_0 >= -0.4922 ) ) s
+Current seed:  160
+Accuracy:  0.95 Precision:  0.913 Recall:  1.0 Misclassification Rate:  0.05
+Best formula:  always[4,inf] ( x_0 >= -3.5739 ) obj value:  7.469490051269531
+Best formula with scaled parameters:  always[0,inf] ( x_0 >= -2.6621 )
+Execution time = 00:09:16
+/s eventually[19,inf] ( x_0 >= 0.6522 ) s
+/s eventually[19,inf] ( x_0 >= 0.6522 ) s
+/s eventually[19,inf] ( x_0 >= 0.6522 ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= 0.5922 ) ) s
+Current seed:  160
+Accuracy:  0.975 Precision:  0.9524 Recall:  1.0 Misclassification Rate:  0.025
+Best formula:  always[5,inf] ( always ( x_0 >= -12.2338 ) ) obj value:  8.147829055786133
+Best formula with scaled parameters:  always[1,inf] ( always ( x_0 >= -11.3128 ) )
+Execution time = 00:09:15
+/s eventually[12,inf] ( always[19,21] ( x_0 >= 0.6522 ) ) s
+/s eventually[12,inf] ( always[19,21] ( x_0 >= 0.7522 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.6922 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.6522 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.6922 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.6922 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.6922 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.6922 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.6922 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.6922 ) ) s
+Current seed:  160
+Accuracy:  0.95 Precision:  0.9091 Recall:  1.0 Misclassification Rate:  0.05
+Best formula:  ( x_0 >= -2.8272 until[19,inf] x_0 >= -0.9138 ) obj value:  9.24693775177002
+Best formula with scaled parameters:  ( x_0 >= -2.0904 until[3,inf] x_0 >= -0.1965 )
+Execution time = 00:09:15
+/s eventually[19,inf] ( eventually[19,21] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) ) s
+/s eventually[19,inf] ( eventually[19,21] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) ) s
+/s eventually[19,inf] ( eventually[19,21] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) ) s
+/s eventually[19,inf] ( eventually[19,21] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) ) s
+/s eventually[19,inf] ( eventually[19,21] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 until[19,21] x_0 >= 0.5922 ) ) s
+Current seed:  160
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually ( eventually[2,9] ( x_0 >= 10.7714 ) ) obj value:  7.6996331214904785
+Best formula with scaled parameters:  eventually ( eventually[0,2] ( x_0 >= 10.4903 ) )
+Execution time = 00:09:17
+/s always[19,inf] ( ( x_0 >= 0.7222 and x_0 >= -0.2922 ) ) s
+/s always[19,inf] ( ( x_0 >= 0.7222 and x_0 >= -0.2922 ) ) s
+/s always[19,inf] ( ( x_0 >= 0.7222 and x_0 >= -0.2924 ) ) s
+/s always[19,inf] ( ( x_0 >= 0.7222 and x_0 >= -0.2922 ) ) s
+/s always[19,inf] ( ( x_0 >= 0.6224 and x_0 >= -0.2922 ) ) s
+/s always[19,inf] ( ( x_0 >= 0.6224 and x_0 >= -0.2922 ) ) s
+/s always[19,inf] ( ( x_0 >= 0.6224 and x_0 >= -0.2922 ) ) s
+/s always[19,inf] ( ( x_0 >= 0.6224 and x_0 >= -0.2922 ) ) s
+/s always[19,inf] ( ( x_0 >= 0.6224 and x_0 >= -0.2922 ) ) s
+/s always[19,inf] ( ( x_0 >= 0.6224 and x_0 >= -0.2922 ) ) s
+Current seed:  627
+Accuracy:  0.95 Precision:  0.8947 Recall:  1.0 Misclassification Rate:  0.05
+Best formula:  always ( x_0 >= -2.9004 ) obj value:  7.720639228820801
+Best formula with scaled parameters:  always ( x_0 >= -2.176 )
+Execution time = 00:09:16
+/s ( x_2 <= -1.2999 or always[19,21] ( x_0 >= -0.5922 ) ) s
+/s ( x_2 <= -1.2999 or always[19,21] ( x_0 >= -0.5922 ) ) s
+/s ( x_2 <= -1.2999 or always[19,21] ( x_0 >= -0.5922 ) ) s
+/s ( x_2 <= -1.2599 or always[19,21] ( x_0 >= -0.5922 ) ) s
+/s ( x_2 <= -1.2999 or always[19,21] ( x_0 >= -0.5922 ) ) s
+/s ( x_2 <= -1.2599 or always[19,21] ( x_0 >= -0.5922 ) ) s
+/s ( x_2 <= -1.2599 or always[19,21] ( x_0 >= -0.5922 ) ) s
+/s ( x_2 <= -1.2999 or always[19,21] ( x_0 >= -0.5922 ) ) s
+/s ( x_2 <= -1.2999 or always[19,21] ( x_0 >= -0.5922 ) ) s
+/s ( x_2 <= -1.2599 or always[19,21] ( x_0 >= -0.5922 ) ) s
+Current seed:  627
+Accuracy:  0.975 Precision:  0.9545 Recall:  1.0 Misclassification Rate:  0.025
+Best formula:  always[0,inf] ( always ( x_0 >= -9.6256 ) ) obj value:  8.120942115783691
+Best formula with scaled parameters:  always[0,inf] ( always ( x_0 >= -8.5888 ) )
+Execution time = 00:09:15
+/s eventually[12,inf] ( always[19,21] ( x_0 >= 0.6522 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.5922 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5222 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5222 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.5922 or x_0 >= -0.5922 ) ) s
+Current seed:  627
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  ( eventually[5,inf] ( x_0 >= 10.7294 ) until[4,inf] eventually[2,19] ( x_0 >= 11.6282 ) ) obj value:  7.570219039916992
+Best formula with scaled parameters:  ( eventually[1,inf] ( x_0 >= 10.2878 ) until[0,inf] eventually[0,4] ( x_0 >= 11.1782 ) )
+Execution time = 00:09:15
+/s eventually[19,inf] ( x_0 >= 0.7522 ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 or x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 or x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 or x_0 >= 0.6922 ) ) s
+Current seed:  627
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually ( x_0 >= 2.9877 ) obj value:  8.87699031829834
+Best formula with scaled parameters:  eventually ( x_0 >= 2.4604 )
+Execution time = 00:09:15
+/s always[12,inf] ( always[19,21] ( x_0 >= -0.5522 ) ) s
+/s always[12,inf] ( always[19,21] ( x_0 >= -0.5522 ) ) s
+/s always[12,inf] ( x_0 >= -0.5522 ) s
+/s always[19,inf] ( x_0 >= -0.5522 ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_0 >= -0.5922 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_0 >= -0.5922 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_0 >= -0.5922 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_2 <= -1.2522 ) ) s
+Current seed:  627
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  not ( eventually[6,inf] ( x_0 <= -0.8148 ) ) obj value:  8.11158275604248
+Best formula with scaled parameters:  not ( eventually[1,inf] ( x_0 <= -0.8148 ) )
+Execution time = 00:09:16
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.4522 ) s
+/s eventually[19,inf] ( x_0 >= 0.3522 ) s
+/s eventually[19,inf] ( x_0 >= 0.3522 ) s
+/s eventually[19,inf] ( ( x_0 >= 0.3229 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.3229 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.3229 or x_0 >= -0.5922 ) ) s
+/s always[19,inf] ( ( x_0 >= 0.3229 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( x_0 >= 0.3522 ) s
+Current seed:  498
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually[5,8] ( eventually ( x_0 >= 12.8099 ) ) obj value:  8.195128440856934
+Best formula with scaled parameters:  eventually[1,2] ( eventually ( x_0 >= 12.5768 ) )
+Execution time = 00:09:15
+/s always[19,inf] ( x_0 >= -0.2524 ) s
+/s always[19,inf] ( x_0 >= -0.2524 ) s
+/s always[19,inf] ( x_0 >= -0.2524 ) s
+/s always[19,inf] ( x_0 >= -0.2524 ) s
+/s always[19,inf] ( x_0 >= -0.2524 ) s
+/s always[19,inf] ( x_0 >= -0.2524 ) s
+/s always[19,inf] ( x_0 >= -0.2524 ) s
+/s always[19,inf] ( x_0 >= -0.2524 ) s
+/s always[19,inf] ( x_0 >= -0.2524 ) s
+/s always[19,inf] ( x_0 >= -0.2524 ) s
+Current seed:  498
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[12,inf] ( x_0 >= 3.4961 ) obj value:  6.681971073150635
+Best formula with scaled parameters:  always[2,inf] ( x_0 >= 2.6748 )
+Execution time = 00:09:14
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.4522 ) ) s
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.4522 ) ) s
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.4522 ) ) s
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.4522 ) ) s
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.4522 ) ) s
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.4522 ) ) s
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.3522 ) ) s
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.3522 ) ) s
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.3522 ) ) s
+/s always[12,inf] ( always[19,21] ( x_0 >= 0.3522 ) ) s
+Current seed:  498
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[7,21] ( eventually ( x_0 >= 7.4906 ) ) obj value:  7.130403518676758
+Best formula with scaled parameters:  always[1,4] ( eventually ( x_0 >= 6.7131 ) )
+Execution time = 00:09:15
+/s always[12,inf] ( always[19,inf] ( x_0 >= -0.2522 ) ) s
+/s always[12,inf] ( always[19,inf] ( x_0 >= -0.2522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+/s always[19,inf] ( always[19,21] ( x_0 >= -0.2522 ) ) s
+Current seed:  498
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[9,inf] ( x_0 >= -17.781 ) obj value:  7.647986888885498
+Best formula with scaled parameters:  always[1,inf] ( x_0 >= -16.5285 )
+Execution time = 00:09:16
+/s ( x_2 <= -1.2299 or always[19,inf] ( x_0 >= 0.7922 ) ) s
+/s ( x_2 <= -1.2299 or always[19,inf] ( x_0 >= 0.7922 ) ) s
+/s ( x_2 <= -1.2299 or always[19,inf] ( x_0 >= 0.7922 ) ) s
+/s ( x_2 <= -1.2299 or always[19,inf] ( x_0 >= 0.7922 ) ) s
+/s ( x_2 <= -1.2299 or always[19,inf] ( x_0 >= 0.7922 ) ) s
+/s ( x_2 <= -1.2299 or always[19,inf] ( x_0 >= 0.7922 ) ) s
+/s ( x_2 <= -1.2299 or always[19,inf] ( x_0 >= 0.7922 ) ) s
+/s ( x_2 <= -1.2299 or always[19,inf] ( x_0 >= 0.7922 ) ) s
+/s ( x_2 <= -1.2299 or always[19,inf] ( x_0 >= 0.7922 ) ) s
+/s ( x_2 <= -1.2299 or always[19,inf] ( x_0 >= 0.7922 ) ) s
+Current seed:  498
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always ( x_0 >= -40.5539 ) obj value:  4.392014980316162
+Best formula with scaled parameters:  always ( x_0 >= -39.5027 )
+Execution time = 00:09:15
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.7522 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 and x_0 >= -0.2922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 and x_0 >= -0.2922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 and x_0 >= -0.2922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+Current seed:  53
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually ( x_0 >= 5.9378 ) obj value:  7.876234531402588
+Best formula with scaled parameters:  eventually ( x_0 >= 5.16 )
+Execution time = 00:09:15
+/s eventually[19,inf] ( ( x_0 >= 0.4922 and x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.4922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.4922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.4922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.4922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.4922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.4922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.4922 or x_0 >= -0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.4922 or x_0 >= -0.5922 ) ) s
+/s ( ( x_2 <= -0.2224 or x_0 >= 0.8222 ) until[19,21] ( x_2 <= -0.2922 or x_1 <= -0.2922 ) ) s
+Current seed:  53
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[16,inf] ( x_0 >= -0.7663 ) obj value:  7.346621513366699
+Best formula with scaled parameters:  always[3,inf] ( x_0 >= -1.5101 )
+Execution time = 00:09:16
+/s eventually[12,inf] ( x_0 >= -0.1529 ) s
+/s eventually[19,inf] ( x_0 >= -0.0929 ) s
+/s eventually[19,inf] ( x_0 >= -0.0929 ) s
+/s eventually[19,inf] ( x_0 >= -0.0922 ) s
+/s eventually[19,inf] ( x_0 >= -0.0922 ) s
+/s eventually[19,inf] ( x_0 >= -0.0922 ) s
+/s eventually[19,inf] ( x_0 >= -0.0922 ) s
+/s eventually[19,inf] ( x_0 >= -0.0922 ) s
+/s eventually[19,inf] ( x_0 >= -0.0922 ) s
+/s eventually[19,inf] ( x_0 >= -0.0922 ) s
+Current seed:  53
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually[1,inf] ( x_0 >= 25.5458 ) obj value:  6.2198486328125
+Best formula with scaled parameters:  eventually[0,inf] ( x_0 >= 25.075 )
+Execution time = 00:09:14
+/s eventually[19,inf] ( ( x_0 >= 0.7222 and x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 or x_0 >= -0.2922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 or x_0 >= 0.8922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 or x_0 >= -0.2922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 and x_0 >= 0.8922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 or x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 or x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 or x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 or x_0 >= 0.6922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 or x_0 >= 0.6922 ) ) s
+Current seed:  53
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually ( x_0 >= 8.9071 ) obj value:  7.701620578765869
+Best formula with scaled parameters:  eventually ( x_0 >= 8.6722 )
+Execution time = 00:09:16
+/s always[19,inf] ( x_0 >= -0.4522 ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_0 >= -0.4922 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_0 >= -0.4922 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_0 >= -0.4922 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or x_2 <= -1.2522 ) ) s
+Current seed:  53
+Accuracy:  0.95 Precision:  0.9048 Recall:  1.0 Misclassification Rate:  0.05
+Best formula:  always ( x_0 >= -4.9078 ) obj value:  8.092754364013672
+Best formula with scaled parameters:  always ( x_0 >= -4.1052 )
+Execution time = 00:09:15
+/s eventually[11,inf] ( x_0 >= 0.7522 ) s
+/s eventually[11,inf] ( x_0 >= 0.7522 ) s
+/s eventually[12,inf] ( x_0 >= 0.7522 ) s
+/s eventually[12,inf] ( x_0 >= 0.7522 ) s
+/s eventually[12,inf] ( x_0 >= 0.7522 ) s
+/s eventually[12,inf] ( x_0 >= 0.7522 ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.7522 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.7522 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.7522 ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( x_0 >= 0.7522 ) ) s
+Current seed:  199
+Accuracy:  0.875 Precision:  0.7619 Recall:  1.0 Misclassification Rate:  0.125
+Best formula:  always ( x_0 >= -6.3554 ) obj value:  8.395377159118652
+Best formula with scaled parameters:  always ( x_0 >= -5.6313 )
+Execution time = 00:09:15
+/s eventually[12,inf] ( eventually[19,21] ( ( x_0 >= 0.7222 or x_0 >= -0.2922 ) ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( ( x_0 >= 0.7222 or x_0 >= -0.2922 ) ) ) s
+/s eventually[12,inf] ( eventually[19,21] ( ( x_0 >= 0.7222 or x_0 >= -0.2922 ) ) ) s
+/s eventually[12,inf] ( ( x_0 >= 0.7222 or x_0 >= -0.2922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 and x_0 >= -0.2922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 or x_0 >= -0.2922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 and x_0 >= -0.2922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 or x_0 >= -0.2922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 and x_0 >= -0.2922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.7222 or x_0 >= -0.2922 ) ) s
+Current seed:  199
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  eventually ( eventually[9,18] ( x_0 >= 5.9079 ) ) obj value:  8.572395324707031
+Best formula with scaled parameters:  eventually ( eventually[1,3] ( x_0 >= 5.225 ) )
+Execution time = 00:09:16
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_0 >= -0.5922 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_0 >= -0.5922 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or ( x_2 <= -0.2922 and x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.5922 or x_2 <= -1.2522 ) ) s
+Current seed:  199
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always[19,inf] ( ( x_0 >= -8.0994 or x_0 >= -8.0994 ) ) obj value:  7.295816898345947
+Best formula with scaled parameters:  always[3,inf] ( ( x_0 >= -7.2149 or x_0 >= -7.2149 ) )
+Execution time = 00:09:16
+/s eventually[19,inf] ( x_0 >= 0.7522 ) s
+/s eventually[19,inf] ( x_0 >= 0.7522 ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+/s eventually[19,inf] ( ( x_0 >= 0.6222 and x_0 >= 0.5922 ) ) s
+Current seed:  199
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  ( x_0 >= -8.0734 until[6,inf] x_0 >= -6.4515 ) obj value:  7.5477118492126465
+Best formula with scaled parameters:  ( x_0 >= -6.9983 until[1,inf] x_0 >= -5.4063 )
+Execution time = 00:09:16
+/s always[19,inf] ( x_0 >= -0.4522 ) s
+/s always[19,inf] ( x_0 >= -0.4522 ) s
+/s always[19,21] ( ( x_0 >= -0.4922 or ( x_2 <= -0.9222 until[19,21] x_2 <= -0.9922 ) ) ) s
+/s always[19,inf] ( x_0 >= -0.4522 ) s
+/s ( x_2 <= -1.2999 or always[19,21] ( x_0 >= -0.3522 ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or ( x_2 <= -0.2922 and x_2 <= -0.9222 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or ( x_2 <= -0.2922 and x_2 <= -0.9222 ) ) ) s
+/s always[19,inf] ( ( x_0 >= -0.4922 or ( x_2 <= -0.2922 and x_2 <= -0.9222 ) ) ) s
+/s always[19,inf] ( x_0 >= -0.4522 ) s
+/s always[19,21] ( ( x_0 >= -0.4922 or ( x_2 <= -0.9222 until[19,21] x_2 <= -0.9922 ) ) ) s
+Current seed:  199
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  always ( x_0 >= -19.5432 ) obj value:  7.911937236785889
+Best formula with scaled parameters:  always ( x_0 >= -17.996 )
+Execution time = 00:09:16
+DONE!

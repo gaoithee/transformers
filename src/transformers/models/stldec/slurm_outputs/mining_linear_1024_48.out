@@ -1,0 +1,69 @@
+Loading python/3.11.6--gcc--8.5.0
+  Loading requirement: bzip2/1.0.8-gp5wcz5 libmd/1.0.4-wja3f5q
+    libbsd/0.11.7-cgxjopl expat/2.5.0-bptl3xw ncurses/6.4-asx3jea
+    readline/8.2-nyw6mp6 gdbm/1.23-fs6otck libiconv/1.17-d7yvx2s
+    xz/5.4.1-hubmwr5 zlib-ng/2.1.4-6htiapk libxml2/2.10.3-5eeeokp
+    pigz/2.7-bopr5vp zstd/1.5.5-gawytfl tar/1.34-amqus5s gettext/0.22.3-2g7elif
+    libffi/3.4.4-6r7brdq libxcrypt/4.4.35-ss2rzin sqlite/3.43.2
+    util-linux-uuid/2.38.1-jkdi7kv
+Running on  nodes
+---------------------------------------------
+SLURM job ID:        13877472
+SLURM job node list: lrdn3435
+DATE:                Thu Mar 13 23:58:04 CET 2025
+---------------------------------------------
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+Running on cuda
+/s always[12,inf] ( ( x_0 >= -0.4555 until[15,18] ( x_2 <= -0.0075 or ( x_2 <= -0.0012 and x_2 >= -0.0015 ) ) ) ) s
+/s always[12,inf] ( not ( ( x_0 <= -0.4554 or ( x_2 >= -0.0075 and ( x_2 >= -0.1112 and ( x_0 >= -0.0054 until[11,14] x_2 >= -0.1144 ) ) ) ) ) ) s
+/s always[19,21] ( always[18,inf] ( ( x_0 >= -0.4076 until[15,18] ( x_2 <= -0.0075 or ( x_2 <= -0.0012 and x_2 >= -0.0014 ) ) ) ) ) s
+/s always[12,inf] ( ( x_0 >= -0.4555 until[15,18] ( x_2 <= -0.0075 or ( x_2 <= -0.1155 and x_2 >= -0.0012 ) ) ) ) s
+/s always[19,21] ( always[19,inf] ( x_0 >= -0.4751 ) ) s
+/s always[19,21] ( always[19,inf] ( always[18,21] ( x_0 >= -0.4455 ) ) ) s
+/s always[1,inf] ( ( ( x_0 >= -0.4477 or x_2 <= -0.2975 ) until[15,18] ( x_0 >= -0.0076 or ( x_2 <= -0.1172 and x_2 >= -0.1155 ) ) ) ) s
+/s always[1,inf] ( ( ( x_0 >= -0.4477 or x_0 >= -0.3876 ) until[15,18] ( x_2 <= -0.0076 or ( x_2 <= -0.1142 or x_2 <= -0.1145 ) ) ) ) s
+/s always[1,inf] ( ( ( x_0 >= -0.4477 or x_0 >= -0.3876 ) until[15,18] ( x_2 <= 0.0175 or ( x_2 <= -0.1155 or x_2 <= -0.1145 ) ) ) ) s
+/s always[12,inf] ( ( x_0 >= -0.4455 until[15,18] ( x_2 <= -0.0075 or ( x_2 <= -0.1155 and x_2 >= -0.0012 ) ) ) ) s
+Current seed:  357
+Accuracy:  1.0 Precision:  1.0 Recall:  1.0 Misclassification Rate:  0.0
+Best formula:  not ( eventually[6,inf] ( x_0 <= -0.592 ) ) obj value:  8.373333930969238
+Best formula with scaled parameters:  not ( eventually[1,inf] ( x_0 <= -0.592 ) )
+Execution time = 00:09:20
+/s eventually[19,21] ( eventually[19,21] ( eventually[19,inf] ( eventually[11,15] ( eventually[11,15] ( eventually[11,15] ( x_0 >= 0.1511 ) ) ) ) ) ) s
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/mining_linear_1024_48.py", line 269, in <module>
+    candidates_x, new_phis = custom_search(candidates_x, train_dataset, index_folder, topk, n_neigh, dev,
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/mining_linear_1024_48.py", line 160, in custom_search
+    new_emb = encoder.compute_embeddings(new_f)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/encoder.py", line 47, in compute_embeddings
+    return self.kernel.compute_bag_bag(formula, self.anchor_set)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/kernel.py", line 69, in compute_bag_bag
+    rhos1, selfk1 = self._compute_robustness_no_time(phis1)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/kernel.py", line 129, in _compute_robustness_no_time
+    rho = phi.quantitative(self.signals, evaluate_at_all_times=False)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/stl.py", line 88, in quantitative
+    z: Tensor = self._quantitative(x, normalize)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/stl.py", line 394, in _quantitative
+    z1: Tensor = self.child._quantitative(x[:, :, self.left_time_bound:], normalize)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/stl.py", line 406, in _quantitative
+    z: Tensor = eventually(z1, self.right_time_bound - self.left_time_bound)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/stl.py", line 26, in eventually
+    return F.max_pool1d(x, kernel_size=time_span, stride=1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/torch/_jit_internal.py", line 624, in fn
+    return if_false(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/torch/nn/functional.py", line 740, in _max_pool1d
+    return torch.max_pool1d(input, kernel_size, stride, padding, dilation, ceil_mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: max_pool1d() Invalid computed output size: 0
+srun: error: lrdn3435: task 0: Exited with exit code 1
+DONE!
