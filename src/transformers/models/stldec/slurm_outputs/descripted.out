@@ -8,8 +8,12 @@ Loading python/3.11.6--gcc--8.5.0
     util-linux-uuid/2.38.1-jkdi7kv
 Running on  nodes
 ---------------------------------------------
-SLURM job ID:        13665288
-SLURM job node list: lrdn3381
-DATE:                Sun Mar  9 17:47:41 CET 2025
+SLURM job ID:        13887408
+SLURM job node list: lrdn3432
+DATE:                Fri Mar 14 10:51:20 CET 2025
 ---------------------------------------------
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/descriptive_analysis.py", line 183, in <module>
+NameError: name 'df' is not defined
+srun: error: lrdn3432: task 0: Exited with exit code 1
 DONE!

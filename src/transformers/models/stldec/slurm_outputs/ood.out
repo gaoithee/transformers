@@ -1,0 +1,58 @@
+Loading python/3.11.6--gcc--8.5.0
+  Loading requirement: bzip2/1.0.8-gp5wcz5 libmd/1.0.4-wja3f5q
+    libbsd/0.11.7-cgxjopl expat/2.5.0-bptl3xw ncurses/6.4-asx3jea
+    readline/8.2-nyw6mp6 gdbm/1.23-fs6otck libiconv/1.17-d7yvx2s
+    xz/5.4.1-hubmwr5 zlib-ng/2.1.4-6htiapk libxml2/2.10.3-5eeeokp
+    pigz/2.7-bopr5vp zstd/1.5.5-gawytfl tar/1.34-amqus5s gettext/0.22.3-2g7elif
+    libffi/3.4.4-6r7brdq libxcrypt/4.4.35-ss2rzin sqlite/3.43.2
+    util-linux-uuid/2.38.1-jkdi7kv
+Running on  nodes
+---------------------------------------------
+SLURM job ID:        13890142
+SLURM job node list: lrdn3413
+DATE:                Fri Mar 14 12:35:59 CET 2025
+---------------------------------------------
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+balanced/step_24000
+( x_0 <= 1.233 until[15,23] x_0 <= 1.083 )
+( x_0 <= -0.4433 or x_0 <= 3.3131 )
+( x_0 >= -0.033 until[15,23] x_0 >= -0.034 )
+( ( x_1 >= 0.033 or x_1 >= 0.036 ) until[15,23] ( x_1 >= -0.0362 or x_1 >= -0.036 ) )
+( ( ( x_2 >= -0.033 or x_2 >= 0.033 ) or ( x_2 >= 0.133 or x_2 >= 0.1332 ) ) until[1,28] ( ( x_2 >= -0.1332 or x_2 >= 0.134 ) or ( x_2 >= 0.134 or x_2 >= 0.164 ) ) )
+( ( x_1 <= -0.1311 or x_1 <= -0.0311 ) or ( x_1 <= -0.1311 or x_1 <= 2.931 ) )
+( ( ( ( x_1 <= -0.1311 or x_1 >= -0.0311 ) or ( x_1 <= -0.1311 or x_1 <= -0.0331 ) ) or ( ( x_1 <= -0.1311 or x_1 <= -0.0331 ) or ( x_1 <= -0.1331 until[2,24] x_1 <= -0.3331 ) ) ) until[1,inf] ( ( ( x_1 <= -0.1331 or x_1 <= -0.3331 ) or ( x_1 <= -0.1331 or x_1 <= -0.0333 ) ) or ( ( x_1 <= -0.1331 or x_1 <= -0.0333 ) or ( x_2 <= -0.1332 or x_2 >= -0.3333 ) ) ) )
+( ( ( ( x_1 >= -0.1311 or x_1 >= -0.0311 ) or ( x_0 <= -0.1331 or x_0 <= -0.333 ) ) or ( ( x_1 >= -0.1331 or x_1 >= -0.3333 ) or ( x_1 >= -0.3331 or x_1 >= -0.3331 ) ) ) until[1,inf] ( ( ( x_1 >= -0.3331 or x_1 <= -0.3331 ) or ( x_1 >= -0.3331 or x_1 <= -0.3333 ) ) or ( ( x_1 >= -0.3331 or x_1 <= -0.3333 ) or ( x_2 >= -0.3332 or x_2 >= -0.3333 ) ) ) )
+( ( ( ( x_1 <= -0.1111 or x_1 <= -0.0311 ) or ( x_1 <= -0.1311 or x_1 <= -0.0331 ) ) or ( ( x_1 <= -0.1311 or x_1 <= -0.1331 ) or ( x_1 <= -0.1331 until[2,24] x_1 <= -0.3331 ) ) ) until[1,inf] ( ( ( x_1 <= -0.1331 or x_1 <= -0.1331 ) or ( x_1 <= -0.1331 or x_1 <= -0.0333 ) ) or ( ( x_1 <= -0.1331 or x_1 <= -0.0332 ) or ( x_1 <= -0.1331 or x_2 <= -0.0333 ) ) ) )
+not ( ( ( x_2 >= 0.653 or x_2 >= 0.653 ) and ( x_2 >= 0.653 or x_2 >= -0.153 ) ) )
+( x_0 >= -0.1111 until[29,34] x_0 >= 2.733 )
+( x_0 <= -0.4413 or x_0 <= 3.0311 )
+always[29,35] ( ( x_0 >= 1.4731 until[15,23] x_1 >= -0.0531 ) )
+always[14,27] ( x_0 <= 2.031 )
+balanced/step_24000
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/utils/hub.py", line 403, in cached_file
+    resolved_file = hf_hub_download(
+                    ^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/leonardo/home/userexternal/scanduss/.venv/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/easyskewed_new/step_24000'. Use `repo_type` argument if needed.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/ood_performances.py", line 40, in <module>
+    model = AutoModelForCausalLM.from_pretrained(model_path, config = config).to(device)  # Sposta il modello sulla device
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/modeling_utils.py", line 3825, in from_pretrained
+    resolved_archive_file = cached_file(pretrained_model_name_or_path, filename, **cached_file_kwargs)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/utils/hub.py", line 469, in cached_file
+    raise EnvironmentError(
+OSError: Incorrect path_or_model_id: '../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/easyskewed_new/step_24000'. Please provide either the path to a local folder or the repo_id of a model on the Hub.
+srun: error: lrdn3413: task 0: Exited with exit code 1
+DONE!

@@ -1,14 +1,15 @@
 #!/bin/bash
 #SBATCH --no-requeue
-#SBATCH --job-name="descr"
+#SBATCH --qos=boost_qos_dbg
+#SBATCH --job-name="hardsk"
 #SBATCH --account IscrC_IRA-LLMs
 #SBATCH --partition=boost_usr_prod
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
-#SBATCH --time=10:00:00
+#SBATCH --time=00:30:00
 #SBATCH --mem=450G
-#SBATCH --output=slurm_outputs/descripted.out
+#SBATCH --output=slurm_outputs/descript_hardsk.out
 
 module load python/3.11.6--gcc--8.5.0
 

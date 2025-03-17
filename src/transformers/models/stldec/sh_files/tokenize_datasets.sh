@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --no-requeue
-#SBATCH --job-name="easysk"
+#SBATCH --job-name="real"
 #SBATCH --account IscrC_IRA-LLMs
 #SBATCH --partition=boost_usr_prod
 #SBATCH --nodes=1
@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --time=20:00:00
 #SBATCH --mem=450G
-#SBATCH --output=slurm_outputs/tokenize_easysk.out
+#SBATCH --output=slurm_outputs/tokenize_real.out
 
 module load python/3.11.6--gcc--8.5.0
 
@@ -29,7 +29,7 @@ source /leonardo/home/userexternal/scanduss/.venv/bin/activate
 # export <export_name>=<export_value>
 #variables
 
-srun python3 tokenize_datasets.py
+srun python3 tokenize_real.py
 
 
 echo "DONE!"

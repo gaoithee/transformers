@@ -709,3 +709,31 @@ def build_dag(formula):
 def get_depth(formula):
     phi_g = build_dag(formula)[0]
     return len(nx.dag_longest_path(phi_g)) - 1
+
+def get_n_nodes(str_phi):
+    f_split = str_phi.split()
+    f_nodes_list = [sub_f for sub_f in f_split if sub_f in ['not', 'and', 'or', 'always', 'eventually', '<=', '>=',
+                                                            'until']]
+    return len(f_nodes_list)
+
+
+def get_n_leaves(str_phi):
+    phi_split = str_phi.split()
+    phi_var = [sub for sub in phi_split if sub.startswith('x_')]
+    return len(phi_var)
+
+
+def get_n_temp(str_phi):
+    phi_split = str_phi.split()
+    phi_temp = [sub for sub in phi_split if sub[:2] in ['ev', 'al', 'un']]
+    return len(phi_temp)
+
+
+def get_n_tokens(str_phi):
+    tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
+    return len(tokenizer.encode(str_phi))
+
+
+def get_n_depth(str_phi):
+    phi = from_string_to_formula(str_phi)
+    return get_depth(phi)

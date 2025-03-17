@@ -8,16 +8,16 @@ Loading python/3.11.6--gcc--8.5.0
     util-linux-uuid/2.38.1-jkdi7kv
 Running on  nodes
 ---------------------------------------------
-SLURM job ID:        13871915
-SLURM job node list: lrdn3375
-DATE:                Thu Mar 13 18:29:11 CET 2025
+SLURM job ID:        13876946
+SLURM job node list: lrdn3420
+DATE:                Thu Mar 13 23:22:13 CET 2025
 ---------------------------------------------
 Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
 balanced/step_24000
-Traceback (most recent call last):
-  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/ood_performances.py", line 58, in <module>
-    encoder_hidden_states = torch.tensor(embedding, dtype=torch.float32).to(device)
-                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: new(): invalid data type 'str'
-srun: error: lrdn3375: task 0: Exited with exit code 1
+                                                   0                                       gold formula
+0  ( ( ( ( x_0 >= 0.163 or x_0 >= 0.136 ) or ( x_...  eventually[14,26] ( not ( not ( ( ( ( not ( x_...
+1  ( ( ( ( x_2 >= -0.166 or x_1 >= -0.166 ) and (...  ( not ( not ( ( ( ( not ( x_2 <= 0.0759 ) unti...
+2  ( ( ( ( ( x_0 >= 0.153 or x_0 >= 0.154 ) or ( ...  ( always[18,23] ( ( ( always[8,inf] ( eventual...
+3  ( ( ( ( x_2 >= 0.626 or x_0 >= -0.663 ) and ( ...  always[29,31] ( ( not ( ( eventually[18,34] ( ...
+4  ( ( ( ( ( x_1 >= -0.133 or x_1 >= -0.133 ) or ...  eventually ( ( ( not ( ( ( not ( x_0 <= 0.362 ...
 DONE!

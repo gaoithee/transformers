@@ -2,7 +2,10 @@ import networkx as nx
 import numpy as np
 import pandas as pd
 import stl
-from utils import from_string_to_formula
+from utils2 import from_string_to_formula
+from handcoded_tokenizer import STLTokenizer
+
+tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
 
 def mean_formulae_depth(dataset):
     formulae_depths = []
@@ -130,17 +133,50 @@ def build_dag(formula):
 
 #######################################################################
 
-# train = pd.read_csv('datasets/train_set.csv')
-# eval = pd.read_csv('datasets/validation_set.csv')
-# test = pd.read_csv('datasets/test_set.csv')
+def get_n_nodes(str_phi):
+    f_split = str_phi.split()
+    f_nodes_list = [sub_f for sub_f in f_split if sub_f in ['not', 'and', 'or', 'always', 'eventually', '<=', '>=',
+                                                            'until']]
+    return len(f_nodes_list)
 
 
+def get_n_leaves(str_phi):
+    phi_split = str_phi.split()
+    phi_var = [sub for sub in phi_split if sub.startswith('x_')]
+    return len(phi_var)
 
-# print(f"Training set: {mean_formulae_depth(train)}")
-# print(f"Validation set: {mean_formulae_depth(eval)}")
-# print(f"Test set: {mean_formulae_depth(test)}")
+
+def get_n_temp(str_phi):
+    phi_split = str_phi.split()
+    phi_temp = [sub for sub in phi_split if sub[:2] in ['ev', 'al', 'un']]
+    return len(phi_temp)
 
 
-df = pd.read_pickle('datasets/new_train_set.pkl')
-df['Complexity'] = df["Formula"].apply(get_depth)
-df.to_pickle('datasets/centered_train_set.pkl')
+def get_n_tokens(str_phi):
+    return len(tokenizer.encode(str_phi))
+
+
+def get_n_depth(str_phi):
+    phi = from_string_to_formula(str_phi)
+    return get_depth(phi)
+
+#######################################################################
+
+study = pd.read_pickle('datasets/hardsk_train_set.pkl')
+
+depths = study['Formula'].apply(get_depth)
+tokens = study['Formula'].apply(get_n_tokens)
+nodes = study['Formula'].apply(get_n_nodes)
+temps = study['Formula'].apply(get_n_temp)
+leaves = study['Formula'].apply(get_n_leaves)
+
+descr = pd.DataFrame({
+    'Formula': study['Formula'],
+    'Depths': depths,
+    'Tokens': tokens,
+    'Nodes': nodes,
+    'Temps': temps,
+    'Leaves': leaves
+})
+
+descr.to_pickle('descriptive/hardsk_train_set.pkl')

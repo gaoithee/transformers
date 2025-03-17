@@ -1,15 +1,16 @@
 #!/bin/bash
+#SBATCH --qos=boost_qos_dbg
 #SBATCH --no-requeue
-#SBATCH --job-name="d8_form"
+#SBATCH --job-name="real"
 #SBATCH --account IscrC_IRA-LLMs
 #SBATCH --partition=boost_usr_prod
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
 #SBATCH --exclusive
-#SBATCH --time=20:00:00
+#SBATCH --time=00:30:00
 #SBATCH --mem=400G
-#SBATCH --output=slurm_outputs/depth8_formulae.out
+#SBATCH --output=slurm_outputs/real.out
 
 module load python/3.11.6--gcc--8.5.0
 

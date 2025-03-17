@@ -26,9 +26,9 @@ steps = ['step_11000', 'step_12000', 'step_13000', 'step_14000', 'step_15000']
 formulae_dataset = []
 
 for i in steps:
-    model_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/balanced_@/{i}"
-    optimizer_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/balanced_@/{i}/optimizer.bin"
-    scheduler_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/balanced_@/{i}/scheduler.bin"
+    model_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/balanced_512/{i}"
+    optimizer_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/balanced_512/{i}/optimizer.bin"
+    scheduler_path = f"../../../../../../../../../leonardo_scratch/fast/IscrC_IRA-LLMs/balanced_512/{i}/scheduler.bin"
 
 ##################################################################
 
@@ -39,7 +39,7 @@ for i in steps:
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = AutoModelForCausalLM.from_pretrained(model_path, config = config).to(device)  # Sposta il modello sulla device
     tokenizer = STLTokenizer('tokenizer_files/tokenizer.json')
-    encoder = STLEncoder(embed_dim=1024, anchor_filename='anchor_set_1024_dim.pickle')
+    encoder = STLEncoder(embed_dim=512, anchor_filename='anchor_set_512.pickle')
 
     accelerator = Accelerator()
 
@@ -53,7 +53,7 @@ for i in steps:
     generated_formulae = []
 
     for idx in range(len(eval_df)):
-        embedding = eval_df["Embedding"][idx]
+        embedding = eval_df["Embedding512"][idx]
         encoder_hidden_states = torch.tensor(embedding, dtype=torch.float32).to(device)
         encoder_hidden_states = encoder_hidden_states.unsqueeze(0).unsqueeze(0)
 
@@ -72,14 +72,9 @@ for i in steps:
 
     print(i)
     formulae_dataset.append(generated_formulae)
-    eval_df2 = pd.DataFrame(formulae_dataset).transpose()
-    eval_df2.to_csv('partial.csv', index=False)
 
-# formulae_dataset.append(eval_df['Formula'])
+eval_df = pd.DataFrame(formulae_dataset).transpose()
 
-eval_df.columns = steps
 eval_df['gold formula'] = gold_formulae
 
-# eval_df = pd.concat([pd.DataFrame({'Gold Formula': gold_formulae}), eval_df], axis=1)
-
-eval_df.to_csv('balanced/steps11000_15000.csv', index=False)
+eval_df.to_csv('balanced512/steps11000_15000.csv', index=False)

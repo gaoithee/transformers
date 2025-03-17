@@ -1,0 +1,30 @@
+Loading python/3.11.6--gcc--8.5.0
+  Loading requirement: bzip2/1.0.8-gp5wcz5 libmd/1.0.4-wja3f5q
+    libbsd/0.11.7-cgxjopl expat/2.5.0-bptl3xw ncurses/6.4-asx3jea
+    readline/8.2-nyw6mp6 gdbm/1.23-fs6otck libiconv/1.17-d7yvx2s
+    xz/5.4.1-hubmwr5 zlib-ng/2.1.4-6htiapk libxml2/2.10.3-5eeeokp
+    pigz/2.7-bopr5vp zstd/1.5.5-gawytfl tar/1.34-amqus5s gettext/0.22.3-2g7elif
+    libffi/3.4.4-6r7brdq libxcrypt/4.4.35-ss2rzin sqlite/3.43.2
+    util-linux-uuid/2.38.1-jkdi7kv
+Running on  nodes
+---------------------------------------------
+SLURM job ID:        13876333
+SLURM job node list: lrdn3450
+DATE:                Thu Mar 13 22:34:14 CET 2025
+---------------------------------------------
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+Running on cuda
+( ( x_0 >= -0.0229 or x_1 >= 0.9225 ) until[19,21] ( x_2 >= -0.2222 or x_2 >= -0.2225 ) )
+111111111111111111,11,10,11,x_x_x_x_x_00013,1,x_x_x_x_x_x_x_x_x_000133 x_x_x_x_x_x_x_1x_x_10,[ x_x_x_10,[ x_x_10,[ x_x_10,11,1,1,1,1,1,1,[ x_x_x_x_1x_111,[ x_x_1,[ x_x_1x_10,[ x_x_10,11,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,11,1,1,1,11,1,1,1,11,1,1,1,11,1,11,1,11,1,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,111,11,111,11,11,111,11,11,11,11,11,11,11,11,11,11,11,11,1,11,11,1,11,1,11,1,11,1,11,1,11,1,1,11,1,1,11,1,1,1,1,1,11,1
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/mining_maritime_512.py", line 270, in <module>
+    candidates_x, new_phis = custom_search(candidates_x, train_dataset, index_folder, topk, n_neigh, dev,
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/mining_maritime_512.py", line 154, in custom_search
+    retrieved = [[from_string_to_formula(retrieved_str)]]
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/scanduss/transformers/src/transformers/models/stldec/utils3.py", line 44, in from_string_to_formula
+    assert (root_op_str.startswith('not') or root_op_str.startswith('eventually')
+AssertionError
+srun: error: lrdn3450: task 0: Exited with exit code 1
+DONE!

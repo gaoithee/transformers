@@ -59,7 +59,7 @@ def embed_generated_formulae(df):
 
 
 # df = pd.read_csv('datasets/train_set.csv')
-df = pd.read_csv('datasets/fragments/depth_8_formulae.csv')
+df = pd.read_pickle('real_phis.pkl')
 formulae_to_embed = df['Formula']
 # formulae_to_embed = ["always ( eventually[6,20] ( x_1 >= -0.7636 ) )", "always ( eventually[1,25] ( x_1 >= -0.5783 ) )"]
 
@@ -73,6 +73,5 @@ formulae_embeddings = encoder.compute_embeddings(formulae_to_embed)
 
 df['Embedding512'] = formulae_embeddings.tolist()
 
-
 # print('produce new file')
-df.to_pickle('datasets/depth_8_formulae.pkl')
+df.to_pickle('real_phis.pkl')

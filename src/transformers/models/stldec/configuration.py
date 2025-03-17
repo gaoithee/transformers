@@ -22,7 +22,7 @@ class STLConfig(PretrainedConfig):
         use_cache=True,
         is_encoder_decoder=True,
         activation_function="gelu",
-        d_model=512,
+        d_model=1024,
         dropout=0.1,
         attention_dropout=0.0,
         activation_dropout=0.0,
